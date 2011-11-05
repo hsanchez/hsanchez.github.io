@@ -3,7 +3,7 @@ layout: post
 title: Hello World!
 ---
 
-This is the first post on huascarsanchez.com - my new website. I decided recently that what could be better than the traditional "Hello World!" to open my new website. Then, there you have it ... 
+This is the first post on huascarsanchez.com - my new website. Recently, I decided that it would be a good idea to open my new website with the traditional "Hello World!" message. Then, there you have it ... The famous "Hello World!" 
 
 {% highlight ruby %}
   #!/usr/bin/ruby
@@ -13,4 +13,4 @@ This is the first post on huascarsanchez.com - my new website. I decided recentl
   puts "Hello World!";  
 {% endhighlight %}
 
-Note: My website's theme is not fixed. I am currently working on a new one, which I hope it will ready at the end of this month.
+Note: As of now, I am still working on a new theme for my website. I am hoping that I will have it ready at the end of this month. 
