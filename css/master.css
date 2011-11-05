@@ -1,0 +1,144 @@
+body {
+  margin: 0;
+  padding: 0;
+  font: normal normal normal 14px/1.5em Helvetica, sans-serif; /* 21px line height */
+  color: #222;
+}
+
+a {
+  outline: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+  font-family: Georgia, serif;
+}
+
+h1 {
+  line-height: 1.2em;
+}
+
+#wrapper {
+  margin: 2em auto;
+}
+
+a:link, a:visited {
+  color: #03c;
+}
+a:hover {
+  color: #06f;
+}
+
+dl {
+  margin: 0;
+}
+
+dt {
+  font-size: 14px;
+  line-height: 1.2em;
+  color: #4182c4;
+  margin: .75em 0 0;
+}
+
+dd {
+  margin-left: 0;
+}
+
+dd.date {
+  font-size: 12px;
+  color: #aaa;
+  font-style: italic;
+}
+
+#me h3 {
+  margin-bottom: .25em;
+}
+
+#me ul {
+  list-style: none;
+}
+
+#me li {
+  margin-left: 0;
+  font-size: 12px;
+}
+#me a, #me a:visited {
+  color: #222;
+  text-decoration: none;
+}
+#me a:hover {
+  text-decoration: underline;
+}
+
+/* Code */
+
+pre {
+  line-height: 1.2em;
+}
+
+.gist, code {
+  font-size: 12px;
+}
+
+#maincol .gist .gist-file {
+  border: 0;
+}
+#maincol .gist .gist-file .gist-data {
+  background-color: transparent;
+}
+
+/* Repos */
+/* -moz-linear-gradient( [<point> || <angle>,]? <stop>, <stop> [, <stop>]* )  */
+/* -webkit-gradient(<type>, <point> [, <radius>]?, <point> [, <radius>]? [, <stop>]*) */
+
+#github-repos {
+  display: block;
+  width: 32px;
+  height: 32px;
+  border-bottom: 1px solid #999;
+  background: transparent url("images/octocat.png") no-repeat 0 0;
+  outline: 0;
+}
+#github-repos:hover {
+  background: transparent url("images/octocat.png") no-repeat 0 -32px;
+}
+
+#repos-wrapper {
+  background: -moz-linear-gradient(19% 75% 90deg, #121212, #4D4D4D);
+  background: -webkit-gradient(linear, 0 19%, 0 75%, from(#4D4D4D), to(#121212));
+}
+#repos h4, #repos h4 a, #repos h4 a:visited {
+  color: #00fb50;
+  font-family: Monaco;
+  margin-bottom: 0;
+  text-decoration: none;
+}
+#repos h5 {
+  color: #ffec15;
+  margin: 0;
+  font-family: Monaco;
+  font-size: 10px;
+}
+#repos {
+  padding-top: 2em;
+}
+#repos p {
+  margin: .25em 0 .75em;
+  color: #02f7fb;
+  font-family: Monaco;
+  font-size: 12px;
+}
+#repos hr {
+  border: 0;
+}
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+* html .clearfix             { zoom: 1; } /* IE6 */
+*:first-child+html .clearfix { zoom: 1; } /* IE7 */

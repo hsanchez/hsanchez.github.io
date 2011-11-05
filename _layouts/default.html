@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>{{ page.title }}</title>
+  <link rel="stylesheet" href="/css/reset.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="/css/text.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="/css/960.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="/css/syntax.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="/css/master.css" type="text/css" media="screen" />
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/underscore.min.js"></script>
+  <script type="text/javascript" src="/js/good-parts.js"></script>
+  <script type="text/javascript" src="/js/app.js"></script>
+</head>
+<body>
+  <div id="wrapper" class="container_12">
+    <div id="maincol" class="grid_8">
+      {{ content }}
+
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        var disqus_shortname = 'hsanchez-github';
+
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+
+    </div>
+    <div id="sidecol" class="grid_3 prefix_1">
+      <div class="alpha grid_2">
+        <div id="me">
+          <h3>Huascar Sanchez</h3>
+          <ul>
+            <li>CS Phd Student at UC Santa Cruz</li>
+            <li>san jose, ca</li>
+          </ul>
+        </div>
+      </div>
+      <div class="omega grid_1">
+        <a href="#" id="github-repos"></a>
+      </div>
+
+      <hr />
+
+      {% for post in site.posts %}
+      <dl class="posts">
+        <dt><a href="{{ post.url }}">{{ post.title }}</a></dt>
+        <dd class="date">{{ post.date | date_to_string }}</dd>
+      </dl>
+      {% endfor %}
+      
+    </div>
+  </div>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5354996-5']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+   if (document.location.host.indexOf("huascarsanchez.com") == -1) {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    };
+  })();
+
+</script>
+</body>
+</html>
