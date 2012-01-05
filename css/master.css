@@ -51,7 +51,7 @@ dd.date {
 }
 
 #me h3 {
-  margin-bottom: .25em;
+  margin-bottom: .18em;
 }
 
 #me ul {
@@ -104,27 +104,29 @@ pre {
 }
 
 #repos-wrapper {
-  background: -moz-linear-gradient(19% 75% 90deg, #121212, #4D4D4D);
-  background: -webkit-gradient(linear, 0 19%, 0 75%, from(#4D4D4D), to(#121212));
+  /*background: -moz-linear-gradient(19% 75% 90deg, #121212, #4D4D4D);
+  background: -webkit-gradient(linear, 0 19%, 0 75%, from(#4D4D4D), to(#121212));*/
+  background: #222; no-repeat 50% 80% #2e2e30;
 }
 #repos h4, #repos h4 a, #repos h4 a:visited {
-  color: #00fb50;
+  color: #ffffff;
   font-family: Monaco;
   margin-bottom: 0;
   text-decoration: none;
 }
 #repos h5 {
-  color: #ffec15;
+  color: #33CCFF;
   margin: 0;
   font-family: Monaco;
   font-size: 10px;
 }
 #repos {
   padding-top: 2em;
+  padding-bottom: 2em;
 }
 #repos p {
   margin: .25em 0 .75em;
-  color: #02f7fb;
+  color: #bcbdc0;
   font-family: Monaco;
   font-size: 12px;
 }
