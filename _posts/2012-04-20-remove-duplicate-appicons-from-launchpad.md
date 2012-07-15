@@ -3,7 +3,7 @@ layout: post
 title: Remove Duplicate App Icons from Launchpad!
 ---
 If there are multiple icon instances of one application in your Mac's Launchpad, 
-then here is how to get rid of the duplicate instances:
+then here is how to get rid of those duplicate instances:
 
 - Delete, or you simply drag and drop the application from Launchpad to 
   the trash. Lion OS will automatically remove all the icons in Launchpad related 
