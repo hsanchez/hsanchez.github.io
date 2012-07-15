@@ -3,7 +3,7 @@ layout: post
 title: My Twitter Bullying Detection Project
 ---
 
-According to Google Analytics and to other sources, my Data Mining project titled ``Twitter Bullying Detection'' is getting some
+According to Google Analytics and to other sources, my data mining project titled ``Twitter Bullying Detection'' is getting some
 attention. An earlier version of the project report was hosted on the co-author of the project's [website](http://users.soe.ucsc.edu/~shreyask/index.html). This version is good in terms of communicating the project's main idea and motivation. However, I think it is always important to have the latest version available. Therefore, I decided to post this latest version [here](http://dl.dropbox.com/u/11902217/huascarsanchez_and_shreyaskumar-twitterbullyingdection-fnl.pdf).
 
 Also, for the sake of convenience, I decided to post the report's abstract too:
