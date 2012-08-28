@@ -1,12 +1,15 @@
 var GitHub = {
   repos : function(username, callback) {
-    var url = "http://github.com/api/v2/json/repos/show/" + username + "?callback=?";
+	var str = "https://api.github.com/users/" + username + "/repos?callback=?";  
+    var url = str;
     $.getJSON(url, function(data) {
       callback(data.repositories);
     });
   },
+  
   repo: function(username, reponame, callback) {
-    var url = "http://github.com/api/v2/json/repos/show/" + username + "/" + reponame + "?callback=?";
+	var str = "https://api.github.com/repos/" + username+ "/" + reponame + + "?callback=?";
+    var url = str;
     $.getJSON(url, callback);
   }
 };
