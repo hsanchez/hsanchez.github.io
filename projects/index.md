@@ -13,5 +13,6 @@ description: Previous and Current projects
 - [**Terrain**](https://github.com/hsanchez/terrain): A PCG tool for generating 3D surfaces.
 - [**dbtune**](https://github.com/organizations/dbgroup-at-ucsc): A lightweight API for semi-automated tuning.
 - [**Circuitbreaker**](https://github.com/hsanchez/circuitbreaker): a software pattern for handling failure scenarios.
-- [**Watchdog**](#): A lightweight monitor API for periodic processes.
+- [**Wicked**](#): A command line interface with human readable sentence.
 - [**jscheck**](https://github.com/hsanchez/jscheck): A limited static type checker for Javascript.
+- [**Twist.js**](https://github.com/hsanchez/twist.js): A fast and furious code search assistant.
