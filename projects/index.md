@@ -8,7 +8,7 @@ description: Previous and Current projects
 
 - [**Chekofv**](https://github.com/organizations/SoftwareIntrospectionLab): Crowd-sourced formal verification program.
 - [**Botprint**](https://github.com/AugmentedDesignLab/botprint2): A mixed initiative robot design tool.
-- [**BullyGraph**](#): A bullying detection tool for Twitter.
+- [**BullyingGraph**](#): A bullying detection tool for Twitter.
 - [**Demodetect**](https://github.com/hsanchez/demodetect): A tool for inferring users' gender/age from tweets.
 - [**Terrain**](https://github.com/hsanchez/terrain): A PCG tool for generating 3D surfaces.
 - [**dbtune**](https://github.com/organizations/dbgroup-at-ucsc): A lightweight API for semi-automated tuning.
