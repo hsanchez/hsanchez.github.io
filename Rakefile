@@ -3,5 +3,5 @@ require 'rake'
 
 desc 'Run jekyll'
 task :run do
-  `jekyll --auto --server`
+  `jekyll serve --watch`
 end

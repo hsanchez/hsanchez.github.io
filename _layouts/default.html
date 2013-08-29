@@ -1,76 +1,58 @@
+---
+---
 <!DOCTYPE html>
-<html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  <title>{{ page.title }}</title>
-  <link rel="stylesheet" href="/css/reset.css" type="text/css" media="screen" />
-  <link rel="stylesheet" href="/css/text.css" type="text/css" media="screen" />
-  <link rel="stylesheet" href="/css/960.css" type="text/css" media="screen" />
-  <link rel="stylesheet" href="/css/syntax.css" type="text/css" media="screen" />
-  <link rel="stylesheet" href="/css/master.css" type="text/css" media="screen" />
-  <script type="text/javascript" src="/js/jquery.min.js"></script>
-  <script type="text/javascript" src="/js/underscore.min.js"></script>
-  <script type="text/javascript" src="/js/good-parts.js"></script>
-  <script type="text/javascript" src="/js/app.js"></script>
-</head>
-<body>
-  <div id="wrapper" class="container_12">
-    <div id="maincol" class="grid_8">
-      {{ content }}
+<html lang="en">
+  <head>
+		{% include head.html %}
+  </head>
 
-      <div id="disqus_thread"></div>
-<script type="text/javascript">
-    var disqus_shortname = 'hsanchez-github';
+  <body>
+    <div class="container">
+		<header>
+			{% if page.home %}
+			
+		    <div style="text-align: left ">
+    		<p>
+    			<a href="/" class="fancybox no-title">
+        		<img src="http://www.gravatar.com/avatar/edd40217c57a8b264212f6d1aec80231?s=100" alt=""/>
+        		</a>
+        	</p>
+			</div>
 
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-</script>     
+			{% else %}
 
+			{% capture url_parts %} {{ page.url | remove: "/index.html" | replace:'/'," " }}{% endcapture %}
+			{% capture num_parts %}{{ url_parts | number_of_words | minus: 1}}{% endcapture %}
+			{% assign previous="" %}
+			{% if num_parts != "-1" %}
+			<ul id="breadcrumb">
+				<li level="0"><a href="/">home</a></li>
+
+				{% assign counter = 1 %}
+				{% for unused in site.breadcrumb_iterator limit:num_parts %}
+					{% capture first_word %}{{ url_parts | truncatewords:1 | remove:"..."}}{% endcapture %}
+					{% capture previous %}{{ previous }}/{{ first_word }}{% endcapture %}
+
+					<li level="{{ counter }}"><a href="{{ previous }}">{{ first_word }}</a></li>
+
+					{% capture url_parts %}{{ url_parts | remove_first:first_word }}{% endcapture %}
+					{% capture temp %}{{ counter | plus: 1 }}{% endcapture %}
+				    {% assign counter = temp %}					
+				{% endfor %}
+			</ul>
+			{% endif %}
+			
+			<h1 class="title">{{ page.title }}</h1>
+
+			{% endif %}
+		</header>
+	
+		<div class="content">
+			{{ content }}
+		</div>
+
+		{% include footer.html %}
+		
     </div>
-    <div id="sidecol" class="grid_3 prefix_1">
-      <div class="alpha grid_2">
-        <div id="me">
-          <h3>Huascar Sanchez</h3>
-          <ul>
-            <li>cs phd student at ucsc</li>
-            <li>san jose, ca</li>
-          </ul>
-        </div>
-      </div>
-      <div class="omega grid_1" title="Click me if you want to see Huascar's projects...">
-        <a href="#" id="github-repos"></a>
-      </div>
-
-      <hr />
-
-      {% for post in site.posts %}
-      <dl class="posts">
-        <dt><a href="{{ post.url }}">{{ post.title }}</a></dt>
-        <dd class="date">{{ post.date | date_to_string }}</dd>
-      </dl>
-      {% endfor %}
-      
-    </div>
-  </div>
-<script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-5354996-5']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-   if (document.location.host.indexOf("huascarsanchez.com") == -1) {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    };
-  })();
-
-</script>
-</body>
+  </body>
 </html>
