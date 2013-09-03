@@ -6,7 +6,7 @@ description: Selected Graduate Coursework
 
 {{page.description}}:
 
-- Adv. Topics in Computer Graphics (Procedural Content Generation).
+- Topics in Computer Graphics (Procedural Content Generation).
 - Information Retrieval.
 - Machine Learning.
 - Data Mining.

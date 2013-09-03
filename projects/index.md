@@ -1,10 +1,12 @@
 ---
 layout: default
 title: Projects
-description: Previous and Current projects
+description: You can check out some of previous and current projects
 ---
 
-{{page.description}}:
+{{page.description}}
+
+Some of them are on Github, others don't.
 
 - [**Chekofv**](https://github.com/organizations/SoftwareIntrospectionLab): Crowd-sourced formal verification program.
 - [**Botprint**](https://github.com/AugmentedDesignLab/botprint2): A mixed initiative robot design tool.
