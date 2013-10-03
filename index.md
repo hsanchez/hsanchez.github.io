@@ -13,7 +13,7 @@ description: This is the academic site of Huascar A. Sanchez, a CS graduate stud
 Hi, I'm **Huascar** (pronounced wäs-kär), a PhD candidate in the [Department of Computer Science at
 UC Santa Cruz](http://cs.soe.ucsc.edu/), working with [Jim Whitehead](http://users.soe.ucsc.edu/~ejw/).
 My research interest include software engineering, specifically **source code curation**; a practice
-that is partially automated, dynamic, and collaborative. Much like data curation, source code curation addresses the challenge of maintaining a source code of interest, found online, in a manner that not only preserves its meaning and usefulness, but also improves its credibility and trustworthiness.
+that is partially automated, dynamic, and collaborative. Much like data curation, source code curation addresses the challenge of maintaining a source code of interest&mdash;found online&mdash;in a manner that not only preserves its meaning and usefulness, but also improves its credibility and trustworthiness.
 
 A description such as **source code curation** suggests a process of open exploration. Code foragers
 can engage in this alone and together with others. By actively investing themselves in curating
