@@ -21,5 +21,5 @@ Basically, I hypothesize that source code curation can improve the understanding
 If you want to get in touch, send an [email](mailto:hsanchez@cs.ucsc.edu).
 
 Cheers,
-Huascar A. Sanchez
+Huascar A. Sanchez  
 [e-mail](mailto:hsanchez@cs.ucsc.edu)&nbsp;·&nbsp;[cv](./static/huascarsanchez.cv.pdf)&nbsp;·&nbsp;[resume](./static/huascarsanchez.resume.pdf)
