@@ -17,4 +17,4 @@ I do my best to maintain this routine since it improves my focus and concentrati
 
 It also helps me convey information more efficiently. I don't get burned out. And there is no chance for social media to derail me.  
 
-I also apply this method when programming; e.g. writing small chunks of functionality in small chunks of time.
+I also apply this method when writing code; e.g. writing small chunks of functionality in small chunks of time.
