@@ -1,10 +1,9 @@
 ---
 layout: default
-title: BullyingGraph
-description: ISM 245 class project.
+title: Bullying detection in social networks
 ---
 
-According to Google Analytics and to other sources, my data mining project titled "Twitter Bullying
+According to Google Analytics and to other sources, my data mining (ISM 245 class) project titled "Twitter Bullying
 Detection" is getting some attention. An earlier version of the project report was hosted on the
 co-author of the project's [website](http://users.soe.ucsc.edu/~shreyask/index.html). This version
 is good in terms of communicating the project's main idea and motivation. However, I think it is

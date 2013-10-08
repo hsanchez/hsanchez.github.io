@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Notes
+title: Short notes
 ---
 
 {% for post in site.categories.notes %}

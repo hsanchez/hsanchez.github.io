@@ -1,7 +1,6 @@
 ---
 layout: default
 title: Hello World!
-description: First blog post of 2011.
 ---
 
 {{post.date}}
