@@ -11,16 +11,16 @@ The thesis was a bit abstract. There were times where key ideas were difficult t
 
 The BibTex of this thesis is presented as follows:
 
-```
-@phdthesis{krysaphdthesis,
-  author = {Joasia Krysa}, 
-  title  = {Software curating: the politics of curating 
-            in/as (an) Open System(s)},
-  school = {University of Plymouth},
-  year   = 2008,
-  note   = {Available at \url{http://hdl.handle.net/10026.1/326}}
-}
-```  
+
+	@phdthesis{krysaphdthesis,
+  		author = {Joasia Krysa}, 
+  		title  = {Software curating: the politics of curating 
+            		in/as (an) Open System(s)},
+		school = {University of Plymouth},
+  		year   = 2008,
+  		note   = {\url{http://hdl.handle.net/10026.1/326}}
+	}
+
 
 
 
