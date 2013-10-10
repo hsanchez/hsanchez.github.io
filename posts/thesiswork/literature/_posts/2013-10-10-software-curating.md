@@ -9,7 +9,7 @@ Joasia Krysa's [thesis](http://hdl.handle.net/10026.1/326) is about software cur
 
 The thesis was a bit abstract. There were times where key ideas were difficult to follow. However, after a couple of readins, I discovered many valuable insights that could be used in my research. 
 
-The BibTex of this thesis is presented as follows:
+The citation (in BibTex) of this thesis is presented as follows:
 
 
 	@phdthesis{krysaphdthesis,
