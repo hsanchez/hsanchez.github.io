@@ -7,7 +7,7 @@ I am a PhD candidate in the [Department of Computer Science at UC Santa Cruz](ht
 
 As indicated in the [welcome](http://huascarsanchez.com) page, the goal of my research is to develop tools around code foraging. These tools would address best practices in the following areas:  
 
-1. Curating source code: [Curating a source code](#) of interest to make sure it is fit for one's purpose and trustworthy. What are the techniques for curating source code?
+1. Curating source code: [Curating a source code](#) of interest to make sure it is fit for one's purpose and trustworthy. What are the best techniques for curating source code?
 
 2. Searching the curated collection of source code: This is the area where a set of documented techniques could shine. How can we help programmers search curated source code better with fewer clicks?
 
