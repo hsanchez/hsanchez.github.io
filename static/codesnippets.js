@@ -118,7 +118,9 @@ $(function() {
 
         chooseCandidates: function(lengthAsBound){
             _.logger("Found enough suitable code snippets", "success");
-            _.displayer("Candidates downloading, ready to check.", "info");
+
+            _.displayer("Fetching candidates", "trying");
+            _.displayer("Candidates downloading, ready to try.", "info");
 
             // Output!
             setTimeout(function() {
