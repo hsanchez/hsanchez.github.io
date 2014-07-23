@@ -6,4 +6,4 @@ description: Source code curation, tooling for the Code Forager.
 
 {{page.description}}
 
-Slides to be released soon
+...
