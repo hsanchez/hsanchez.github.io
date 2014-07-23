@@ -8,4 +8,4 @@ progress. This page provides information related to my research on source code c
 
 - [**Literature**](./literature) review.
 - [**Slides**](./talks) and scripts.
-- Source code curation [**tools**](./tools).
+- Current [**tools**](./tools).
