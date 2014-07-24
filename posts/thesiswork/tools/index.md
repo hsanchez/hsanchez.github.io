@@ -5,7 +5,7 @@ title: Tools
 
 In my ongoing quest for knowledge about the role of source curation in search-driven development, 
 I've been working on a few source code curation tools. These tools will allow code foragers to cope 
-with the key challenges one typically experienced when searching for suitable code snippets on the 
+with the key challenges one typically experience when searching for suitable code snippets on the 
 Web. Some of these challenges include trying to reuse cryptic, poorly structured, and incomplete code 
 snippets. 
 
