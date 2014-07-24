@@ -14,7 +14,7 @@ the Web browser and before the consumption of these code snippets in some editor
     
 I **hypothesize** that enhancing search interfaces (e.g., Web browser) with source code curation 
 tools can (1) help code foragers to cope with key challenges upfront, and (2) to gain confidence in 
-the found code that goes through curation process. That is, confidence in terms of completeness, 
+the found code that goes through a curation process. That is, confidence in terms of completeness, 
 fitness of purpose, documentation, proper abstractions, etc., .
 
 To test the above hypothesis, I am presenting the first batch of tools I'd like you to experiment 
