@@ -277,37 +277,12 @@ $(function() {
                     _.chooseCandidates(false);
                 } else {
                     _.candidates.push(_.answers[_.item]);
-                    _.get_next_answer("Keeping this code snippet");
+                    _.get_next_answer("Found a valid code snippet");
                 }
 
             }
 
 
-        },
-
-        test_results: function(value) {
-            try {
-                var output = JSON.stringify(value);
-                if(value && typeof value === 'object' && Object.keys(value).length > 0) {
-                    $('#output').val(output);
-                    _.logger("Your array was sorted!", "success");
-
-                    var answer_id = _.answers[_.item].answer_id;
-                    var link = _.answers[_.item].link;
-                    $('#answer-used a').attr({'href': link}).text(answer_id);
-
-                    $('#sort').attr('disabled', false).text('Sort Again');
-                    _.wait(false);
-                    _.item++;
-                    setTimeout(function() {
-                        $('.done').fadeIn();
-                    }, 400);
-                } else {
-                    _.was_error("Didn't return a value.");
-                }
-            } catch (e) {
-                _.was_error("Didn't return a valid list.");
-            }
         },
 
         wait: function (state) {
