@@ -3,3 +3,8 @@ permalink: none
 domain: huascarsanchez.com
 markdown: rdiscount
 pygments: true
+
+rdiscount:
+  extensions:
+    - footnotes     # footnotes
+    - smart         # typographic substitutions with SmartyPants
