@@ -57,8 +57,8 @@ $(function() {
         reset: function() {
             Searcher.item = 0;
             $('#output').val('');
-            $('#logger').empty().append($('<div>', {class: 'oc', text: 'output console'}));
-            $('#displayer').empty().append($('<div>', {class: 'oc', text: 'candidate console'}));
+            $('#logger').empty().append($('<div>', {class: 'oc', text: 'search console'}));
+            $('#displayer').empty().append($('<div>', {class: 'oc', text: 'selection console'}));
             $('#search').attr('disabled', false).text('START');
             $('.done').hide();
         },
