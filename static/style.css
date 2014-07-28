@@ -283,7 +283,7 @@ body .searcher #search {
     background-color: #5f7ea9;
     color: #FFFFFF;
     font-size: 23px;
-    margin-left: -100px;
+    margin-left: -20px;
     padding: 10px 40px;
     text-shadow: 0 1px 1px #000000;
 }
@@ -428,10 +428,20 @@ body .input {
     margin-right: 200px;
 }
 
+#left-col h4 {
+    width: 300px;
+    margin-left: 30px;
+}
+
 #right-col {
     float: left;
     width: 200px;
-    margin-left: -330px;
+    margin-left: -320px;
+}
+
+#right-col h4 {
+    width: 200px;
+    margin-left: 50px;
 }
 
 #clear {
