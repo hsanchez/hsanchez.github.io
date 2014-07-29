@@ -17,5 +17,5 @@ Here are the tools that were made with the Vesper:
 1. [Kiwi](https://github.com/hsanchez/vesper-http) (Private) and 
 2. [Violette](https://github.com/hsanchez/vesper-web) (Private) 
 
-Please shoot me an email if you want to know more about the Vesper and its flavors (Kiwi and Violette). 
+Please send me an email if you want to know more about the Vesper and its flavors (Kiwi and Violette). 
 Thanks.

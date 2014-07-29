@@ -17,8 +17,7 @@ tools can (1) help code foragers to cope with key challenges upfront, and (2) to
 the found code that goes through a curation process. That is, confidence in terms of completeness, 
 fitness of purpose, documentation, proper abstractions, etc., .
 
-To test the above hypothesis, I am presenting the first batch of tools I'd like you to experiment 
-with:   
+To test the above hypothesis, here is the first batch of tools that I'll be experimenting with:
      
 {% for post in site.categories.tools %}
 
@@ -26,6 +25,6 @@ with:
 
 {% endfor %}
 
-These tools as whole represent what I call the **Vesper** system.
+These tools, as a whole, represent what I call the **Vesper** system.
 
 If you want to know more about this research, please join my mailing list (See below). Thanks.
