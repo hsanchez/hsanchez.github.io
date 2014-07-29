@@ -162,7 +162,7 @@ $(function() {
 
             Searcher.logger("Fetching page " + Searcher.page + "...", "trying");
 
-            var common_url = '&pagesize=100&order=desc&site=stackoverflow&todate=1363060800';
+            var common_url = '&pagesize=100&order=desc&site=stackoverflow&todate=1406505600';
             var question_url = Searcher.api + 'questions?sort=activity&tagged=sort;java&page=' + Searcher.page + common_url;
 
             $.getJSON(question_url, function(data_questions) {
@@ -182,7 +182,8 @@ $(function() {
                             'answer_id': v.answer_id,
                             'question_id': v.question_id,
                             'link': 'http://stackoverflow.com/questions/'+v.question_id+'/#' + v.answer_id,
-                            'body': v.body
+                            'body': v.body,
+                            'score': v.score
                         });
                     });
 
@@ -233,8 +234,12 @@ $(function() {
             var answer = Searcher.answers[Searcher.item].body;
             var answer_id = Searcher.answers[Searcher.item].answer_id;
             var question_id = Searcher.answers[Searcher.item].question_id;
-            var link = Searcher.answers[Searcher.item].link;
+            var link =  Searcher.answers[Searcher.item].link;
             var codes = answer.match(/<code>(.|[\n\r])*?<\/code>/g);
+            // todo(Huascar) think how to use this score
+            var score = Searcher.answers[Searcher.item].score;
+
+            console.log(score);
 
             if(!codes) {
                 Searcher.logError("Could not find a code snippet");
