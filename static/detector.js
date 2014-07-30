@@ -199,7 +199,7 @@ var JavaDetector = (function(hljs, $, module){
         return matches
     }
 
-
+    // thx to github.com/linguist's heuristic.rb
     module.findByHeuristics = function(data, languages){
         if (languages.every(isCLike))           { return disambiguate_c(data)   }
         if (languages.every(isPerlOrProlog))    { return disambiguate_pl(data)  }
