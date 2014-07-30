@@ -1,4 +1,6 @@
 $(function() {
+    // todo(Huascar) implement an algorithm for translating keywords into Java code
+
     var VERSION = "1";
     if(window.localStorage.ss_version !== VERSION) {
         delete window.localStorage.answers;
@@ -264,26 +266,39 @@ $(function() {
                 }
             }
 
+
+
             if(typeof max == 'undefined'){
                 Searcher.logError("Could not find a suitable code snippet");
             } else {
                 var code_sample = max;
 
-                // todo(Huascar) maybe call Vesperin and use the compilation status as a
-                // way to select what code snippet to curate.
-                // "Clean" up the code
-                code_sample = code_sample.replace("<code>", "").replace("</code>", "");
-                code_sample = code_sample.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&");
-                //code_sample = code_sample.replace(/(console.log|alert)\(/g, "log("); // 'log' does nothing
+                var result = JavaDetector.guessLanguage($(code_sample));
+                var lang   = result.language;
 
-                console.log(code_sample);
+                console.log("Detected " + lang + " language");
 
-
-                if(Searcher.candidates.length >= 50){ // arbitrary number
-                    Searcher.fetchCandidates(false);
+                if(!JavaDetector.isLanguageSupported(lang)){
+                    Searcher.logError("Could not find any Java code inside");
                 } else {
-                    Searcher.candidates.push(Searcher.answers[Searcher.item]);
-                    Searcher.nextAnswer("Found a valid code snippet");
+
+                    // todo(Huascar) maybe call Vesperin and use the compilation status as a
+                    // way to select what code snippet to curate.
+                    // "Clean" up the code
+                    code_sample = code_sample.replace("<code>", "").replace("</code>", "");
+                    code_sample = code_sample.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&");
+                    //code_sample = code_sample.replace(/(console.log|alert)\(/g, "log("); // 'log' does nothing
+
+                    console.log(code_sample);
+
+
+                    if(Searcher.candidates.length >= 50){ // arbitrary number
+                        Searcher.fetchCandidates(false);
+                    } else {
+                        Searcher.candidates.push(Searcher.answers[Searcher.item]);
+                        Searcher.nextAnswer("Found a valid code snippet");
+                    }
+
                 }
 
             }
