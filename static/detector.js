@@ -2,6 +2,8 @@
  * It uses Highlight.js's basic heuristic to essentially try to highlight a fragment with all the
  * language definitions and the one that yields the most specific modes (e.g., identifiers, regexp,
  * etc.) and keywords wins.
+ *
+ * @author hsanchez@cs.ucsc.edu (Huascar A. Sanchez)
  */
 var JavaDetector = (function(hljs, $, module){
     "use strict";
