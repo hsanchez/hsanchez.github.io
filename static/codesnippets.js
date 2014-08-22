@@ -254,7 +254,7 @@ $(function() {
                 var codeSnippet = codes[idx];
                 var loc         = codeSnippet.split('\n');
                 if(typeof max == 'undefined'){
-                    if(loc.length >= 10){
+                    if(loc.length >= 20){
                         max         = codeSnippet;
                         maxCount    = loc.length;
                     }
