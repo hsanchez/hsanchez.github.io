@@ -16,4 +16,4 @@ As indicated in the [welcome](http://huascarsanchez.com) page, the goal of my re
 A description of such areas suggests a process of open exploration. Programmers can engage in this alone and together with others. By actively investing themselves in such a process, they can intuitively experiment with ideas hands-on and thus unlocking know-how, leading to more confidence in the source code found before their consumption in a development environment (e.g., editors).
 
 I have a MS in software engineering from [San Jose State University](http://www.sjsu.edu/). The
-focus of my research at San Jose State was on domain analysis and pattern languages.
+focus of my research at San Jose State was in domain analysis and pattern languages.
