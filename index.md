@@ -12,11 +12,11 @@ description: This is the academic site of Huascar A. Sanchez, a CS graduate stud
 
 Hi, I'm **Huascar** (pronounced wäs-kär), a PhD candidate in the [Department of Computer Science at UC Santa Cruz](http://cs.soe.ucsc.edu/), working with [Jim Whitehead](http://users.soe.ucsc.edu/~ejw/) at the Software Introspection Lab.
 
-My primary research interests are in software engineering; specifically, my work focuses on building 
+My primary research interests are in software engineering; specifically, my work focuses on building
 intuitive tools around **code foraging** for increasing programmer productivity and quickly solving problems that might otherwise take days to work out. My research is interdisciplinary and combines aspects of *software engineering*, *crowdsourcing*, *information retrieval*, and *source code curation*.
 
 If you want to get in touch, send an [email](mailto:hsanchez@cs.ucsc.edu).
 
 Cheers,  
 Huascar A. Sanchez  
-[e-mail](mailto:hsanchez@cs.ucsc.edu)&nbsp;·&nbsp;[cv](./static/huascarsanchez.cv.pdf)&nbsp;·&nbsp;[resume](./static/huascarsanchez.resume.pdf)
+[e-mail](mailto:hsanchez@cs.ucsc.edu)&nbsp;·&nbsp;[cv](./static/hidden)&nbsp;·&nbsp;[resume](./static/hidden)
