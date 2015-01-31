@@ -259,48 +259,142 @@ footer h4 {
 
 /*codesnippet.js needed style*/
 
-body .searcher {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    clear: both;
-    padding: 20px;
-    text-align: center;
+/*body .searcher {*/
+
+    /*padding: 10px 0;*/
+    /*float: left;*/
+/*}*/
+
+/*body .searcher #search {*/
+
+    /*margin-left: 0;*/
+    /*display: inline-block;*/
+    /*margin-bottom: 0;*/
+    /*font-weight: 400;*/
+    /*text-align: center;*/
+    /*vertical-align: middle;*/
+    /*cursor: pointer;*/
+    /*background-image: none;*/
+    /*border: 1px solid transparent;*/
+    /*white-space: nowrap;*/
+    /*padding: 6px 12px;*/
+    /*font-size: 14px;*/
+    /*line-height: 1.42857143;*/
+    /*border-radius: 4px;*/
+    /*-webkit-user-select: none;*/
+    /*-moz-user-select: none;*/
+    /*-ms-user-select: none;*/
+    /*user-select: none;*/
+
+/*}*/
+
+.file-editor {
+    width:100%;
+
+    resize:vertical;
+    border:0;border-radius:0;
+    outline:none;
+
+    font-family: Courier, monospace;
+    font-size: 1.6rem;
+    padding: 0 2rem;
+    color: rgb(20%,20%,20%);
 }
 
 body .searcher #search {
-    border: 1px solid #4a658b;
-    box-shadow: 0 1px rgba(255, 255, 255, 0.3) inset;
-    -moz-box-shadow: 0 1px rgba(255, 255, 255, 0.3) inset;
-    -webkit-box-shadow: 0 1px rgba(255, 255, 255, 0.3) inset;
-    -webkit-border-radius: 7px;
-    -moz-border-radius: 7px;
-    border-radius: 7px;
-    background-image: -webkit-gradient(linear, left bottom, left top, from(#8099bb), to(#5f7ea9));
-    background-image: linear-gradient(#8099bb, #5f7ea9);
-    background-image: -moz-linear-gradient(#8099bb, #5f7ea9);
-    background-image: -webkit-linear-gradient(#8099bb, #5f7ea9);
-    background-color: #5f7ea9;
-    color: #FFFFFF;
-    font-size: 23px;
-    margin-left: -20px;
-    padding: 10px 40px;
-    text-shadow: 0 1px 1px #000000;
+
+    margin-left: 0;
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 4px 10px;
+    /*font-size: 14px;*/
+    line-height: 1.12857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
 }
+
+.octicon-button{float:right;padding:4px;margin-left:5px}
+.octicon-button.danger:hover{color:#bd2c00}
+.octicon-button{
+    display:inline-block;
+    margin-left:9px;
+    margin-right:-4px;
+    padding-right:5px;
+    padding-left:5px;
+    color:#777;vertical-align:middle
+}
+.octicon-button.danger:hover{color:#bd2c00}
+.octicon-button.dark:hover{color:#34495e}
+.octicon-button.disabled{color:#bbb;cursor:default}
+.octicon-button.disabled:hover{color:#bbb}
+.octicon-button:last-child{margin-right:0}
+.octicon-button:hover{color:#4183c4}
+.octicon-button.disabled{color:#bbb;cursor:default}
+.octicon-button.disabled:hover{color:#bbb}
+
+.dark {
+    color: #ffffff;
+    /*background-color: #d6dbdf;*/
+    background-color: #34495e;
+}
+.dark:hover,
+.dark:focus,
+.dark:active,
+.dark.active,
+.open .dropdown-toggle.dark {
+    background-color: #415b76;
+    border-color: #415b76;
+    color: #ffffff;
+}
+.dark:active,
+.dark.active,
+.open .dropdown-toggle.dark {
+    background: #2c3e50;
+    border-color: #2c3e50;
+}
+.dark.disabled,
+.dark[disabled],
+fieldset[disabled] .dark,
+.dark.disabled:hover,
+.dark[disabled]:hover,
+fieldset[disabled] .dark:hover,
+.dark.disabled:focus,
+.dark[disabled]:focus,
+fieldset[disabled] .dark:focus,
+.dark.disabled:active,
+.dark[disabled]:active,
+fieldset[disabled] .dark:active,
+.dark.disabled.active,
+.dark[disabled].active,
+fieldset[disabled] .dark.active {
+    background-color: #d6dbdf;
+}
+
+/*HACK: seems that dark class does not have any effect on this setting*/
 body .searcher #search:hover {
-    background-image: -webkit-gradient(linear, left bottom, left top, from(#5f7ea9), to(#4a658b));
-    background-image: linear-gradient(#5f7ea9, #4a658b);
-    background-image: -moz-linear-gradient(#5f7ea9, #4a658b);
-    background-image: -webkit-linear-gradient(#5f7ea9, #4a658b);
+    cursor: pointer;
+    color:#ffffff;
 }
-body .searcher #search:disabled {
-    background-color: #888;
-    border: 1px solid #919191;
-    background-image: -webkit-gradient(linear, left bottom, left top, from(#c3c3c3), to(#aaaaaa));
-    background-image: linear-gradient(#c3c3c3, #aaaaaa);
-    background-image: -moz-linear-gradient(#c3c3c3, #aaaaaa);
-    background-image: -webkit-linear-gradient(#c3c3c3, #aaaaaa);
-}
+
+/*body .searcher #search:disabled {*/
+    /*background-color: #888;*/
+    /*border: 1px solid #919191;*/
+    /*background-image: -webkit-gradient(linear, left bottom, left top, from(#c3c3c3), to(#aaaaaa));*/
+    /*background-image: linear-gradient(#c3c3c3, #aaaaaa);*/
+    /*background-image: -moz-linear-gradient(#c3c3c3, #aaaaaa);*/
+    /*background-image: -webkit-linear-gradient(#c3c3c3, #aaaaaa);*/
+/*}*/
 
 
 #stopper {
@@ -430,7 +524,7 @@ body .input {
 
 #left-col h4 {
     width: 300px;
-    margin-left: 30px;
+    /*margin-left: 30px;*/
 }
 
 #right-col {
@@ -440,8 +534,8 @@ body .input {
 }
 
 #right-col h4 {
-    width: 200px;
-    margin-left: 50px;
+    width: 300px;
+    /*margin-left: 50px;*/
 }
 
 #clear {

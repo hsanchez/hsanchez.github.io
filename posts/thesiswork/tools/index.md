@@ -9,15 +9,17 @@ The idea is to allow code foragers to deal with these challenges upfront; i.e., 
 
 I **hypothesize** that enhancing search interfaces (e.g., Web browser) with source code curation tools can (1) help code foragers to cope with key challenges upfront, and (2) to gain confidence in the found code that goes through a curation process. That is, confidence in terms of completeness, fitness of purpose, documentation, proper abstractions, etc..
 
-To test the above hypothesis, I'll introduce a source code curation system, which we call the **Vesperin** system. **Vesperin** consists of two main components:
+To test the above hypothesis, I'll introduce a source code curation system, which I call the **Vesperin** system. **Vesperin** consists of two main components:
 
 
 {% for post in site.categories.tools %}
+  {% unless post.hidden %}
 
 - [**{{ post.title }}**]({{ post.url }}) {{ post.description | strip_html }}
 
+  {% endunless %}
 {% endfor %}
 
-If you want to know more about this research, please join my mailing list (See below). Thanks.
+If you'd like to stay up to date on my research activities, join my mailing list using the mailing list button below. Thanks.
 
 [^1]: A notion that covers the act of discovering some source code of interest, cleaning and transforming (refining) it, and then presenting it in a meaningful and organized way. 
