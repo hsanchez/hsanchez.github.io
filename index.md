@@ -19,4 +19,5 @@ If you want to get in touch, send an [email](mailto:hsanchez@cs.ucsc.edu).
 
 Cheers,  
 Huascar A. Sanchez  
-[e-mail](mailto:hsanchez@cs.ucsc.edu)&nbsp;·&nbsp;[cv](./static/hidden)&nbsp;·&nbsp;[resume](./static/hidden)
+[e-mail](mailto:hsanchez@cs.ucsc.edu)&nbsp;·&nbsp;[cv](./static/huascarsanchez.cv.pdf)&nbsp;
+<!-- ·&nbsp;[resume](./static/hidden) -->
