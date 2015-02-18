@@ -6,7 +6,7 @@ description: Selected Graduate Coursework
 
 {{page.description}}:
 
-- Advance Computer Graphics (Procedural Content Generation), *Cmps290B*
+- Advance Computer Graphics (Procedural Content Generation), *Cmps290B*.
 - Information Retrieval, *ISM-260*.
 - Machine Learning, *Cmps242*.
 - Data Mining, *ISM-245*.
