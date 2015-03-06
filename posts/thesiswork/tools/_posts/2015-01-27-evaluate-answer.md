@@ -15,7 +15,7 @@ Make sure you have
 
 1. Google Chrome latest version installed on your computer.
 2. Uninstalled any previously installed Violette from Chrome.
-3. Installed [Violette-review-mode](https://www.dropbox.com/s/pwgsp7tzf1tc2v2/violette-review.crx?dl=0) on Chrome[^1].
+3. Installed <a href="https://www.dropbox.com/s/pwgsp7tzf1tc2v2/violette-review.crx?dl=0" target="_blank">Violette-review-mode</a> on Chrome[^1].
 
 
 # THE TASK

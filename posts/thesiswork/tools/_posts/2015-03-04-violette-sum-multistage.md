@@ -15,7 +15,7 @@ Make sure you have
 
 1. Google Chrome latest version installed on your computer.
 2. Uninstalled any previously installed Violette from Chrome.
-3. Installed [Violette-staging-mode](https://www.dropbox.com/s/b9148o15se0u8wa/violette-staging.crx?dl=0) on Chrome[^1].
+3. Installed <a href="https://www.dropbox.com/s/b9148o15se0u8wa/violette-staging.crx?dl=0" target="_blank">Violette-staging-mode</a> on Chrome[^1].
 
 # THE TASK
 
