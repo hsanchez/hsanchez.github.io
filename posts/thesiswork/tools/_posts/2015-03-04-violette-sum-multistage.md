@@ -1,8 +1,8 @@
 ---
 layout: default
-title: Violette with Multi Staging
+title: Violette with Multi Staging and Code Summarization
 hidden: true
-description: Evaluating Violette's Multi staging functionality.
+description: Evaluating Violette's Multi staging functionality with Code summarization support.
 ---
 
 To evaluate **Violette**'s functionality, I have put together the following
@@ -15,7 +15,7 @@ Make sure you have
 
 1. Google Chrome latest version installed on your computer.
 2. Uninstalled any previously installed Violette from Chrome.
-3. Installed [Violette-staging-mode](https://www.dropbox.com/s/8oy9fiobgj5epyr/violette-staging-nosummary.crx?dl=0) on Chrome[^1].
+3. Installed [Violette-staging-mode](https://www.dropbox.com/s/b9148o15se0u8wa/violette-staging.crx?dl=0) on Chrome[^1].
 
 # THE TASK
 
@@ -30,12 +30,15 @@ code example.
     comeback to experiment page and then refresh it. This action will give you
     a new linked code example.
 
-    For this task, you will be using **Violette**'s multi-staging functionality[^2].
-    You'll activate this functionality by clicking on the `stage` button. This
-    button is located on the top right corner of Violette. Each stage is represented
-    as named button. Stages are presented in ascending order; i.e., starting from
-    `0` to `n` where `n` is the maximum number of stages that can be extracted from
-    the code example.  
+    For this task, you will be using both **Violette**'s multi-staging
+    functionality[^2] and code summarization via automated code folding.
+
+    The multi staging functionality is activated by clicking on the `stage` button.
+    Each stage is represented as named button.
+
+    Code summarization functionality is activated when clicking on any of the
+    produced stages. This functionality will identify the location of a few code
+    blocks in the stage and then it will automatically fold them.
 
     Please record on a piece of paper those examples that did not have any Java
     code inside. Please submit this information as part of a survey you will
