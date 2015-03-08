@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Projects
-description: You can check out some of previous and current projects
+description: You can check out some of my previous and current projects
 ---
 
 {{page.description}}
