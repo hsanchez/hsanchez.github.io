@@ -61,7 +61,7 @@ code example.
 
 # LET'S GET STARTED
 
-So without further ado, please click on the link below to start the task:
+So without further ado, please click on the links below to start the task:
 
 1. <a href="http://stackoverflow.com/questions/14210307/android-how-to-get-specific-data-from-url-json#14210519" target="_blank">Example one</a>
 2. <a href="http://stackoverflow.com/questions/22909429/android-save-a-bitmap-to-bmp-file-format#22914268" target="_blank">Example two</a>
