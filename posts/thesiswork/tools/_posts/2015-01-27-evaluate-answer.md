@@ -70,8 +70,3 @@ So without further ado, please click on the link below to start the task:
 5. <a href="http://stackoverflow.com/questions/24176493/guice-dynamic-inject-with-custom-annotation" target="_blank">Example five</a>
 6. <a href="http://stackoverflow.com/questions/3682587/split-string-of-varying-length-using-regex/3685197#3685197" target="_blank">Example six</a>
 
-
-
-[^1]: Open Google Chrome and on the Url bar type `chrome://extensions`. Look
-for `vesper-web.crx`. Get the file and then drop it on the Chrome extension
-area. Press the `Add` button and you're done.
