@@ -71,9 +71,14 @@ Wikipedia.
 Before starting, please watch the following video. This video introduces violette and
 the multi-staging functionality and UI.
 
-{% youtube wNBjNcqbDdI 500 400 %}
+<iframe
+     width="532"
+     height="400"
+     src="https://www.youtube.com/embed/wNBjNcqbDdI"
+     frameborder="0"
+     allowfullscreen="allowfullscreen"> </iframe>
 
-<a href="https://www.youtube.com/watch?v=wNBjNcqbDdI" target="_blank">Multi staging Quicksort</a>
+<!-- <a href="https://www.youtube.com/watch?v=wNBjNcqbDdI" target="_blank">Multi staging Quicksort</a>-->
 
 So without further ado, please click on the link below to start the task:
 
