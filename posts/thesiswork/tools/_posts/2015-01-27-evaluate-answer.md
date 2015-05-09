@@ -47,7 +47,7 @@ complete the following [questionnaire](http://bit.ly/1OQoF0D).
 We expect the following throughout the task:
 
 **1.** We expect you to review and understand a total of **6** Java code examples,
-provided in this page.
+in the **order provided** in this page.
 
 **2.** We expect the whole task be done within **1 hr and 30 minutes**.
 
