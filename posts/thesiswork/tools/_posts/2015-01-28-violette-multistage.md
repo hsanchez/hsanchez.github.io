@@ -29,7 +29,7 @@ This answer contains some Java code.
 This link will take you to the example's Q&A page at StackOverflow.
 
     Note: Don't click on the next link if you have not finished reviewing and understanding
-    the current linked Java code example
+    the current linked Java code example. See below at section "LET’S GET STARTED"
 
 2. Once you are on that page, your goal is to review and understand the Java
 code example in the accepted answer using multi-staging[^2].
