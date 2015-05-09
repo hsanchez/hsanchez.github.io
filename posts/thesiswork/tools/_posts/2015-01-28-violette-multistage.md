@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Violette with Multi Staging
+hidden: true
 description: Violette's Multi staging functionality
 ---
 
@@ -65,6 +66,9 @@ provided in this page.
 **3.** We expect the subjects to use only the resources available on the
 question-answer page to complete the task; i.e., no external resources like
 Wikipedia.
+
+**4.** You will complete the [questionnaire](http://bit.ly/1OQoF0D) for each reviewed 
+code example.
 
 # LET'S GET STARTED
 
