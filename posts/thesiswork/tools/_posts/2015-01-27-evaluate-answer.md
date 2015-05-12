@@ -18,7 +18,7 @@ Make sure you have
 
 # THE TASK
 
-There will be 6 Java code examples to review and understand. For each example, there will be
+There will be 7 Java code examples to review and understand. For each example, there will be
 a link to it. This link will take you to a Q&A page containing a StackOverflow's accepted answer.
 This answer contains some Java code.
 
@@ -46,10 +46,11 @@ complete the following [questionnaire](http://bit.ly/1OQoF0D).
 
 We expect the following throughout the task:
 
-**1.** We expect you to review and understand a total of **6** Java code examples,
+**1.** We expect you to review and understand a total of **7** Java code examples,
 in the **order provided** in this page.
 
-**2.** We expect the whole task be done within **1 hr and 30 minutes**.
+**2.** We expect the whole task be done within **2 hrs**; including the 
+the time spent reviewing of this page.
 
 **3.** We expect the subjects to use only the resources available on the
 question-answer page to complete the task; i.e., no external resources like
@@ -69,4 +70,5 @@ So without further ado, please click on the links below to start the task:
 4. <a href="http://stackoverflow.com/questions/12560246/how-to-add-a-push-notification-in-my-own-android-app#12560639" target="_blank">Example four</a>
 5. <a href="http://stackoverflow.com/questions/24176493/guice-dynamic-inject-with-custom-annotation" target="_blank">Example five</a>
 6. <a href="http://stackoverflow.com/questions/3682587/split-string-of-varying-length-using-regex/3685197#3685197" target="_blank">Example six</a>
+7. <a href="http://stackoverflow.com/questions/26818478/generating-random-license-plate" target="_blank">Example seven</a>
 
