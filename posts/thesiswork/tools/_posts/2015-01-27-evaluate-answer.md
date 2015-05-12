@@ -50,7 +50,7 @@ We expect the following throughout the task:
 in the **order provided** in this page.
 
 **2.** We expect the whole task be done within **2 hrs**; including the 
-the time spent reviewing of this page.
+the time spent reviewing this page.
 
 **3.** We expect the subjects to use only the resources available on the
 question-answer page to complete the task; i.e., no external resources like
