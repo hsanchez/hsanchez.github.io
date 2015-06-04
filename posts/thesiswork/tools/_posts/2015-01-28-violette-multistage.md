@@ -97,11 +97,11 @@ So without further ado, please click on the links below to start the task:
 
 * Code Example 1
     * <a href="http://stackoverflow.com/questions/26818478/generating-random-license-plate" target="_blank">src</a>
-    * <a href="http://bit.ly/1FV2Drr" target="_blank">Q&A</a>    
+    * <a href="http://bit.ly/1BLdRe4" target="_blank">Q&A</a>    
 
 * Code Example 2  
     * <a href="http://stackoverflow.com/questions/21884805/libgdx-0-9-9-apply-cubemap-in-environment#22777350" target="_blank">src</a>
-    * <a href="http://bit.ly/1BLdRe4" target="_blank">Q&A</a>
+    * <a href="http://bit.ly/1FV2Drr" target="_blank">Q&A</a>
 
 * Code Example 3 
     * <a href="http://stackoverflow.com/questions/14210307/android-how-to-get-specific-data-from-url-json#14210519" target="_blank">src</a>
