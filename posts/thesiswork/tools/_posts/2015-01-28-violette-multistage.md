@@ -95,29 +95,21 @@ the multi-staging functionality and UI.
 
 So without further ado, please click on the links below to start the task:
 
-* Example 1
-<ul>
-  <li><a href="http://stackoverflow.com/questions/26818478/generating-random-license-plate" target="_blank">Example seven</a></li>
-  <li><a href="http://bit.ly/1FV2Drr" target="_blank">Questionnaire</a></li>
-</ul>
+* Code Example 1
+    * <a href="http://stackoverflow.com/questions/26818478/generating-random-license-plate" target="_blank">Example seven</a>
+    * <a href="http://bit.ly/1FV2Drr" target="_blank">Questionnaire</a>    
 
-* Example 2
-<ul>
-  <li><a href="http://stackoverflow.com/questions/21884805/libgdx-0-9-9-apply-cubemap-in-environment#22777350" target="_blank">Source code</a></li>
-  <li><a href="http://bit.ly/1BLdRe4" target="_blank">Questionnaire</a></li>
-</ul>
+* Code Example 2  
+    * <a href="http://stackoverflow.com/questions/21884805/libgdx-0-9-9-apply-cubemap-in-environment#22777350" target="_blank">Source code</a>
+    * <a href="http://bit.ly/1BLdRe4" target="_blank">Questionnaire</a>
 
-* Example 3
-<ul>
-  <li><a href="http://stackoverflow.com/questions/14210307/android-how-to-get-specific-data-from-url-json#14210519" target="_blank">Source code</a></li>
-  <li><a href="http://bit.ly/1KNTkhw" target="_blank">Questionnaire</a></li>
-</ul>
+* Code Example 3 
+    * <a href="http://stackoverflow.com/questions/14210307/android-how-to-get-specific-data-from-url-json#14210519" target="_blank">Source code</a>
+    * <a href="http://bit.ly/1KNTkhw" target="_blank">Questionnaire</a>
 
 
 [^1]: Open Google Chrome and on the Url bar type `chrome://extensions`. Look for `violette-staging-no-summarization.crx`. Get the file and then drop it on the Chrome extension area. Press the `Add` button and you're done.
 
 [^2]: Multi staged code examples are divided into a series of an ordered set of code stages, where each code stage code fragments captures a subset of the given Java code example’s behavior.
 
-[^3]: This button is located on the top right corner of Violette. Each stage is represented 
-as __named__ button. Stages are presented in ascending order; i.e., starting from `0` to `n` 
-where `n` is the maximum number of stages that can be extracted from the code example.
+[^3]: This button is located on the top right corner of Violette. Each stage is represented as __named__ button. Stages are presented in ascending order; i.e., starting from `0` to `n` where `n` is the maximum number of stages that can be extracted from the code example.
