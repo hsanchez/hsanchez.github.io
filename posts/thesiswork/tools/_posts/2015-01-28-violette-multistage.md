@@ -95,17 +95,15 @@ the multi-staging functionality and UI.
 
 So without further ado, please click on the links below to start the task:
 
-* Code Example 1
-    * <a href="http://stackoverflow.com/questions/26818478/generating-random-license-plate" target="_blank">src</a>
-    * <a href="http://bit.ly/1BLdRe4" target="_blank">Q&A</a>    
-
-* Code Example 2  
-    * <a href="http://stackoverflow.com/questions/21884805/libgdx-0-9-9-apply-cubemap-in-environment#22777350" target="_blank">src</a>
-    * <a href="http://bit.ly/1FV2Drr" target="_blank">Q&A</a>
-
-* Code Example 3 
-    * <a href="http://stackoverflow.com/questions/14210307/android-how-to-get-specific-data-from-url-json#14210519" target="_blank">src</a>
-    * <a href="http://bit.ly/1KNTkhw" target="_blank">Q&A</a>
+1. Code Example 1
+  1. <a href="http://stackoverflow.com/questions/26818478/generating-random-license-plate" target="_blank">src</a>.
+  2. <a href="http://bit.ly/1BLdRe4" target="_blank">Q&A</a>
+2. Code Example 2
+  1. <a href="http://stackoverflow.com/questions/21884805/libgdx-0-9-9-apply-cubemap-in-environment#22777350" target="_blank">src</a>.
+  2. <a href="http://bit.ly/1FV2Drr" target="_blank">Q&A</a>.
+3. Code Example 3
+  1. <a href="http://stackoverflow.com/questions/14210307/android-how-to-get-specific-data-from-url-json#14210519" target="_blank">src</a>.
+  2. <a href="http://bit.ly/1KNTkhw" target="_blank">Q&A</a>.
 
 
 [^1]: Open Google Chrome and on the Url bar type `chrome://extensions`. Look for `violette-staging-no-summarization.crx`. Get the file and then drop it on the Chrome extension area. Press the `Add` button and you're done.
