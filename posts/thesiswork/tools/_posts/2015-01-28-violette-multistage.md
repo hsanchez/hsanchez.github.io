@@ -15,7 +15,7 @@ Make sure you have
 
 1. Google Chrome latest version installed on your computer.
 2. Uninstalled any previously installed Violette from Chrome.
-3. Installed <a href="http://bit.ly/1cAJm3V" target="_blank">Violette-multi-staging-mode</a> on Chrome[^1].
+3. Installed <a href="http://bit.ly/1IsfPG8" target="_blank">Violette-multi-staging-mode</a> on Chrome[^1].
 
 # GUIDELINES FOR THE MULTI STAGING TO UNDERSTAND
 
