@@ -2,7 +2,7 @@
 layout: default
 title: Violette with Multi Staging
 hidden: true
-description: Violette's Multi staging functionality
+description: Multi staging to Understand Experiment
 ---
 
 To evaluate **Violette**'s multi-staging functionality, I have put together the following
@@ -17,48 +17,58 @@ Make sure you have
 2. Uninstalled any previously installed Violette from Chrome.
 3. Installed <a href="http://bit.ly/1IsfPG8" target="_blank">Violette-multi-staging-mode</a> on Chrome[^1].
 
+# GUIDELINES FOR THE MULTI STAGING OF CODE EXAMPLES EXPERIMENT
+
+## GOAL
+
+Gain understanding in
+
+* Control flow:   what is the sequence of execution?
+* State:          what is the content of a data object?
+* Operations:     what does the code compute?
+* Data flow:      where does a data object get updated?
+* Function:       what is the overall functionality?
+
+
+## GUIDELINES FOR MULTI STAGING[^2]
+
+1. Spend your time wisely, no manual beautification.
+2. Click on the *stage* button[^3].  
+3. Iteratively click on any of the stages generated (in any order) to introduce 
+a subset of the given Java code example’s behavior.    
+4. Review the introduced subset of the given Java code example’s behavior to make
+sure you understand what this subset is actually doing.   
+
+
 # THE TASK
 
-There will be 7 Java code examples to review and understand. For each example, there will be
-a link to it. This link will take you to a page containing a StackOverflow's accepted answer.
-This answer contains some Java code.
+There will be 3 Java code examples to review and understand. Use the appointed 
+comprehension technique (either Read to Understand or Multi staging to Understand) 
+to dig into each of the Java code examples. After 30 minutes, per Java code example, 
+you will be asked to answer a number of questions about the reviewed piece of code.
 
-*For each linked Java code example, do the following*
+For each example, there will be two links. First link will take you to a page 
+containing a StackOverflow's accepted answer. This answer contains some Java code. 
+Second link will take you to an online questionnaire where you'll answer a number 
+of questions about the reviewed piece of code.
 
-1. You, the participant, must click on a linked code example.
-This link will take you to the example's Q&A page at StackOverflow.
+After you've finished reviewing and understanding the Java code example, please
+click on the _Bring it to Desktop_ button and then provide a brief description of the
+goal behind this code example and the reason for using it. Then press the _enter_
+key.
 
-    Note: Don't click on the next link if you have not finished reviewing and understanding
-    the current linked Java code example. See below at section "LET’S GET STARTED"
+After bringing the Java code example to your desktop, please comeback to the 
+experiment page. Then, click on the Java code example's second link to answer the 
+questionnaire.
 
-2. Once you are on that page, your goal is to review and understand the Java
-code example in the accepted answer using multi-staging[^2].
-
-    You'll activate this functionality by clicking on the `stage` button. This
-    button is located on the top right corner of Violette. Each stage is represented
-    as __named__ button. Stages are presented in ascending order; i.e., starting from
-    `0` to `n` where `n` is the maximum number of stages that can be extracted from
-    the code example.
-
-3. After you've finished reviewing and understanding the Java code example, please
-click on the _Bring it to Desktop_ button and then provide a description of the
-goal behind this code example and the reason for using it. You may include fitness of
-purpose, abstractions, usage protocols, etc. For example, imagine you reviewed an
-implementation of the PageRank algorithm. Then a possible description of this algorithm
-is "It models the behavior of a random web surfer using a Markov chain"
-
-4. Lastly, after bringing the Java code example to your desktop, please comeback to the Violette
-and then click on the "?" mark button on the bottom right corner of Violette. This will
-take you to an online questionnaire. This questionnaire will help us capture your understanding
-of the code example you've just curated.
-
-5. Close the Q&A page and then comeback to Violette. Once there, click on the next Java code example to curate.
+After answering the questionnaire, close its page and then comeback to the experiment 
+page. Once there, click on the next Java code example to review.
 
 # TASK EXPECTATIONS
 
 We expect the following throughout the task:
 
-**1.** We expect you to review and understand a total of **7** Java code examples,
+**1.** We expect you to review and understand a total of **3** Java code examples,
 in the **order provided** in this page.
 
 **2.** We expect the whole task be done within **2 hrs**; including the 
@@ -66,10 +76,8 @@ the time spent reviewing this page.
 
 **3.** We expect the subjects to use only the resources available on the
 question-answer page to complete the task; i.e., no external resources like
-Wikipedia.
+Wikipedia should be used.
 
-**4.** You will complete the [questionnaire](http://bit.ly/1OQoF0D) for each reviewed 
-code example.
 
 # LET'S GET STARTED
 
@@ -87,15 +95,29 @@ the multi-staging functionality and UI.
 
 So without further ado, please click on the links below to start the task:
 
-1. <a href="http://stackoverflow.com/questions/14210307/android-how-to-get-specific-data-from-url-json#14210519" target="_blank">Example one</a>
-2. <a href="http://stackoverflow.com/questions/22909429/android-save-a-bitmap-to-bmp-file-format#22914268" target="_blank">Example two</a>
-3. <a href="http://stackoverflow.com/questions/21884805/libgdx-0-9-9-apply-cubemap-in-environment#22777350" target="_blank">Example three</a>
-4. <a href="http://stackoverflow.com/questions/12560246/how-to-add-a-push-notification-in-my-own-android-app#12560639" target="_blank">Example four</a>
-5. <a href="http://stackoverflow.com/questions/24176493/guice-dynamic-inject-with-custom-annotation" target="_blank">Example five</a>
-6. <a href="http://stackoverflow.com/questions/3682587/split-string-of-varying-length-using-regex/3685197#3685197" target="_blank">Example six</a>
-7. <a href="http://stackoverflow.com/questions/26818478/generating-random-license-plate" target="_blank">Example seven</a>
+* Example 1
+<ul>
+  <li><a href="http://stackoverflow.com/questions/26818478/generating-random-license-plate" target="_blank">Example seven</a></li>
+  <li><a href="http://bit.ly/1FV2Drr" target="_blank">Questionnaire</a></li>
+</ul>
+
+* Example 2
+<ul>
+  <li><a href="http://stackoverflow.com/questions/21884805/libgdx-0-9-9-apply-cubemap-in-environment#22777350" target="_blank">Source code</a></li>
+  <li><a href="http://bit.ly/1BLdRe4" target="_blank">Questionnaire</a></li>
+</ul>
+
+* Example 3
+<ul>
+  <li><a href="http://stackoverflow.com/questions/14210307/android-how-to-get-specific-data-from-url-json#14210519" target="_blank">Source code</a></li>
+  <li><a href="http://bit.ly/1KNTkhw" target="_blank">Questionnaire</a></li>
+</ul>
 
 
 [^1]: Open Google Chrome and on the Url bar type `chrome://extensions`. Look for `violette-staging-no-summarization.crx`. Get the file and then drop it on the Chrome extension area. Press the `Add` button and you're done.
 
-[^2]: Multi staged code examples are divided into a series of intermediate phases, presenting lower-level modules (supporting modules) before higher-level modules (main modules).
+[^2]: Multi staged code examples are divided into a series of an ordered set of code stages, where each code stage code fragments captures a subset of the given Java code example’s behavior.
+
+[^3]: This button is located on the top right corner of Violette. Each stage is represented 
+as __named__ button. Stages are presented in ascending order; i.e., starting from `0` to `n` 
+where `n` is the maximum number of stages that can be extracted from the code example.
