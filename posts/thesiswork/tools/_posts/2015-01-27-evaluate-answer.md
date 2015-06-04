@@ -2,7 +2,7 @@
 layout: default
 title: Evaluating StackOverflow Answers
 hidden: true
-description: Evaluating StackOverflow Code examples.
+description: Read to Understand.
 ---
 
 To evaluate how people evaluate code examples on StackOverflow, I have put together the following
@@ -16,31 +16,44 @@ Make sure you have
 1. Google Chrome latest version installed on your computer.
 2. Uninstalled any previously installed version of Violette from Chrome.
 
+# GUIDELINES FOR THE READ TO UNDERSTAND
+
+## GOAL
+
+Gain understanding in (without multi staging to understand)
+
+* Control flow:   what is the sequence of execution?
+* State:          what is the content of a data object?
+* Operations:     what does the code compute?
+* Data flow:      where does a data object get updated?
+* Function:       what is the overall functionality?
+
+
 # THE TASK
 
-There will be 7 Java code examples to review and understand. For each example, there will be
-a link to it. This link will take you to a Q&A page containing a StackOverflow's accepted answer.
-This answer contains some Java code.
+There will be 3 Java code examples to review and understand. Use the appointed 
+comprehension technique (either Read to Understand or Multi staging to Understand) 
+to dig into each of the Java code examples. After 30 minutes, per Java code example, 
+you will be asked to answer a number of questions about the reviewed piece of code.
 
-*For each linked Java code example, do the following*
+    Please record the time spent reviewing the Java code example (which could be 
+    a number between 1 and 30 minutes). Please submit this information as the answer 
+    for "How long did you spend reviewing and understanding the Java code example?", 
+    which is found in the online questionnaire you will be completing per reviewed 
+    code example.
 
-1. You, the participant, must click on a linked code example.
-This link will take you to the example's Q&A page at StackOverflow.
+For each example, there will be two links. First link will take you to a page 
+containing a StackOverflow's accepted answer. This answer contains some Java code. 
+Second link will take you to an online questionnaire where you'll answer a number 
+of questions about the reviewed piece of code.
 
-    Note: Don't click on the next link if you have not finished reviewing and understanding
-    a current linked Java code example. See below at section "LET’S GET STARTED".
+After you've finished reviewing and understanding the Java code example, please 
+comeback to the experiment page. Then, click on the Java code example's second 
+link to answer the questionnaire.
 
-2. Once you are on that page, your goal is to review and understand the Java
-code example.
+After answering the questionnaire, close its page and then comeback to the experiment 
+page. Once there, click on the next Java code example to review.
 
-    Please record the time spent reviewing the Java code example. Please submit 
-    this information as the answer for "How long did you spend reviewing and 
-    understanding the Java code example?", which is found in the 
-    online [questionnaire](http://bit.ly/1OQoF0D) you will be completing.
-
-
-4. After you've finished reviewing and understanding the code example, please 
-complete the following [questionnaire](http://bit.ly/1OQoF0D).
 
 # TASK EXPECTATIONS
 
@@ -54,21 +67,21 @@ the time spent reviewing this page.
 
 **3.** We expect the subjects to use only the resources available on the
 question-answer page to complete the task; i.e., no external resources like
-Wikipedia.
-
-**4.** You will complete the [questionnaire](http://bit.ly/1OQoF0D) for each reviewed 
-code example.
+Wikipedia should be used.
 
 
 # LET'S GET STARTED
 
 So without further ado, please click on the links below to start the task:
 
-1. <a href="http://stackoverflow.com/questions/14210307/android-how-to-get-specific-data-from-url-json#14210519" target="_blank">Example one</a>
-2. <a href="http://stackoverflow.com/questions/22909429/android-save-a-bitmap-to-bmp-file-format#22914268" target="_blank">Example two</a>
-3. <a href="http://stackoverflow.com/questions/21884805/libgdx-0-9-9-apply-cubemap-in-environment#22777350" target="_blank">Example three</a>
-4. <a href="http://stackoverflow.com/questions/12560246/how-to-add-a-push-notification-in-my-own-android-app#12560639" target="_blank">Example four</a>
-5. <a href="http://stackoverflow.com/questions/24176493/guice-dynamic-inject-with-custom-annotation" target="_blank">Example five</a>
-6. <a href="http://stackoverflow.com/questions/3682587/split-string-of-varying-length-using-regex/3685197#3685197" target="_blank">Example six</a>
-7. <a href="http://stackoverflow.com/questions/26818478/generating-random-license-plate" target="_blank">Example seven</a>
+* Code Example 1
+    * <a href="http://stackoverflow.com/questions/26818478/generating-random-license-plate" target="_blank">src</a>
+    * <a href="http://bit.ly/1BLdRe4" target="_blank">Q&A</a>    
 
+* Code Example 2  
+    * <a href="http://stackoverflow.com/questions/21884805/libgdx-0-9-9-apply-cubemap-in-environment#22777350" target="_blank">src</a>
+    * <a href="http://bit.ly/1FV2Drr" target="_blank">Q&A</a>
+
+* Code Example 3 
+    * <a href="http://stackoverflow.com/questions/14210307/android-how-to-get-specific-data-from-url-json#14210519" target="_blank">src</a>
+    * <a href="http://bit.ly/1KNTkhw" target="_blank">Q&A</a>

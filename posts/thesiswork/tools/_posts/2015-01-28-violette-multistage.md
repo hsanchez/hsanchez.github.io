@@ -2,7 +2,7 @@
 layout: default
 title: Violette with Multi Staging
 hidden: true
-description: Multi staging to Understand Experiment
+description: Multi staging to Understand
 ---
 
 To evaluate **Violette**'s multi-staging functionality, I have put together the following
@@ -17,7 +17,7 @@ Make sure you have
 2. Uninstalled any previously installed Violette from Chrome.
 3. Installed <a href="http://bit.ly/1IsfPG8" target="_blank">Violette-multi-staging-mode</a> on Chrome[^1].
 
-# GUIDELINES FOR THE MULTI STAGING OF CODE EXAMPLES EXPERIMENT
+# GUIDELINES FOR THE MULTI STAGING TO UNDERSTAND
 
 ## GOAL
 
