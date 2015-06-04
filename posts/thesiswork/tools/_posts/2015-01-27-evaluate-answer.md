@@ -28,6 +28,10 @@ Gain understanding in (without multi staging to understand)
 * Data flow:      where does a data object get updated?
 * Function:       what is the overall functionality?
 
+## GUIDELINES
+
+1. Spend your time wisely, don't look at resources outside the current Q&A page.
+2. Gain understanding in the above abstractions; e.g., control flow, etc.
 
 # THE TASK
 

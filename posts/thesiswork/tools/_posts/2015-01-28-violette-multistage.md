@@ -32,7 +32,7 @@ Gain understanding in
 
 ## GUIDELINES FOR MULTI STAGING[^2]
 
-1. Spend your time wisely, no manual beautification.
+1. Spend your time wisely, don't look at resources outside the current Q&A page.
 2. Click on the *stage* button[^3].  
 3. Iteratively click on any of the stages generated (in any order) to introduce 
 a subset of the given Java code example’s behavior.    
@@ -102,6 +102,6 @@ So without further ado, please click on the links below to start the task:
 
 [^1]: Open Google Chrome and on the Url bar type `chrome://extensions`. Look for `violette-staging-no-summarization.crx`. Get the file and then drop it on the Chrome extension area. Press the `Add` button and you're done.
 
-[^2]: Multi staged code examples are divided into a series of an ordered set of code stages, where each code stage code fragments captures a subset of the given Java code example’s behavior.
+[^2]: Multi staged code examples are divided into a series of an ordered set of code stages, such that each code stage builds upon, and in relation to, preceding code stages. Each code stage code fragments captures a subset of the given Java code example’s behavior.
 
 [^3]: This button is located on the top right corner of Violette. Each stage is represented as __named__ button. Stages are presented in ascending order; i.e., starting from `0` to `n` where `n` is the maximum number of stages that can be extracted from the code example.
