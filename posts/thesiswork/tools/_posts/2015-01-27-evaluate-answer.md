@@ -60,7 +60,7 @@ page. Once there, click on the next Java code example to review.
 
 We expect the following throughout the task:
 
-**1.** We expect you to review and understand a total of **7** Java code examples,
+**1.** We expect you to review and understand a total of **3** Java code examples,
 in the **order provided** in this page.
 
 **2.** We expect the whole task be done within **2 hrs**; including the 
