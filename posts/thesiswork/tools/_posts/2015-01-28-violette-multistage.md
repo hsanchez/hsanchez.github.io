@@ -32,7 +32,7 @@ Gain understanding in
 
 ## GUIDELINES FOR MULTI STAGING[^2]
 
-1. Spend your time wisely, don't look for info outside the Q&A page.
+1. Spend your time wisely, don't go outside the Q&A page.
 2. Click on the *stage* button[^3].
 3. Review the name of the stages in the same order in which they were generated.    
 3. Iteratively click on any of the generated code stages (in any order) to introduce a subset of the given Java code example’s behavior.    
