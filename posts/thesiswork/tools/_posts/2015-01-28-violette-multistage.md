@@ -32,12 +32,13 @@ Gain understanding in
 
 ## GUIDELINES FOR MULTI STAGING[^2]
 
-1. Spend your time wisely, don't look at resources outside the current Q&A page.
-2. Click on the *stage* button[^3].  
+1. Spend your time wisely, don't look for info outside the current Q&A page.
+2. Click on the *stage* button[^3].
+3. Review the names of generated stages.    
 3. Iteratively click on any of the stages generated (in any order) to introduce 
 a subset of the given Java code example’s behavior.    
 4. Review the introduced subset of the given Java code example’s behavior to make
-sure you understand what this subset is actually doing.   
+sure you understand what it is actually doing.   
 
 
 # THE TASK
