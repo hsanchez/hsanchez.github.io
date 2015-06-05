@@ -32,7 +32,7 @@ Gain understanding in
 
 ## GUIDELINES FOR MULTI STAGING[^2]
 
-1. Spend your time wisely, don't look for info outside the current Q&A page.
+1. Spend your time wisely, don't look for info outside the Q&A page.
 2. Click on the *stage* button[^3].
 3. Review the names of generated stages.    
 3. Iteratively click on any of the stages generated (in any order) to introduce 
