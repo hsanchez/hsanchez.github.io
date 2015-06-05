@@ -96,7 +96,7 @@ the multi-staging functionality and UI.
 
 <!-- <a href="https://www.youtube.com/watch?v=wNBjNcqbDdI" target="_blank">Multi staging Quicksort</a>-->
 
-So without further ado, please click on the links below to start the task:
+So without further ado, please click on the first link of Code Example 1 below to start the task:
 
 **1.** Code Example 1 (<a href="http://bit.ly/1Mt3TEL" target="_blank">src</a>, <a href="http://bit.ly/1BLdRe4" target="_blank">q&a</a>)     
 **2.** Code Example 2 (<a href="http://bit.ly/1Kd9oYF" target="_blank">src</a>, <a href="http://bit.ly/1FV2Drr" target="_blank">q&a</a>)    
