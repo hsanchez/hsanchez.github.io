@@ -43,7 +43,7 @@ you will be asked to answer a number of questions about the reviewed piece of co
     Please submit this information as the answer for "How long did you 
     spend reviewing and understanding the Java code example?", 
     which is found in the online questionnaire you will be 
-    completing per reviewed code example.
+    completing after finishing the whole task.
 
 For each example, there will be two links. First link will take you to a page 
 containing a StackOverflow's accepted answer. This answer contains some Java code. 
