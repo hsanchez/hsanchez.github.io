@@ -1,12 +1,11 @@
 ---
 layout: default
-title: Violette with Multi Staging
+title: Multi Staging to Understand Task
 hidden: true
 description: Multi staging to Understand
 ---
 
-To evaluate **Violette**'s multi-staging functionality, I have put together the following
-**experiment**. Please follow all of the instructions below:
+Please follow all of the instructions below:
 
 
 # PREREQS
