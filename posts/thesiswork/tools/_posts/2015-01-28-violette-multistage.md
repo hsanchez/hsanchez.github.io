@@ -109,4 +109,4 @@ So without further ado, please click on the links below to start the task:
 
 [^3]: This button is located on the top right corner of Violette. Each stage is represented as __named__ button. Stages are presented in ascending order; i.e., starting from `0` to `n` where `n` is the maximum number of stages that can be extracted from the code example.
 
-[^4]: If after clicking on the stage button you get an error (red) from the server, then refresh the Web page and try again.
+[^4]: If after clicking on the stage button you get an error (red box) from the server, then please refresh the Web page and re-try to stage the example.
