@@ -32,7 +32,7 @@ Gain understanding in
 ## GUIDELINES FOR MULTI STAGING[^2]
 
 1. Spend your time wisely, don't go outside the Q&A page.
-2. Click on the *stage* button[^3] to generate an ordered set of stages; e.g., 0:stage-name, 1:stage-name, ..., N:stage-name 
+2. Click on the *stage* button[^3] to generate an ordered set of stages[^4]; e.g., 0:stage-name, 1:stage-name, ..., N:stage-name 
 3. Review the name of the stages in the order they appeared.    
 3. Iteratively click on any of the generated stages (in any order) to introduce a subset of the given Java code example’s behavior.    
 4. Review the introduced subset of behavior to make sure you understand what it is actually doing.   
@@ -108,3 +108,5 @@ So without further ado, please click on the links below to start the task:
 [^2]: Multi staged code examples are divided into a series of an ordered set of code stages, such that each code stage builds upon, and in relation to, preceding code stages. Each code stage code fragments captures a subset of the given Java code example’s behavior.
 
 [^3]: This button is located on the top right corner of Violette. Each stage is represented as __named__ button. Stages are presented in ascending order; i.e., starting from `0` to `n` where `n` is the maximum number of stages that can be extracted from the code example.
+
+[^4]: If after clicking on the stage button you get an error (red) from the server, then refresh the Web page and try again.
