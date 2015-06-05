@@ -5,8 +5,7 @@ hidden: true
 description: Read to Understand.
 ---
 
-To evaluate how people evaluate code examples on StackOverflow, I have put together the following
-**experiment**. Please follow all of the instructions below:
+Please follow all of the instructions below:
 
 
 # PREREQS
@@ -30,12 +29,12 @@ Gain understanding in (without multi staging to understand)
 
 ## GUIDELINES
 
-1. Spend your time wisely, don't look at resources outside the current Q&A page.
-2. Gain understanding in the above abstractions; e.g., control flow, etc.
+1. Spend your time wisely, don't go outside the Q&A page.
+2. Gain understanding in the asked abstractions; e.g., control flow, etc.
 
 # THE TASK
 
-There will be 3 Java code examples to review and understand. Use the appointed 
+There will be 3 Java code examples (Accepted Answers) to review and understand. Use the appointed 
 comprehension technique (either Read to Understand or Multi staging to Understand) 
 to dig into each of the Java code examples. After 30 minutes, per Java code example, 
 you will be asked to answer a number of questions about the reviewed piece of code.
@@ -81,6 +80,6 @@ Wikipedia should be used.
 
 So without further ado, please click on the links below to start the task:
 
-**1.** Code Example 1 (<a href="http://bit.ly/1ImnRCd" target="_blank">src</a>, <a href="http://bit.ly/1BLdRe4" target="_blank">q&a</a>)     
+**1.** Code Example 1 (<a href="http://bit.ly/1Mt3TEL" target="_blank">src</a>, <a href="http://bit.ly/1BLdRe4" target="_blank">q&a</a>)     
 **2.** Code Example 2 (<a href="http://bit.ly/1Kd9oYF" target="_blank">src</a>, <a href="http://bit.ly/1FV2Drr" target="_blank">q&a</a>)    
 **3.** Code Example 3 (<a href="http://bit.ly/1Kd9xeJ" target="_blank">src</a>, <a href="http://bit.ly/1KNTkhw" target="_blank">q&a</a>)  

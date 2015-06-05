@@ -41,7 +41,7 @@ Gain understanding in
 
 # THE TASK
 
-There will be 3 Java code examples to review and understand. Use the appointed 
+There will be 3 Java code examples (Accepted Answers) to review and understand. Use the appointed 
 comprehension technique (either Read to Understand or Multi staging to Understand) 
 to dig into each of the Java code examples. After 30 minutes, per Java code example, 
 you will be asked to answer a number of questions about the reviewed piece of code.
@@ -99,7 +99,7 @@ the multi-staging functionality and UI.
 
 So without further ado, please click on the links below to start the task:
 
-**1.** Code Example 1 (<a href="http://bit.ly/1ImnRCd" target="_blank">src</a>, <a href="http://bit.ly/1BLdRe4" target="_blank">q&a</a>)     
+**1.** Code Example 1 (<a href="http://bit.ly/1Mt3TEL" target="_blank">src</a>, <a href="http://bit.ly/1BLdRe4" target="_blank">q&a</a>)     
 **2.** Code Example 2 (<a href="http://bit.ly/1Kd9oYF" target="_blank">src</a>, <a href="http://bit.ly/1FV2Drr" target="_blank">q&a</a>)    
 **3.** Code Example 3 (<a href="http://bit.ly/1Kd9xeJ" target="_blank">src</a>, <a href="http://bit.ly/1KNTkhw" target="_blank">q&a</a>)  
 
