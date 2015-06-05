@@ -64,6 +64,11 @@ questionnaire.
 After answering the questionnaire, close its page and then comeback to the experiment 
 page. Once there, click on the next Java code example to review.
 
+
+Lastly, after reviewing all code examples and answering their questionnaires, please answer 
+our <a href="http://bit.ly/1KPyrlW" target="_blank">debriefing questionnaire</a>.
+
+
 # TASK EXPECTATIONS
 
 We expect the following throughout the task:
