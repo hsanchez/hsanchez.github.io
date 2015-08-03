@@ -34,7 +34,7 @@ Gain understanding in
 1. Spend your time wisely, don't go outside the Q&A page.
 2. Click on the *stage* button[^3] to generate an ordered set of stages[^4]; e.g., 0:stage-name, 1:stage-name, ..., N:stage-name 
 3. Review the name of the stages in the order they appeared.    
-4. Iteratively click on any of the generated code stages to introduce a subset of the given Java code example's behavior. E.g., Click stages in any order.  
+4. Iteratively click on any of the generated code stages to introduce a subset of the given Java code example's behavior. E.g., Click stages in any order.    
      4.1 Open any hidden code blocks as you go along, and then try to understand its enclosed elements.    
 4. Review the introduced subset of behavior to make sure you understand what it is actually doing.   
 
