@@ -42,7 +42,7 @@ Gain understanding in
 
 There will be 3 Java code examples (Accepted Answers) to review and understand. Use the appointed 
 comprehension technique (either Read to Understand or Multi staging to Understand) 
-to dig into each of the Java code examples. After 20 minutes, per Java code example, 
+to dig into each of the Java code examples. After 30 minutes, per Java code example, 
 you will be asked to answer a number of questions about the reviewed piece of code.
 
 For each example, there will be two links. First link will take you to a page 
