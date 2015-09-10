@@ -1,5 +1,6 @@
 ---
 layout: default
+hidden: true
 title: Software curating
 ---
 
