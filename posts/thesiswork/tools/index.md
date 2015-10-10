@@ -19,9 +19,8 @@ to actually edit and change code examples in-place, and a RESTful service
 they provide a mechanism by which developers can examine code examples 
 through a combination of manual and semi-automatic edits. Kiwi
 
-The other components are Code multistaging, Codepacking, and Vesper. We 
-distributed the overall functionality of these components between 
-Violette and Kiwi.  
+The other components are Code examples multistaging, Codepacking, and Vesper.
+We distributed their overall functionality between Violette and Kiwi.  
 
 
 {% for post in site.categories.tools %}

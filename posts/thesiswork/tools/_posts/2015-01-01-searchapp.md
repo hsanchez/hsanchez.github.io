@@ -1,7 +1,6 @@
 ---
 layout: default
 title: Search Cue
-hidden: true
 description: StackOverflow Search Application
 ---
 

@@ -1,8 +1,8 @@
+// Copyright Huascar Sanchez, 2014.
 /**
  * @author Huascar A. Sanchez
  */
 $(function () {
-  // todo(Huascar) implement an algorithm for translating keywords into Java code
 
   var VERSION = "1";
   if (window.localStorage.ss_version !== VERSION) {
@@ -127,12 +127,14 @@ $(function () {
         'class': 'log-' + class_suffix
       });
 
+      //noinspection JSJQueryEfficiency
       $('#logger').append($div);
 
       if (to_append) {
         $div.append(to_append);
       }
 
+      //noinspection JSJQueryEfficiency
       $('#logger')[0].scrollTop = $('#logger')[0].scrollHeight;
     },
 
@@ -142,12 +144,14 @@ $(function () {
         'class': 'disp-' + class_suffix
       });
 
+      //noinspection JSJQueryEfficiency
       $('#displayer').append($div);
 
       if (to_append) {
         $div.append(to_append);
       }
 
+      //noinspection JSJQueryEfficiency
       $('#displayer')[0].scrollTop = $('#displayer')[0].scrollHeight;
     },
 
@@ -316,12 +320,7 @@ $(function () {
 
     examineAnswer: function () {
       var answer = Searcher.answers[Searcher.item].body;
-      var answer_id = Searcher.answers[Searcher.item].answer_id;
-      var question_id = Searcher.answers[Searcher.item].question_id;
-      var link = Searcher.answers[Searcher.item].link;
       var codes = answer.match(/<code>(.|[\n\r])*?<\/code>/g);
-      // todo(Huascar) think how to use this score
-      var score = Searcher.answers[Searcher.item].score;
 
       var blocks = validBlocks(codes);
       if(!isEmpty(blocks)){
@@ -374,8 +373,8 @@ $(function () {
     Searcher.reset();
 
     $('#search').attr('disabled', true).text('Searching...');
-    $('#logger .oc').remove();
-    $('#displayer .oc').remove();
+    $('#logger').find('.oc').remove();
+    $('#displayer').find('.oc').remove();
     Searcher.stop = false;
 
     Searcher.search();
