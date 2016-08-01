@@ -10,7 +10,9 @@ description: Huascar Sanchez Homepage
 <blockquote id="followquote"><span class="quote">The best way to predict the future is to invent it.</span><small class='author'><a href='http://en.wikiquote.org/wiki/Alan_Kay'>Alan Kay</a></small></blockquote>
 
 
-Hi, I'm **Huascar** (pronounced wäs-kär), a Postdoctoral fellow at SRI International. Before joining SRI, I was a PhD candidate in the [Department of Computer Science at UC Santa Cruz](http://cs.soe.ucsc.edu/), working with [Jim Whitehead](http://users.soe.ucsc.edu/~ejw/) at the Software Introspection Lab. I received my PhD in December 2015 from UC Santa Cruz, and my MS in software engineering from San Jose State University in 2006. My primary research interest is software engineering, with a particular focus on programmer productivity, code foraging, and information retrieval.
+Hi, I'm **Huascar** (pronounced wäs-kär), a Postdoctoral fellow at SRI International. Before joining SRI, I was a PhD candidate in the [Department of Computer Science at UC Santa Cruz](http://cs.soe.ucsc.edu/), working with [Jim Whitehead](http://users.soe.ucsc.edu/~ejw/) at the Software Introspection Lab. 
+
+I received my PhD in Computer Science from UC Santa Cruz in December 2015, and my MS in Software Engineering from San Jose State University in 2006. My research background is in software engineering, with a particular focus on programmer productivity, human-computer interaction, and information retrieval.
 
 
 Cheers,  
