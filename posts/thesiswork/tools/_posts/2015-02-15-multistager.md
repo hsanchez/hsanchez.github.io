@@ -6,6 +6,9 @@ description: Code examples multistaging API.
 
 ## Multistager, {{page.description}}
 
+
+<script async class="speakerdeck-embed" data-id="98cd712192ab4210b967f33631701a1d" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
 Code examples multistaging is technique that automatically extracts all of the 
 prime subsets of behavior of Java code examples, both partial or incomplete 
 code examples.
