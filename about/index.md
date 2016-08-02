@@ -9,13 +9,14 @@ As indicated in the <a href="/">welcome</a> page, my research focuses on address
 
 At [San Jose State University](http://www.sjsu.edu/), the focus of my research was in domain analysis and pattern languages.
 
-**Selected Graduate Coursework**
+Interested readers can check out my **selected graduate coursework** at 
 
 {% for post in site.categories.about %}
 
 - [**{{ post.title }}**]({{ post.url }})
 
 {% endfor %}
+
 
 Cheers,  
 Huascar A. Sanchez  
