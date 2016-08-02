@@ -12,3 +12,10 @@ At [San Jose State University](http://www.sjsu.edu/), the focus of my research w
 Cheers,  
 Huascar A. Sanchez  
 [e-mail](mailto:huascar.sanchez@sri.com)
+
+
+{% for post in site.categories.about %}
+
+- [**{{ post.title }}**]({{ post.url }}) {{ post.description | strip_html }}
+
+{% endfor %}
