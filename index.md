@@ -12,7 +12,7 @@ description: Huascar Sanchez Homepage
 
 Hi, I'm **Huascar** (pronounced wäs-kär), a Postdoctoral fellow at SRI International. Before joining SRI, I was a PhD candidate in the [Department of Computer Science at UC Santa Cruz](http://cs.soe.ucsc.edu/), working with [Jim Whitehead](http://users.soe.ucsc.edu/~ejw/) at the Software Introspection Lab. 
 
-I received my PhD in Computer Science from UC Santa Cruz in December 2015, and my MS in Software Engineering from San Jose State University in 2006. My research background is in software engineering, with a particular focus on programmer productivity, human-computer interaction, and information retrieval.
+I received my PhD in Computer Science from [UC Santa Cruz](http://www.ucsc.edu/) in December 2015, and my MS in Software Engineering from [San Jose State University](http://www.sjsu.edu/) in 2006. My research background is in software engineering, with a particular focus on programmer productivity, human-computer interaction, and information retrieval.
 
 
 Cheers,  
