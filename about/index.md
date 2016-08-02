@@ -7,7 +7,7 @@ I am a a Postdoctoral fellow at [SRI International](https://www.sri.com/). As a 
 
 As indicated in the <a href="/">welcome</a> page, my research focuses on addressing programmer productivity, human-computer interaction, and information retrieval issues in software engineering. I am interested in developing tools that can help programmers overcome their daily programming and code foraging barriers in order to make them more productive.    
 
-I have a MS in software engineering from [San Jose State University](http://www.sjsu.edu/). The focus of my research at San Jose State was in domain analysis and pattern languages.
+At [San Jose State University](http://www.sjsu.edu/), the focus of my research was in domain analysis and pattern languages.
 
 Cheers,  
 Huascar A. Sanchez  
