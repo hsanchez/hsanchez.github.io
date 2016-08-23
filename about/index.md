@@ -9,9 +9,4 @@ As indicated in the <a href="/">welcome</a> page, my research focuses on address
 
 At [UC Santa Cruz](http://www.ucsc.edu/), the focus of my research was on making code foraging less informal and more thoughtful. This research introduced the notion of <a href="/posts/thesiswork">Source Code Curation</a>. Source Code Curation is a blend of three activities: filtering, refinement, and validation. Source Code Curation’s goal is to improve the quality of online source code before reuse, validate its fitness for use, and assist with code understanding.
 
-At [San Jose State University](http://www.sjsu.edu/), the focus of my research was on domain analysis and pattern languages. I investigated how to build adaptable software systems using the notion of [Knowledge Maps](http://www.crcpress.com/product/isbn/9781466571433).
-
-
-Cheers,  
-Huascar A. Sanchez  
-[e-mail](mailto:huascar.sanchez@sri.com)
+At [San Jose State University](http://www.sjsu.edu/), the focus of my research was on domain analysis and pattern languages. I investigated how to build software systems as a system of patterns, known as [Knowledge Maps](http://www.crcpress.com/product/isbn/9781466571433).

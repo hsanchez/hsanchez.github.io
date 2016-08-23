@@ -8,7 +8,7 @@ $(function () {
   if (window.localStorage.ss_version !== VERSION) {
     delete window.localStorage.answers;
     delete window.localStorage.ss_page;
-    delete window.localStorage.candidates;
+    delete window.localStorage.query;
     window.localStorage.ss_version = VERSION;
   }
 
@@ -49,6 +49,65 @@ $(function () {
       return this.replace(/^\s+|\s+$/g, '');
     };
   }
+	
+	function product(args) {
+	    if(!args.length)
+	        return [[]];
+	    var prod = product(args.slice(1)), r = [];
+	    args[0].forEach(function(x) {
+	        prod.forEach(function(p) {
+	            r.push([x].concat(p));
+	        });
+	    });
+	    return r;
+	}	
+	
+	// Compute the edit distance between the two given strings
+	function editDistance(a, b) {
+	  if (a.length === 0) return b.length; 
+	  if (b.length === 0) return a.length; 
+
+	  var matrix = [];
+
+	  // increment along the first column of each row
+	  var i;
+	  for (i = 0; i <= b.length; i++) {
+	    matrix[i] = [i];
+	  }
+
+	  // increment each column in the first row
+	  var j;
+	  for (j = 0; j <= a.length; j++) {
+	    matrix[0][j] = j;
+	  }
+
+	  // Fill in the rest of the matrix
+	  for (i = 1; i <= b.length; i++) {
+	    for (j = 1; j <= a.length; j++) {
+	      if (b.charAt(i-1) == a.charAt(j-1)) {
+	        matrix[i][j] = matrix[i-1][j-1];
+	      } else {
+	        matrix[i][j] = Math.min(
+						matrix[i-1][j-1] + 1, 			 // substitution
+	          Math.min(matrix[i][j-1] + 1, // insertion
+	          matrix[i-1][j] + 1)); 			 // deletion
+	      }
+	    }
+	  }
+
+	  return matrix[b.length][a.length];
+	};	
+	
+	function normalizedEditDistance(a, b){
+		var ed  = editDistance(a, b)/1.0;
+		var len = Math.max(a.length, b.length)/1.0;
+		
+		return (ed/len);
+	};
+	
+	function distance(a, b){
+		return 1.0 - normalizedEditDistance(a, b);
+	}
 
   function isBlock(code) {
     if(!code) return false;
@@ -67,7 +126,7 @@ $(function () {
     var splitText = text.split('\n');
     var loc = splitText.length;
 
-    if (loc < 25) return false;
+    if (loc < 5) return false;
 
     var result = JavaDetector.guessLanguage($code);
     var lang = result.language;
@@ -75,6 +134,19 @@ $(function () {
     console.log(lang);
     return JavaDetector.isLanguageSupported(lang);
 
+  }
+	
+  function toString(codes) {
+    var blocks = [];
+
+    codes = codes || [];
+
+    for (var idx = 0; idx < codes.length; idx++) {
+      var code = codes[idx];
+			blocks.push($(code).text());
+    }
+
+    return blocks;
   }
 
   function validBlocks(codes) {
@@ -117,7 +189,8 @@ $(function () {
         class: 'oc',
         text: 'selection console'
       }));
-      $('#search').attr('disabled', false).text('START');
+      $('#search').attr('disabled', false).text('SEARCH');
+			$("input").prop('disabled', false);
       $('.done').hide();
     },
 
@@ -178,26 +251,154 @@ $(function () {
       Searcher.item++;
       Searcher.search();
     },
+		
+		typicality: function(){
+			
+			Searcher.displayer("Sorting code examples by typicality.", "info");
+			
+      // Output!
+      setTimeout(function () {
+				var candidates = [];
+				if (Searcher.candidates.length == 0){
+					candidates = parseArray(window.localStorage.cached).items;
+				} else {
+					candidates = Searcher.candidates;
+				}
+				
+				var k 	= $("#topk").val();
+        var len = k ? k : candidates.length;
 
-    fetchCandidates: function (lengthAsBound) {
+        var entries = [];
+
+        var candidateArray = candidates;        
+				
+				// Get all entries
+				var idx;
+				for (idx = 0; idx < len; idx++) {
+          var answerObject 	= candidateArray[idx];
+          var answer_id 		= answerObject.answer_id;
+					var answer_score 	= answerObject.score;
+          var link 					= answerObject.link ? answerObject.link : answerObject.href;
+					var code					= answerObject.code;
+					
+          var entry = {
+            "title": answerObject.title
+            , "href": link
+            , 'target': '_blank'
+						, "code": code
+						, "answer_id": answer_id
+          };
+
+          entries.push(entry);
+        }
+				
+				// Initialize their scores
+				var T = new Hashtable();
+				
+				for (idx = 0; idx < entries.length; idx++) {
+					var e = entries[idx];
+					T.put(e, 0.0);
+				}
+				
+				// Compute each entry's typicality score
+				var array = [];
+				array.push(entries);
+				array.push(entries);
+				var cartesian = product(array);
+				
+				for(idx = 0; idx < cartesian.length; idx++){
+					var pair = cartesian[idx];
+					
+					var si = pair[0];
+					var sj = pair[1];
+					
+					var w = distance(si.code, sj.code);
+					
+					var Tsi = T.get(si) + w;
+					var Tsj = T.get(sj) + w;
+					
+					T.put(si, Tsi);
+					T.put(sj, Tsj);
+				}
+				
+				// Sorts entries on their typicality score				
+				var sortable = [];
+				for(idx = 0; idx < T.keys().length; idx++){
+					var entry = T.keys()[idx];
+					sortable.push([entry, T.get(entry)]);	
+				}
+				// for (var entry in T){
+				// 	sortable.push([entry, T[entry]]);
+				// }
+				
+				sortable.sort(function(a, b){
+					return b[1] - a[1];
+				});
+				
+				
+				for(idx = 0; idx < sortable.length; idx++){
+					var s = sortable[idx][0];
+					
+          var answer_id 		= s.answer_id;
+					var answer_score 	= s.score;
+          var link 					= s.link ? s.link : s.href;
+					var code					= s.code;
+					
+          Searcher.displayer("Code example ", "trying", $('<a>', {
+            'text': answer_id,
+            'href': link,
+            'target': '_blank'
+          }));
+          
+					Searcher.listCandidate("Code example candidate");
+				}
+				
+        $('#search').attr('disabled', false).text('Search Again');
+				$("input").prop('disabled', false);
+        Searcher.wait(false);
+        Searcher.item++;
+        setTimeout(function () {
+          $('.done').fadeIn();
+        }, 400);
+
+      }, 230); // Don't freeze up the browser
+		},
+		
+		foundCandidates: function(){
       Searcher.logger("Found enough suitable code snippets", "success");
 
-      Searcher.displayer("Fetching candidates", "trying");
-      Searcher.displayer("Candidates downloading, ready to try.", "info");
+      Searcher.displayer("Fetching code examples", "trying");
+      Searcher.displayer("Downloading code examples, ready to try.", "info");
+		},
+
+    fetchCandidates: function (lengthAsBound) {			
 
       // Output!
       setTimeout(function () {
-        var len = lengthAsBound ? Searcher.candidates.length : 15;
+				var k = $("#topk").val();
+				
+				var candidates = [];
+				if (Searcher.candidates.length == 0){
+					candidates = parseArray(window.localStorage.cached).items;
+				} else {
+					candidates = Searcher.candidates;
+				}
+				
+				
+        var len = lengthAsBound ? candidates.length : k;
 
         var cached = [];
 
-        var shuffledArray = shuffle(Searcher.candidates);
-        for (var idx = 0; idx < len; idx++) {
-          var answerObject = shuffledArray[idx];
-          var answer_id = answerObject.answer_id;
-          var link = answerObject.link;
+        var shuffledArray = candidates;
 
-          Searcher.displayer("Try StackOverflow answer ", "trying", $('<a>', {
+        for (var idx = 0; idx < len; idx++) {
+          var answerObject 	= shuffledArray[idx];
+          var answer_id 		= answerObject.answer_id;
+					var answer_score 	= answerObject.score;
+          var link 					= answerObject.link ? answerObject.link : answerObject.href;
+					var code					= answerObject.code;
+					
+          Searcher.displayer("Code example ", "trying", $('<a>', {
             'text': answer_id,
             'href': link,
             'target': '_blank'
@@ -207,11 +408,13 @@ $(function () {
             "title": answerObject.title
             , "href": link
             , 'target': '_blank'
+						, "code": code
+						, "answer_id": answer_id
           };
 
           cached.push(entry);
 
-          Searcher.listCandidate("Source code curation candidate");
+          Searcher.listCandidate("Code example candidate");
         }
 
         var cachedCandidates = {
@@ -221,6 +424,7 @@ $(function () {
         window.localStorage.setItem("cached", JSON.stringify(cachedCandidates));
 
         $('#search').attr('disabled', false).text('Search Again');
+				$("input").prop('disabled', false);
         Searcher.wait(false);
         Searcher.item++;
         setTimeout(function () {
@@ -241,9 +445,11 @@ $(function () {
       }
 
       Searcher.logger("Fetching page " + Searcher.page + "...", "trying");
+			
+			var query = $("#query").val();
 
-      var common_url = '&pagesize=100&order=desc&site=stackoverflow&todate=1406505600';
-      var question_url = Searcher.api + 'questions?sort=activity&tagged=java;android;&page=' + Searcher.page + common_url;
+      var common_url = '&pagesize=100&order=desc&site=stackoverflow&todate=1471910400';
+      var question_url = Searcher.api + 'similar?sort=relevance&accepted=True&notice=False&tagged=java&title=' + query + '&page=' + Searcher.page + common_url;
 
       var titles = {};
 
@@ -286,6 +492,7 @@ $(function () {
       if (Searcher.stop) {
         Searcher.logger("Stopped by user", "out");
         $('#search').attr('disabled', false).text('Search Again');
+				$("input").prop('disabled', false);
         Searcher.wait(false);
         Searcher.stop = false;
         Searcher.reset();
@@ -308,11 +515,12 @@ $(function () {
         var answer_id = Searcher.answers[Searcher.item].answer_id;
         var link = Searcher.answers[Searcher.item].link;
 
-        Searcher.logger("Checking StackOverflow answer ", "trying", $('<a>', {
+        Searcher.logger("Checking code example ", "trying", $('<a>', {
           'text': answer_id,
           'href': link,
           'target': '_blank'
         }));
+				
         Searcher.examineAnswer();
 
       }, 230); // Don't freeze up the browser
@@ -324,14 +532,17 @@ $(function () {
 
       var blocks = validBlocks(codes);
       if(!isEmpty(blocks)){
-        if (Searcher.candidates.length >= 30) { // arbitrary number
+        if (Searcher.candidates.length >= 20) { // arbitrary number
+					Searcher.foundCandidates();
           Searcher.fetchCandidates(false);
         } else {
-          Searcher.candidates.push(Searcher.answers[Searcher.item]);
+					var item 	= Searcher.answers[Searcher.item];
+					item.code = toString(blocks).join("\n");
+          Searcher.candidates.push(item);
           Searcher.nextAnswer("Found a valid code example");
         }
       } else { // no valid code found
-        Searcher.logError("No valid Java code example");
+        Searcher.logError("Invalid Java code example");
       }
 
     },
@@ -361,18 +572,42 @@ $(function () {
   Searcher.setupConsoles();
 
   $('#search').click(function () {
+		
+		var query = $("#query").val();
+		
+		if(!query){
+			alert("Please provide a query");
+			$("#query").focus();
+			
+      return false;
+		}
+		
+		if(!window.localStorage.query){
+			window.localStorage.query = query;
+		} else {
+			if(window.localStorage.query !== query){
+		    delete window.localStorage.answers;
+		    delete window.localStorage.ss_page;
+		    delete window.localStorage.query;
+		    window.localStorage.ss_version = VERSION;
+			}		
+		}
+		
     // Disclaimer
     // TODO: Use better modal?
-    var warn = "Ready for fetching arbitrary Java code from StackOverflow?";
+    var warn = "Ready for fetching arbitrary Java code examples from StackOverflow?";
     var ready = window.localStorage.ss_confirmed || confirm(warn);
-    if (!ready) {
+    
+		if (!ready) {
       return false;
     }
+		
     window.localStorage.ss_confirmed = true;
 
     Searcher.reset();
 
     $('#search').attr('disabled', true).text('Searching...');
+		$("input").prop('disabled', true);
     $('#logger').find('.oc').remove();
     $('#displayer').find('.oc').remove();
     Searcher.stop = false;
@@ -384,5 +619,21 @@ $(function () {
     Searcher.stop = true;
     return false;
   });
+	
+	var checkboxes = $("input[type=checkbox]"); 
+		checkboxArray = Array.from( checkboxes );
+
+	function confirmCheck() {
+		$('#displayer').empty();
+  	if (this.checked) {
+    	Searcher.typicality();
+  	} else {
+  		Searcher.fetchCandidates(false);
+  	}
+	}
+
+	checkboxArray.forEach(function(checkbox) {
+  	checkbox.addEventListener('change', confirmCheck);
+	});
 
 });

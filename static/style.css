@@ -239,7 +239,6 @@ footer h4 {
 	background:white !important;
 }
 
-
 .modal_box {
     width: 320px;
     background: rgb(97%,97%,97%);
@@ -321,8 +320,17 @@ body .searcher #search {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-
 }
+
+.typicality {
+	font-size: 1.2rem;
+}
+
+body input[type="text"]:disabled {
+	font-style: italic; color:#bbb;cursor:default; outline:none;
+}
+
+body input[type="text"]disabled:hover{color:#bbb}
 
 .octicon-button{float:right;padding:4px;margin-left:5px}
 .octicon-button.danger:hover{color:#bd2c00}
@@ -505,6 +513,7 @@ body .searcher #search:hover {
     padding: 70px 0;
     text-align: center;
 }
+
 
 body .input {
     -webkit-box-sizing: border-box;
