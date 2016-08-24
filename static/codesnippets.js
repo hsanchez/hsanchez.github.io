@@ -9,6 +9,7 @@ $(function () {
     delete window.localStorage.answers;
     delete window.localStorage.ss_page;
     delete window.localStorage.query;
+		delete window.localStorage.cached;
     window.localStorage.ss_version = VERSION;
   }
 
@@ -167,6 +168,24 @@ $(function () {
   function isEmpty(blocks){
     return (blocks === undefined || blocks.length == 0)
   }
+	
+	function ensureCleanSlate(query){
+		if(window.localStorage.query !== query){
+	    delete window.localStorage.answers;
+	    delete window.localStorage.ss_page;
+	    delete window.localStorage.query;
+			delete window.localStorage.cached;
+			window.localStorage.ss_confirmed = false;
+			Searcher.answers = []; 
+			Searcher.page    = 1;
+			Searcher.item    = 0;
+			Searcher.candidates = [];
+			Searcher.stop				= false;
+
+	    window.localStorage.ss_version = VERSION;
+		  window.localStorage.query = query;
+		}
+	};
 
 
   // Setup the main controller
@@ -582,14 +601,7 @@ $(function () {
       return false;
 		}
 		
-		if(window.localStorage.query !== query){
-	    delete window.localStorage.answers;
-	    delete window.localStorage.ss_page;
-	    delete window.localStorage.query;
-	    window.localStorage.ss_version = VERSION;
-			
-			window.localStorage.query = query;
-		}
+		ensureCleanSlate(query);
 				
     // Disclaimer
     // TODO: Use better modal?
@@ -608,6 +620,7 @@ $(function () {
 		$("input").prop('disabled', true);
     $('#logger').find('.oc').remove();
     $('#displayer').find('.oc').remove();
+		$("input[type=checkbox]").prop("checked", false);
     Searcher.stop = false;
 
     Searcher.search();
