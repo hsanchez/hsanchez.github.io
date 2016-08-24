@@ -582,17 +582,15 @@ $(function () {
       return false;
 		}
 		
-		if(!window.localStorage.query){
+		if(window.localStorage.query !== query){
+	    delete window.localStorage.answers;
+	    delete window.localStorage.ss_page;
+	    delete window.localStorage.query;
+	    window.localStorage.ss_version = VERSION;
+			
 			window.localStorage.query = query;
-		} else {
-			if(window.localStorage.query !== query){
-		    delete window.localStorage.answers;
-		    delete window.localStorage.ss_page;
-		    delete window.localStorage.query;
-		    window.localStorage.ss_version = VERSION;
-			}		
 		}
-		
+				
     // Disclaimer
     // TODO: Use better modal?
     var warn = "Ready for fetching arbitrary Java code examples from StackOverflow?";
