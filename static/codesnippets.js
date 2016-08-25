@@ -176,15 +176,67 @@ $(function () {
 	    delete window.localStorage.query;
 			delete window.localStorage.cached;
 			window.localStorage.ss_confirmed = false;
-			Searcher.answers = []; 
-			Searcher.page    = 1;
-			Searcher.item    = 0;
+			Searcher.answers 		= []; 
+			Searcher.page    		= 1;
+			Searcher.item    		= 0;
 			Searcher.candidates = [];
 			Searcher.stop				= false;
 
-	    window.localStorage.ss_version = VERSION;
-		  window.localStorage.query = query;
+	    window.localStorage.ss_version 	= VERSION;
+		  window.localStorage.query 			= query;
 		}
+	};
+	
+	function orderedHash() {
+	    var keys = [];
+	    var vals = {};
+			var idxs = {};
+	    
+			return {
+				clear: function(){
+					keys = [];
+					vals = {};
+					idxs = {};
+				},			
+				
+				push: function(k){
+					this.put(k, k);
+				},
+
+				put: function(k,v) {
+					if (!vals[k]) {
+						keys.push(k);
+						idxs[k] = keys.length - 1;
+					} 
+					vals[k] = v;
+	      },
+					
+				empty: function(){
+					return this.length() == 0;
+				},
+	      
+				val: function(k) {return vals[k]},
+	      
+				length: function(){return keys.length},
+	      
+				keys: function(){return keys},
+	      
+				values: function(){return vals}
+	    };
+	};
+	
+	function toAnswerArray(orderedHash){
+		if(!orderedHash) return [];
+		
+		var allKeys = orderedHash.keys();
+		var N				= allKeys.length;
+		var result  = [];
+		for(var idx = 0; idx < N; idx++){
+			var key = allKeys[idx];
+			result.push(orderedHash.val(key));
+		}
+		
+		return result;
 	};
 
 
@@ -465,12 +517,18 @@ $(function () {
 
       Searcher.logger("Fetching page " + Searcher.page + "...", "trying");
 			
-			var query = $("#query").val();
+			var query  	= $("#query").val();
+			var splits 	= query.split(/[ ,]+/);
+			var uquery 	= splits.join("+");
+			var encoded	= encodeURIComponent(query);
 
+			// search/advanced?todate=1471910400&order=desc&sort=relevance&q=quick%2Bselect&accepted=True&notice=False&tagged=java&site=stackoverflow
       var common_url = '&pagesize=100&order=desc&site=stackoverflow&todate=1471910400';
-      var question_url = Searcher.api + 'similar?sort=relevance&accepted=True&notice=False&tagged=java&title=' + query + '&page=' + Searcher.page + common_url;
+      var question_url = Searcher.api + 'similar?sort=relevance&accepted=True&notice=False&tagged=java&title=' + encoded + '&page=' + Searcher.page + common_url;
 
       var titles = {};
+			
+			var relevantOrder = orderedHash();
 
       $.getJSON(question_url, function (data_questions) {
         var answer_ids = [];
@@ -478,24 +536,40 @@ $(function () {
           if (v.accepted_answer_id) {
             answer_ids.push(v.accepted_answer_id);
             titles[v.question_id] = v.title;
+						relevantOrder.push(v.accepted_answer_id);
           }
         });
 
-        var answer_url = Searcher.api + 'answers/' + answer_ids.join(';') + '?sort=activity&filter=!9hnGsyXaB' + common_url;
-
+				// it looks 
+        //var answer_url = Searcher.api + 'answers/' + answer_ids.join(';') + '?sort=activity&filter=!9hnGsyXaB' + common_url;
+				
+				var answer_url = Searcher.api + 'answers/' + answer_ids.join(';') + '?filter=!9hnGsyXaB' + common_url;
         $.getJSON(answer_url, function (data_answers) {
           Searcher.logger("Answers downloading, ready to check.", "success");
           $.each(data_answers['items'], function (k, v) {
-            Searcher.answers.push({
-              'answer_id': v.answer_id,
-              'question_id': v.question_id,
-              'link': 'http://stackoverflow.com/questions/' + v.question_id + '/#' + v.answer_id,
-              'body': v.body,
-              'score': v.score,
-              'title': titles[v.question_id] || ""
-            });
-          });
 
+						relevantOrder.put(v.answer_id, {
+            	'answer_id': v.answer_id,
+            	'question_id': v.question_id,
+            	'link': 'http://stackoverflow.com/questions/' + v.question_id + '/#' + v.answer_id,
+            	'body': v.body,
+            	'score': v.score,
+            	'title': titles[v.question_id] || ""
+							}
+						);
+
+            // Searcher.answers.push({
+//               'answer_id': v.answer_id,
+//               'question_id': v.question_id,
+//               'link': 'http://stackoverflow.com/questions/' + v.question_id + '/#' + v.answer_id,
+//               'body': v.body,
+//               'score': v.score,
+//               'title': titles[v.question_id] || ""
+//             });
+          });
+					
+					Searcher.answers = toAnswerArray(relevantOrder);
+					
           // Save the new answers
           window.localStorage.answers = JSON.stringify(Searcher.answers);
 
