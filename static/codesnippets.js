@@ -115,15 +115,10 @@ $(function () {
 
     var $code = $(code);
 
-    // if it's less than 25 lines of code, we don't treat it as a suitable
+    // if it's less than 5 lines of code, we don't treat it as a suitable
     // code block
     var text      = $code.text();
-
-    var matches = text.match(/\{([^}]+)\}/g) || [];
-    if(matches.length > 1) {
-      console.log("+1");
-    }
-
+    var matches 	= text.match(/\{([^}]+)\}/g) || [];
     var splitText = text.split('\n');
     var loc = splitText.length;
 
@@ -132,8 +127,7 @@ $(function () {
     var result = JavaDetector.guessLanguage($code);
     var lang = result.language;
 
-    console.log(lang);
-    return JavaDetector.isLanguageSupported(lang);
+    return JavaDetector.isLanguageSupported(lang, true);
 
   }
 	
@@ -557,18 +551,9 @@ $(function () {
             	'title': titles[v.question_id] || ""
 							}
 						);
-
-            // Searcher.answers.push({
-//               'answer_id': v.answer_id,
-//               'question_id': v.question_id,
-//               'link': 'http://stackoverflow.com/questions/' + v.question_id + '/#' + v.answer_id,
-//               'body': v.body,
-//               'score': v.score,
-//               'title': titles[v.question_id] || ""
-//             });
           });
 					
-					Searcher.answers = toAnswerArray(relevantOrder);
+					Searcher.answers = Searcher.answers.concat(toAnswerArray(relevantOrder));
 					
           // Save the new answers
           window.localStorage.answers = JSON.stringify(Searcher.answers);

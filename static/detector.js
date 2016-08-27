@@ -8,11 +8,14 @@
 var JavaDetector = (function(hljs, $, module){
     "use strict";
 
-    var C_LIKE = ['java', 'c', 'cpp', 'cs'];
+    var C_LIKE 		= ['java', 'c', 'cpp', 'cs'];
+		var JAVA_ONLY	= ['java'];
+
     var UNKNOWN_LANGUAGE = "Unknown Language";
 
-    function isCLikeLanguage(lang) {
-        return C_LIKE.indexOf(lang) > -1;
+    function isCLikeLanguage(lang, exact) {
+			exact = exact || false;
+      return (exact ? (JAVA_ONLY.indexOf(lang)): (C_LIKE.indexOf(lang) > -1));
     }
 
 
