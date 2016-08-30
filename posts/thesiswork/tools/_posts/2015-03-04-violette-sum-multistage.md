@@ -2,6 +2,7 @@
 layout: default
 title: Violette with Multi Staging and Code Summarization
 hidden: true
+limited: true
 description: Evaluating Violette's Multi staging functionality with Code summarization support.
 ---
 

@@ -75,7 +75,7 @@ hr:after {
 }
 
 ul, ol {
-	padding: 0;
+/*	padding: 0;*/
 }
 
 a {
@@ -118,6 +118,7 @@ code {
 #breadcrumb {
 	list-style-type: none;
 	text-transform:capitalize;
+	padding: 0;
 }
 
 blockquote a {

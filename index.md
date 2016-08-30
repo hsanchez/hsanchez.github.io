@@ -14,6 +14,8 @@ Hi, I'm **Huascar** (pronounced wäs-kär), a Postdoctoral fellow at SRI Interna
 
 I received my PhD in Computer Science from [UC Santa Cruz](http://www.ucsc.edu/) in December 2015, and my MS in Software Engineering from [San Jose State University](http://www.sjsu.edu/) in 2006. My research background is in software engineering, with a particular focus on programmer productivity, human-computer interaction, and information retrieval.
 
+My [**<span>Erd&ouml;s</span>**](http://wwwp.oakland.edu/enp/) number is 3: Pascal Schweitzer, Brendan D. McKay, and Paul Erd&ouml;s.
+
 
 Cheers,  
 Huascar A. Sanchez  

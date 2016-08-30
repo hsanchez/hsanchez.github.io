@@ -2,7 +2,8 @@
 layout: default
 title: Read to Understand Task
 hidden: true
-description: Read to Understand.
+limited: true
+description: Read to Understand
 ---
 
 Please follow all of the instructions below:

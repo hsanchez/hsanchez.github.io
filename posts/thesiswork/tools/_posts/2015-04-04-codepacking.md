@@ -1,18 +1,22 @@
 ---
 layout: default
 title: Codepacking
-description: AST Bindings Recovery API
+description: Packing Code examples
+hidden: true
 ---
 
-## Codepacking, {{page.description}}
+## Codepacking
 
-Codepacking is a technique for automatically resolving missing enclosing body 
-declarations and missing dependencies. It's goal is to approximate the 
-declarative completeness of partial programs. 
+_Codepacking_ is a technique for automatically resolving incomplete code snippets. Its ultimate goal is not about achieving program correctness but approximating program completeness. _Codepacking_ produces an Abstract Syntax Tree (_AST_) of a partial program that _Vesperin_ can manipulate. 
+
+_Codepacking_ consists of four steps:
+
+1. Surrounds code example with the appropriate body declarations (class, method, or both), if needed. 
+2. It cross references missing type information of existing ill-typed expressions with a repository of pre-acquired API information and then suggests their well-typed corrections. 
+3. It uses Vesperin's code transformation utilities to add the suggested corrections to the example’s code. 
+4. It produces the desired AST.
+
 
 Codepacking's code is still private. However, once it becomes public, it 
-will be available <a href="http://bit.ly/1K9CeoY" target="_blank">here</a>.
-
-If you want to get access to this code, please send me an [email]
-(mailto:hsanchez@cs.ucsc.edu).
+will be available <a href="https://github.com/vesperin/" target="_blank">here</a>.
 
