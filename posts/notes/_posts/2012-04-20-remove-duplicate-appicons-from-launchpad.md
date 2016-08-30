@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Duplicate App Icons in Launchpad
+title: Removing duplicate App icons in Launchpad (OS X 10.6+)
 ---
 
 If there are multiple icon instances of one application in your Mac's Launchpad,
