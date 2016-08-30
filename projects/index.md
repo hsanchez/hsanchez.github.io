@@ -10,7 +10,7 @@ description: You can check out some of my previous and current projects
 - [**Benchtop**](https://github.com/jayhorn/benchtop): Bytecode transformations validator.
 - [**Cue.text**](https://github.com/vesperin/cue.text): Source code mining and concept analysis utilities.
 - [**Typical**](https://github.com/vesperin/cue): Ranking code significance based on typicality.
-- [**Vesperin**](https://github.com/vesperin): A source code curation system for Java code examples.
+- [**Vesperin**](../posts/thesiswork/tools): A source code curation system for Java code examples.
 - [**Stircup**](https://github.com/vesperin/stircup): A Java code examples search application.
 
 
