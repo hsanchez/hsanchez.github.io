@@ -11,7 +11,7 @@ description: You can check out some of my previous and current projects
 - [**Introspector**](https://github.com/vesperin/introspector): Source code mining and concept analysis utilities.
 <!-- - [**Typical**](https://github.com/vesperin/cue): Ranking code significance based on typicality. -->
 - [**Vesperin**](../posts/thesiswork/tools): A source code curation system for Java code examples.
-- [**Stircup**](https://github.com/vesperin/stircup): A Java code examples search application.
+- [**Stircup**](https://github.com/vesperin/stircup): A search application for Java code examples.
 
 
 ## Past Projects
