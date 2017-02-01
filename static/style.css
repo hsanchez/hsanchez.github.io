@@ -552,3 +552,61 @@ body .input {
     clear: both;
 }
 
+.heading{
+	padding-bottom: 3pt;
+	clear: both;
+	page-break-after:avoid;
+	padding-top: 10pt;
+	font-size: 12pt;
+	font-weight: 600;
+}
+
+.subheading{
+/*	padding-left: 60pt;*/
+	clear: both;
+	page-break-after:avoid;
+	/*padding-top: 20pt;*/
+	font-size: 10pt;
+	font-weight: 600;
+	color: #999;
+}
+
+.section{
+	clear: both;
+	/* page-break-inside:avoid;	*/
+}
+
+.entry {
+	position: relative;
+	clear: both;
+	font-size: 1.4rem;
+	page-break-inside:avoid;
+}
+
+.year {
+	float: left;
+	width: 55pt;
+	font-weight: 300;
+	font-size: 8pt;
+	color: #999;
+	margin-top: 1pt;
+}
+
+.item {
+	padding-left: 60pt;
+	padding-bottom: 6pt;	
+	margin-top: 3pt;
+		font-size: 1.38rem;
+}
+
+.deemph {
+	font-weight: 300;
+}
+
+.emph {
+	font-style: italic;
+}
+
+.bold {
+	font-weight: 600;
+}
