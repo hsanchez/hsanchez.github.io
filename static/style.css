@@ -553,6 +553,7 @@ body .input {
 }
 
 .heading{
+	padding-left: 60pt;	
 	padding-bottom: 3pt;
 	clear: both;
 	page-break-after:avoid;
@@ -562,10 +563,10 @@ body .input {
 }
 
 .subheading{
-/*	padding-left: 60pt;*/
+	padding-left: 60pt;
 	clear: both;
 	page-break-after:avoid;
-	/*padding-top: 20pt;*/
+	padding-top: 5pt;
 	font-size: 10pt;
 	font-weight: 600;
 	color: #999;
@@ -590,6 +591,7 @@ body .input {
 	font-size: 8pt;
 	color: #999;
 	margin-top: 1pt;
+	text-align: right;
 }
 
 .item {
@@ -609,4 +611,8 @@ body .input {
 
 .bold {
 	font-weight: 600;
+}
+
+.shifted {
+	margin-left: -60pt;
 }
