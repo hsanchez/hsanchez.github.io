@@ -3,7 +3,7 @@ layout: default
 title: About
 ---
 
-I am a Computer Scientist in the Computer Science Lab (CSL) at [SRI International](https://www.sri.com/). My research, at SRI, combines large scale program repository mining with foundational ideas underlying data curation in order to create hybrid human-computer systems. 
+I am a Computer Scientist in the Computer Science Lab (CSL) at [SRI International](https://www.sri.com/). My research, at SRI, combines large scale program repository mining with foundational ideas underlying data curation and program analysis in order to create hybrid human-computer systems. 
 
 At [CSL](http://www.csl.sri.com/), I work on leveraging the hundreds of billions of lines of open source code available today to develop radically different approaches for automatically constructing, and explaining complex programs. My research is deeply interdisciplinary, consisting primarily of source code curation, human computer interaction, and "big code" analytics.
 
