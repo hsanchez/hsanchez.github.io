@@ -3,13 +3,16 @@ layout: default
 title: About
 ---
 
-I am a Computer Scientist in the Computer Science Lab (CSL) at [SRI International](https://www.sri.com/). My research, at SRI, combines large scale program repository mining with foundational ideas underlying data curation and program analysis in order to create hybrid human-computer systems.
+I am a Computer Scientist in the Computer Science Lab (CSL) at [SRI
+International](https://www.sri.com/). My research, at SRI, combines large scale
+program repository mining with foundational ideas underlying data curation and
+program analysis in order to create hybrid human-computer systems.
 
 At [CSL](http://www.csl.sri.com/), I work on leveraging big data analytics
 applied to code to develop radically different approaches for automatically
-constructing, verifying, and explaining complex programs. My research is deeply
-interdisciplinary, consisting primarily of source code curation, human computer
-interaction, and "big code" analytics.
+constructing, verifying, and explaining complex programs. My research blends
+numerous CS subfields from software engineering, to source code curation, to
+"big code" analytics.
 
 At [UC Santa Cruz](http://www.ucsc.edu/), the focus of my research was on making
 code foraging less informal and more thoughtful. This research introduced the
