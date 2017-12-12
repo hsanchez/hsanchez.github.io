@@ -20,8 +20,8 @@ Whitehead](http://users.soe.ucsc.edu/~ejw/).
 I received my PhD in Computer Science from [UC Santa Cruz](http://www.ucsc.edu/)
 in December 2015, and my MS in Software Engineering from [San Jose State
 University](http://www.sjsu.edu/) in 2006. My primary research area is applied
-software engineering research, with a particular focus on programmer
-productivity, information retrieval, and human-computer interaction.
+software engineering, with a particular focus on programmer productivity,
+information retrieval, and human-computer interaction.
 
 My [**<span>Erd&ouml;s</span>**](http://wwwp.oakland.edu/enp/) number is **3**:
 P. Schweitzer, B.D. McKay, and P. Erd&ouml;s.
