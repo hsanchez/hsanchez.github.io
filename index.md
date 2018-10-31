@@ -9,7 +9,6 @@ description: Huascar Sanchez Homepage
 
 <blockquote id="followquote"><span class="quote">The best way to predict the future is to invent it.</span><small class='author'><a href='http://en.wikiquote.org/wiki/Alan_Kay'>Alan Kay</a></small></blockquote>
 
-
 Hi, I'm **Huascar** (pronounced wäs-kär), a Computer Scientist in the [Computer
 Science Laboratory](http://www.csl.sri.com/) at [SRI
 International](https://www.sri.com/). Before joining SRI, I was a member of the
@@ -22,19 +21,22 @@ in December 2015, and my MS in Software Engineering from [San Jose State
 University](http://www.sjsu.edu/) in 2006. Much of my current research is on the
 interface between open source software development and foundational ideas
 underlying program analysis, and how the computational solutions that emerge in
-this space can be used to construct reliable, robust, and efficient software
-systems. 
+this space can be used to understand complex software systems, as well as to
+construct secure, robust, and efficient software systems.
+
 <!-- My primary research area is applied
 software engineering, with a particular focus on programmer productivity,
 information retrieval, and human-computer interaction. -->
 
-My [**<span>Erd&ouml;s</span>**](http://wwwp.oakland.edu/enp/) number is **3**:
-P. Schweitzer, B.D. McKay, and P. Erd&ouml;s.
-
+My [**<span>Erdös</span>**](http://wwwp.oakland.edu/enp/) number is **3**:
+P. Schweitzer, B.D. McKay, and P. Erdös.
 
 Cheers,  
 Huascar A. Sanchez  
 [e-mail](mailto:huascar.sanchez@sri.com)
+
 <!-- [e-mail](mailto:hsanchez@cs.ucsc.edu)&nbsp;·&nbsp;[resume](./static/huascarsanchez.resume.pdf)&nbsp;·&nbsp;[cv](./static/huascarsanchez.cv.pdf)   -->
+
 <!-- [e-mail](mailto:hsanchez@cs.ucsc.edu)&nbsp;·&nbsp;[cv](./static/huascarsanchez.cv.pdf)&nbsp;·&nbsp;[research statement](./static/huascarsanchez-research.pdf)&nbsp;·&nbsp;[teaching statement](./static/huascarsanchez-teaching.pdf)-->
+
 <!-- ·&nbsp;[resume](./static/hidden) -->
