@@ -20,7 +20,7 @@ I received my PhD in Computer Science from [UC Santa Cruz](http://www.ucsc.edu/)
 in December 2015, and my MS in Software Engineering from [San Jose State
 University](http://www.sjsu.edu/) in 2006. Much of my current research is on the
 interface between open source software development and foundational ideas
-underlying program analysis, and how the computational solutions that emerge in
+underlying source code analysis, and how the computational solutions that emerge in
 this space can be used to understand complex software systems, as well as to
 construct secure, robust, and efficient software systems.
 
