@@ -9,12 +9,10 @@ description: Huascar Sanchez Homepage
 
 <blockquote id="followquote"><span class="quote">The best way to predict the future is to invent it.</span><small class='author'><a href='http://en.wikiquote.org/wiki/Alan_Kay'>Alan Kay</a></small></blockquote>
 
-Hi, I'm **Huascar** (pronounced wäs-kär), a Computer Scientist in the [Computer
-Science Laboratory](http://www.csl.sri.com/) at [SRI
-International](https://www.sri.com/). Before joining SRI, I was a member of the
-[Software Introspection Lab](https://games.soe.ucsc.edu/sil) at [UC Santa
-Cruz](http://www.ucsc.edu/), working with [Jim
-Whitehead](http://users.soe.ucsc.edu/~ejw/).
+Hi, I'm **Huascar** (pronounced wäs-kär), a Computer Scientist at SRI's [Computer
+Science Laboratory](http://www.csl.sri.com/). Before joining [SRI](https://www.sri.com), 
+I was a member of the [Software Introspection Lab](https://games.soe.ucsc.edu/sil) at [UC Santa
+Cruz](http://www.ucsc.edu/), working with [Jim Whitehead](http://users.soe.ucsc.edu/~ejw/).
 
 I received my PhD in Computer Science from [UC Santa Cruz](http://www.ucsc.edu/)
 in December 2015, and my MS in Software Engineering from [San Jose State
