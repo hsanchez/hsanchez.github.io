@@ -31,7 +31,7 @@ P. Schweitzer, B.D. McKay, and P. Erdös.
 
 ## Current projects
 
-- DARPA SocialCyber (Role: PI, Team: SRI and University of Florida).
+- DARPA SocialCyber (Role: Principal Investigator, Team: SRI and University of Florida).
 - [DARPA ARCOS](https://www.darpa.mil/program/automated-rapid-certification-of-software) (Team: SRI, Honeywell, University of Washington)
 
 *Previous Projects:* [DARPA SoSITE](https://www.darpa.mil/program/system-of-systems-integration-technology-and-experimentation), [DARPA MUSE](https://www.darpa.mil/program/mining-and-understanding-software-enclaves), [DARPA CSFV](https://www.darpa.mil/program/crowd-sourced-formal-verification).
