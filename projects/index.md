@@ -6,16 +6,18 @@ description: You can check out some of my previous and current projects
 
 ## Active Projects
 
-- [**Jayhorn**](https://github.com/jayhorn/jayhorn): Static checker for Java.
-- [**Benchtop**](https://github.com/jayhorn/benchtop): Bytecode transformations validator.
-- [**Introspector**](https://github.com/vesperin/introspector): Source code mining and concept analysis utilities.
-<!-- - [**Typical**](https://github.com/vesperin/cue): Ranking code significance based on typicality. -->
-- [**Vesperin**](../posts/thesiswork/tools): A source code curation system for Java code examples.
-- [**Stircup**](https://github.com/vesperin/stircup): A search application for Java code examples.
+- [**Simprog**](https://github.com/SRI-CSL/simprog): Inter-project program similarity tool for Java.
+- [**HiRep**](https://github.com/hirepsrc/hirep): Representativeness analysis for source code.
+- [**AugMaker**](https://github.com/hirepsrc/augmaker): API Usage Graphs (AUGs) generator.
+- [**do-like-javac**](https://github.com/hirepsrc/do-like-javac): A tool for monitoring the build process of a Java projects.
+
 
 
 ## Past Projects
 
+- [**Vesperin**](../posts/thesiswork/tools): A source code curation system for Java code examples.
+- [**Introspector**](https://github.com/vesperin/introspector): Source code mining and concept analysis utilities.
+- [**Jayhorn**](https://github.com/jayhorn/jayhorn): Static checker for Java.
 - [**Chekofv**](https://github.com/SoftwareIntrospectionLab/chekofv): Crowd-sourced program verification.
 - [**Botprint**](https://github.com/AugmentedDesignLab/botprint2): A mixed initiative robot design tool.
 - [**BullyingGraph**](#): A bullying detection tool for Twitter.
