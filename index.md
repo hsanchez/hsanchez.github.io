@@ -40,7 +40,8 @@ P. Schweitzer, B.D. McKay, and P. Erdös.
 
 Cheers,  
 Huascar A. Sanchez  
-[e-mail](mailto:huascar.sanchez@sri.com)
+huascar dot sanchez at sri dot com
+<!--[e-mail](mailto:huascar.sanchez@sri.com)-->
 
 <!-- [e-mail](mailto:hsanchez@cs.ucsc.edu)&nbsp;·&nbsp;[resume](./static/huascarsanchez.resume.pdf)&nbsp;·&nbsp;[cv](./static/huascarsanchez.cv.pdf)   -->
 
