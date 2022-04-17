@@ -17,7 +17,7 @@ Cruz](http://www.ucsc.edu/), working with [Jim Whitehead](http://users.soe.ucsc.
 I received my PhD in Computer Science from [UC Santa Cruz](http://www.ucsc.edu/)
 in December 2015, and my MS in Software Engineering from [San Jose State
 University](http://www.sjsu.edu/) in 2006. My interests lie at the interface between software
-analytics, open source software security, and machine learning for source code. I study how the solutions
+analytics, open source software security, and machine learning on source code. I study how the solutions
 that emerge in this space can be used to both understand complex software
 systems and produce more secure and reliable software.
 
