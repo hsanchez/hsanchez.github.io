@@ -42,6 +42,7 @@ Cheers,
 Huascar A. Sanchez  
 huascar dot sanchez at sri dot com
 <!--[e-mail](mailto:huascar.sanchez@sri.com)-->
+<!-- [e-mail](mailto:huascar.sanchez@sri.com)&nbsp;·&nbsp;[cv](https://www.dropbox.com/s/fcmwte9lf9hw55n/huascar-cv.pdf?dl=0) -->
 
 <!-- [e-mail](mailto:hsanchez@cs.ucsc.edu)&nbsp;·&nbsp;[resume](./static/huascarsanchez.resume.pdf)&nbsp;·&nbsp;[cv](./static/huascarsanchez.cv.pdf)   -->
 
