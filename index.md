@@ -9,8 +9,8 @@ description: Huascar Sanchez Homepage
 
 <blockquote id="followquote"><span class="quote">The best way to predict the future is to invent it.</span><small class='author'><a href='http://en.wikiquote.org/wiki/Alan_Kay'>Alan Kay</a></small></blockquote>
 
-Hi, I'm **Huascar** (pronounced wäs-kär), a Computer Scientist at SRI's [Computer
-Science Laboratory](http://www.csl.sri.com/). Before joining [SRI](https://www.sri.com), 
+Hi, I'm **Huascar** (pronounced wäs-kär), a Senior Computer Scientist at SRI's [Computer
+Science Laboratory](http://www.csl.sri.com/). Before joining [SRI](https://www.sri.com),
 I was a member of the [Software Introspection Lab](https://games.soe.ucsc.edu/sil) at [UC Santa
 Cruz](http://www.ucsc.edu/), working with [Jim Whitehead](http://users.soe.ucsc.edu/~ejw/).
 
@@ -28,19 +28,18 @@ information retrieval, and human-computer interaction. -->
 My [**<span>Erdös</span>**](http://wwwp.oakland.edu/enp/) number is **3**:
 P. Schweitzer, B.D. McKay, and P. Erdös.
 
-
 ## Current projects
 
-- [DARPA SocialCyber](https://www.darpa.mil/program/hybrid-ai-to-protect-integrity-of-open-source-code) (Role: Principal Investigator, Team: SRI).
+- [IARPA ReSCIND](https://www.iarpa.gov/research-programs/rescind) (Team: SRI, IHMC, RAD, UFL, VRMC, Margin, GMU, TwoSixTech, Columbia U).
+- [ARPA-H DIGIHEALS](https://arpa-h.gov/research-and-funding/programs/digiheals) (Team: SRI).
 - [DARPA ARCOS](https://www.darpa.mil/program/automated-rapid-certification-of-software) (Team: SRI, Honeywell, University of Washington)
 
-*Previous Projects:* [DARPA SoSITE](https://www.darpa.mil/program/system-of-systems-integration-technology-and-experimentation), [DARPA MUSE](https://www.darpa.mil/program/mining-and-understanding-software-enclaves), [DARPA CSFV](https://www.darpa.mil/program/crowd-sourced-formal-verification).
+_Previous Projects:_ [DARPA SocialCyber](https://www.darpa.mil/program/hybrid-ai-to-protect-integrity-of-open-source-code), [DARPA SoSITE](https://www.darpa.mil/program/system-of-systems-integration-technology-and-experimentation), [DARPA MUSE](https://www.darpa.mil/program/mining-and-understanding-software-enclaves), [DARPA CSFV](https://www.darpa.mil/program/crowd-sourced-formal-verification).
 
-
-
-Cheers,  
-**Huascar** A. Sanchez  
+Cheers,
+**Huascar** A. Sanchez
 huascar dot sanchez at sri dot com
+
 <!--[e-mail](mailto:huascar.sanchez@sri.com)-->
 <!-- [e-mail](mailto:huascar.sanchez@sri.com)&nbsp;·&nbsp;[cv](https://www.dropbox.com/s/fcmwte9lf9hw55n/huascar-cv.pdf?dl=0) -->
 
