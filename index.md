@@ -43,7 +43,7 @@ P. Schweitzer, B.D. McKay, and P. Erdös.
 _Previous Projects:_ [DARPA SocialCyber](https://www.darpa.mil/program/hybrid-ai-to-protect-integrity-of-open-source-code), [DARPA SoSITE](https://www.darpa.mil/program/system-of-systems-integration-technology-and-experimentation), [DARPA MUSE](https://www.darpa.mil/program/mining-and-understanding-software-enclaves), [DARPA CSFV](https://www.darpa.mil/program/crowd-sourced-formal-verification).
 
 Cheers,  
-**Huascar** A. Sanchez
+**Huascar** A. Sanchez  
 huascar dot sanchez at sri dot com
 
 <!--[e-mail](mailto:huascar.sanchez@sri.com)-->
