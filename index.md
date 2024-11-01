@@ -23,7 +23,7 @@ of AI across the SDLC. I study how the solutions that emerge in this space can b
 used to both understand and evaluate complex software systems and to produce more
 reliable and secure software.
 
-I was the PI on DARPA Social Cyber and has successfully contributed to several
+I was the PI on DARPA Social Cyber and have successfully contributed to several
 DARPA-funded efforts, including DARPA ARCOS and DARPA MUSE. As a DARPA Social Cyber PI,
 I developed data-driven software introspection technology to protect open-source project
 software supply chains from social and technical attacks.
