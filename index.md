@@ -38,7 +38,7 @@ P. Schweitzer, B.D. McKay, and P. Erdös.
 ## Current projects
 
 - [IARPA ReSCIND](https://www.iarpa.gov/research-programs/rescind) (Team: SRI, IHMC, RAD, UFL, VRMC, Margin, GMU, TwoSixTech, Columbia U).
-- [ARPA-H DIGIHEALS](https://arpa-h.gov/research-and-funding/programs/digiheals) (Team: SRI).
+- [ARPA-H DIGIHEALS](https://arpa-h.gov/research-and-funding/programs/digiheals) (Team: SRI, Confidencial Inc.).
 - [DARPA ARCOS](https://www.darpa.mil/program/automated-rapid-certification-of-software) (Team: SRI, Honeywell, University of Washington)
 
 _Previous Projects:_ [DARPA SocialCyber](https://www.darpa.mil/program/hybrid-ai-to-protect-integrity-of-open-source-code), [DARPA SoSITE](https://www.darpa.mil/program/system-of-systems-integration-technology-and-experimentation), [DARPA MUSE](https://www.darpa.mil/program/mining-and-understanding-software-enclaves), [DARPA CSFV](https://www.darpa.mil/program/crowd-sourced-formal-verification).
