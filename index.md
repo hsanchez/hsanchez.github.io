@@ -17,7 +17,7 @@ Cruz](http://www.ucsc.edu/), working with [Jim Whitehead](http://users.soe.ucsc.
 I received my PhD in Computer Science from [UC Santa Cruz](http://www.ucsc.edu/)
 in December 2015, and my MS in Software Engineering from [San Jose State
 University](http://www.sjsu.edu/) in 2006. My research interests are broad, spanning
-AI for software engineering, program analysis/synthesis/verification, source code analysis, and social cyber
+AI for software engineering, code analysis, program synthesis/verification, and social-cyber
 security; program analysis for AI; and AI engineering for the practical and safe use
 of AI across the SDLC. I study how the solutions that emerge in this space can be
 used to both understand and evaluate complex software systems and to produce more
