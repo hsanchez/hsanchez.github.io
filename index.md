@@ -17,7 +17,7 @@ Cruz](http://www.ucsc.edu/), working with [Jim Whitehead](http://users.soe.ucsc.
 I received my PhD in Computer Science from [UC Santa Cruz](http://www.ucsc.edu/)
 in December 2015, and my MS in Software Engineering from [San Jose State
 University](http://www.sjsu.edu/) in 2006. My research interests are broad, spanning
-AI for software engineering, code analysis, program synthesis/verification, and social-cyber
+AI for software engineering, code generation, analysis, verification, and social-cyber
 security; program analysis for AI; and AI engineering for the practical and safe use
 of AI across the SDLC. I study how the solutions that emerge in this space can be
 used to both understand and evaluate complex software systems and to produce more
@@ -37,11 +37,12 @@ P. Schweitzer, B.D. McKay, and P. Erdös.
 
 ## Current projects
 
+- [ARPA-H PARADIGM](https://arpa-h.gov/research-and-funding/programs/paradigm) (Team: SRI).
 - [IARPA ReSCIND](https://www.iarpa.gov/research-programs/rescind) (Team: SRI, IHMC, RAD, UFL, VRMC, Margin, GMU, TwoSixTech, Columbia U).
 - [ARPA-H DIGIHEALS](https://arpa-h.gov/research-and-funding/programs/digiheals) (Team: SRI, Confidencial Inc.).
-- [DARPA ARCOS](https://www.darpa.mil/program/automated-rapid-certification-of-software) (Team: SRI, Honeywell, University of Washington)
+<!-- - [DARPA ARCOS](https://www.darpa.mil/program/automated-rapid-certification-of-software) (Team: SRI, Honeywell, University of Washington) -->
 
-_Previous Projects:_ [DARPA SocialCyber](https://www.darpa.mil/program/hybrid-ai-to-protect-integrity-of-open-source-code), [DARPA SoSITE](https://www.darpa.mil/program/system-of-systems-integration-technology-and-experimentation), [DARPA MUSE](https://www.darpa.mil/program/mining-and-understanding-software-enclaves), [DARPA CSFV](https://www.darpa.mil/program/crowd-sourced-formal-verification).
+_Previous Projects:_ [DARPA ARCOS](https://www.darpa.mil/program/automated-rapid-certification-of-software), [DARPA SocialCyber](https://www.darpa.mil/program/hybrid-ai-to-protect-integrity-of-open-source-code), [DARPA SoSITE](https://www.darpa.mil/program/system-of-systems-integration-technology-and-experimentation), [DARPA MUSE](https://www.darpa.mil/program/mining-and-understanding-software-enclaves), [DARPA CSFV](https://www.darpa.mil/program/crowd-sourced-formal-verification) (order of projects is arbitrary).
 
 Cheers,  
 **Huascar** A. Sanchez  
