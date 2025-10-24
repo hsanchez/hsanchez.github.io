@@ -17,7 +17,7 @@ Cruz](http://www.ucsc.edu/), working with [Jim Whitehead](http://users.soe.ucsc.
 I received my PhD in Computer Science from [UC Santa Cruz](http://www.ucsc.edu/)
 in December 2015, and my MS in Software Engineering from [San Jose State
 University](http://www.sjsu.edu/) in 2006. My research interests are broad, spanning
-**multi-AI collaboration** and **LLM matchmaking** for complex, **compound AI tasks**;
+**multi-AI collaboration** and **automated LLM matchmaking** for complex, **compound AI tasks**;
 the use of **AI for coding automation**, **software analysis**, and **social-cyber security**;
 and the application of automated **software engineering** principles to the development
 and deployment of **AI systems**. I study how emerging solutions in this space can
