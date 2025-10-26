@@ -1,0 +1,96 @@
+<!-- _includes/gate.html -->
+<script>
+(function () {
+  // --- Config ---
+  var QUESTION = "Riddle: What has keys but can't open locks?";
+  var ACCEPTED = ["piano"];
+  var FORCE_THREE_IF_FIRST_FAIL = true;
+
+  // Unique per page using the URL path
+  var STORAGE_KEY = "gatePassed:" + location.pathname;
+
+  if (sessionStorage.getItem(STORAGE_KEY) === "1") return;
+
+  var restoreOverflow = document.documentElement.style.overflow;
+  document.documentElement.style.overflow = "hidden";
+
+  var overlay = document.createElement("div");
+  var html =
+    '<style>' +
+    '.gate-overlay{position:fixed;inset:0;display:grid;place-items:center;' +
+    '  background:rgba(0,0,0,.88);z-index:9999;font-family:sans-serif;transition:opacity .2s ease}' +
+    '.gate-overlay.fade{opacity:0;pointer-events:none}' +
+    '.gate-card{background:#111;color:#eee;padding:24px;border-radius:14px;' +
+    '  width:min(90vw,420px);text-align:center;box-shadow:0 10px 25px rgba(0,0,0,.4)}' +
+    '.gate-input{width:90%;padding:10px;border-radius:8px;border:1px solid #555;' +
+    '  background:#222;color:#fff;margin-top:12px}' +
+    '.gate-btn{margin-top:14px;padding:10px 16px;border:0;border-radius:8px;' +
+    '  background:#2563eb;color:#fff;font-weight:bold;cursor:pointer}' +
+    '.msg{margin-top:10px;font-size:.95rem;min-height:1.2em}' +
+    '</style>' +
+    '<div class="gate-overlay" role="dialog" aria-modal="true" aria-labelledby="gate-title">' +
+    '  <div class="gate-card">' +
+    '    <h2 id="gate-title">Answer this to enter</h2>' +
+    '    <p>' + QUESTION.replace(/</g, "&lt;") + '</p>' +
+    '    <input class="gate-input" type="text" placeholder="Your answer..." aria-label="Your answer" />' +
+    '    <button class="gate-btn" type="button">Submit</button>' +
+    '    <div class="msg" aria-live="polite"></div>' +
+    '  </div>' +
+    '</div>';
+  overlay.innerHTML = html;
+  document.body.appendChild(overlay);
+
+  var gate = overlay.querySelector(".gate-overlay");
+  var input = overlay.querySelector(".gate-input");
+  var btn   = overlay.querySelector(".gate-btn");
+  var msg   = overlay.querySelector(".msg");
+
+  setTimeout(function () { if (input) input.focus(); }, 10);
+
+  var tries = 0, firstWrong = false;
+  function normalize(s) { return (s || "").trim().toLowerCase(); }
+
+  function done() {
+    sessionStorage.setItem(STORAGE_KEY, "1");
+    gate.classList.add("fade");
+    setTimeout(function () {
+      overlay.remove();
+      document.documentElement.style.overflow = restoreOverflow || "";
+    }, 220);
+  }
+
+  function handleSubmit() {
+    var ok = ACCEPTED.indexOf(normalize(input.value)) !== -1;
+    tries++;
+
+    if (tries === 1 && ok) return done();
+    if (tries === 1 && !ok) firstWrong = true;
+
+    if (firstWrong && FORCE_THREE_IF_FIRST_FAIL && tries < 3) {
+      var left = 3 - tries;
+      msg.textContent = ok
+        ? "Correct, but you must submit " + left + " more " + (left === 1 ? "time" : "times") + "!"
+        : "Nope. " + left + " " + (left === 1 ? "try" : "tries") + " left.";
+      input.select();
+      return;
+    }
+
+    if (firstWrong && FORCE_THREE_IF_FIRST_FAIL && tries === 3) return done();
+
+    if (ok) return done();
+    msg.textContent = "Try again.";
+    input.select();
+  }
+
+  btn.addEventListener("click", handleSubmit);
+  input.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") { e.preventDefault(); handleSubmit(); }
+  });
+})();
+</script>
+
+<noscript>
+  <div style="padding:1rem;background:#fee2e2;border:1px solid #fecaca;border-radius:8px;color:#7f1d1d;margin:.75rem 0;">
+    JavaScript is required to view this page.
+  </div>
+</noscript>
