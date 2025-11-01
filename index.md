@@ -18,7 +18,7 @@ I received my PhD in Computer Science from [UC Santa Cruz](http://www.ucsc.edu/)
 in December 2015, and my MS in Software Engineering from [San Jose State
 University](http://www.sjsu.edu/) in 2006. My research interests are broad. They lie at the intersection of AI and software engineering, spanning
 from **multi-AI collaboration optimization** and **[LLM chemistry estimation](https://arxiv.org/abs/2510.03930)**
-(LLM matchmaking) for complex, **compound AI tasks**; the use of **AI for coding automation**,
+(LLM matchmaking) for complex, **compound software and AI tasks**; the use of **AI for coding automation**,
 **source code analysis**, and **social-cyber security**; to the application of automated
 **software engineering** principles to the development and deployment of **AI systems**. I study how
 emerging solutions in this space can *improve developer productivity*, *deepen our understanding of
