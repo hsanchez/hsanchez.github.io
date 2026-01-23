@@ -9,14 +9,17 @@ description: Huascar Sanchez Homepage
 
 <blockquote id="followquote"><span class="quote">The best way to predict the future is to invent it.</span><small class='author'><a href='http://en.wikiquote.org/wiki/Alan_Kay'>Alan Kay</a></small></blockquote>
 
-Hi, I'm **Huascar** (pronounced wäs-kär), a Senior Computer Scientist at SRI's [Computer
+<!--Hi, I'm **Huascar** (pronounced wäs-kär), a Senior Computer Scientist at SRI's [Computer
 Science Laboratory](http://www.csl.sri.com/). Before joining [SRI](https://www.sri.com),
 I was a member of the [Software Introspection Lab](https://games.soe.ucsc.edu/sil) at [UC Santa
+Cruz](http://www.ucsc.edu/), working with [Jim Whitehead](http://users.soe.ucsc.edu/~ejw/).-->
+
+Hi, I'm **Huascar** (pronounced wäs-kär), a Senior Computer Scientist. Previously, I was a member of the [Software Introspection Lab](https://games.soe.ucsc.edu/sil) at [UC Santa
 Cruz](http://www.ucsc.edu/), working with [Jim Whitehead](http://users.soe.ucsc.edu/~ejw/).
 
 I received my PhD in Computer Science from [UC Santa Cruz](http://www.ucsc.edu/)
 in December 2015, and my MS in Software Engineering from [San Jose State
-University](http://www.sjsu.edu/) in 2006. My research interests are broad. They lie at the intersection of AI and software engineering, spanning
+University](http://www.sjsu.edu/) in 2006. My research interests lie at the intersection of AI and software engineering, spanning
 from **multi-AI collaboration optimization** and **[LLM chemistry estimation](https://arxiv.org/abs/2510.03930)**
 (LLM matchmaking) for complex, **compound software and AI tasks**; the use of **AI for coding automation**,
 **source code analysis**, and **social-cyber security**; to the application of automated
