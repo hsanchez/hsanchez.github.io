@@ -50,7 +50,7 @@ P. Schweitzer, B.D. McKay, and P. Erdös.
 
 Cheers,  
 **Huascar** A. Sanchez  
-huascar dot sanchez at sri dot com
+huascar dot sanchez at gmail dot com
 
 <!--[e-mail](mailto:huascar.sanchez@sri.com)-->
 <!-- [e-mail](mailto:huascar.sanchez@sri.com)&nbsp;·&nbsp;[cv](https://www.dropbox.com/s/fcmwte9lf9hw55n/huascar-cv.pdf?dl=0) -->
