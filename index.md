@@ -14,18 +14,25 @@ Science Laboratory](http://www.csl.sri.com/). Before joining [SRI](https://www.s
 I was a member of the [Software Introspection Lab](https://games.soe.ucsc.edu/sil) at [UC Santa
 Cruz](http://www.ucsc.edu/), working with [Jim Whitehead](http://users.soe.ucsc.edu/~ejw/).-->
 
-Hi, I'm **Huascar** (pronounced wäs-kär), a Senior Computer Scientist. Previously, I was a member of the [Software Introspection Lab](https://games.soe.ucsc.edu/sil) at [UC Santa
-Cruz](http://www.ucsc.edu/), working with [Jim Whitehead](http://users.soe.ucsc.edu/~ejw/).
+Hi, I'm **Huascar** (pronounced wäs-kär), an AI researcher at Charles Schwab's
+AI.x group. Before that, I was a member of SRI's [Computer Science
+Laboratory](http://www.csl.sri.com/), and earlier still, a member of the
+[Software Introspection Lab](https://games.soe.ucsc.edu/sil) at [UC Santa
+Cruz](http://www.ucsc.edu/), where I worked with [Jim
+Whitehead](http://users.soe.ucsc.edu/~ejw/).
 
 I received my PhD in Computer Science from [UC Santa Cruz](http://www.ucsc.edu/)
 in December 2015, and my MS in Software Engineering from [San Jose State
-University](http://www.sjsu.edu/) in 2006. My research interests lie at the intersection of AI and software engineering, spanning
-from **multi-AI collaboration optimization** and **[LLM chemistry estimation](https://arxiv.org/abs/2510.03930)**
-(LLM matchmaking) for complex, **compound software and AI tasks**; the use of **AI for coding automation**,
-**source code analysis**, and **social-cyber security**; to the application of automated
-**software engineering** principles to the development and deployment of **AI systems**. I study how
-emerging solutions in this space can *improve developer productivity*, *deepen our understanding of
-complex software systems*, and *enable the creation of more reliable and secure software*.
+University](http://www.sjsu.edu/) in 2006. My research interests lie at the
+intersection of AI and software engineering: **multi-AI collaboration
+optimization** and **[LLM chemistry
+estimation](https://arxiv.org/abs/2510.03930)** for complex, **compound software
+and AI tasks**; **AI for coding automation**, **source code analysis**, and
+**social-cyber security**; and the application of **automated software
+engineering** principles to the development and deployment of **AI systems**. I
+study how these ideas can *improve developer productivity*, *deepen our
+understanding of complex software systems*, and *enable the creation of more
+reliable and secure software*.
 
 I was the PI on DARPA Social Cyber and have successfully contributed to several
 DARPA-funded efforts, including DARPA ARCOS and DARPA MUSE. As a DARPA Social Cyber PI,
@@ -39,14 +46,14 @@ information retrieval, and human-computer interaction. -->
 My [**<span>Erdös</span>**](http://wwwp.oakland.edu/enp/) number is **3**:
 P. Schweitzer, B.D. McKay, and P. Erdös.
 
-## Current projects
+<!--## Current projects-->
 
-- [ARPA-H PARADIGM](https://arpa-h.gov/research-and-funding/programs/paradigm) (Team: SRI).
-- [IARPA ReSCIND](https://www.iarpa.gov/research-programs/rescind) (Team: SRI, IHMC, RAD, UFL, VRMC, Margin, GMU, TwoSixTech, Columbia U).
-- [ARPA-H DIGIHEALS](https://arpa-h.gov/research-and-funding/programs/digiheals) (Team: SRI, Confidencial Inc.).
+<!--- [ARPA-H PARADIGM](https://arpa-h.gov/research-and-funding/programs/paradigm) (Team: SRI).-->
+<!--- [IARPA ReSCIND](https://www.iarpa.gov/research-programs/rescind) (Team: SRI, IHMC, RAD, UFL, VRMC, Margin, GMU, TwoSixTech, Columbia U).-->
+<!--- [ARPA-H DIGIHEALS](https://arpa-h.gov/research-and-funding/programs/digiheals) (Team: SRI, Confidencial Inc.).-->
 <!-- - [DARPA ARCOS](https://www.darpa.mil/program/automated-rapid-certification-of-software) (Team: SRI, Honeywell, University of Washington) -->
 
-*Previous Projects:* [DARPA ARCOS](https://www.darpa.mil/program/automated-rapid-certification-of-software), [DARPA SocialCyber](https://www.darpa.mil/program/hybrid-ai-to-protect-integrity-of-open-source-code), [DARPA SoSITE](https://www.darpa.mil/program/system-of-systems-integration-technology-and-experimentation), [DARPA MUSE](https://www.darpa.mil/program/mining-and-understanding-software-enclaves), [DARPA CSFV](https://www.darpa.mil/program/crowd-sourced-formal-verification) (order of projects is arbitrary).
+<!--*Previous Projects:* [DARPA ARCOS](https://www.darpa.mil/program/automated-rapid-certification-of-software), [DARPA SocialCyber](https://www.darpa.mil/program/hybrid-ai-to-protect-integrity-of-open-source-code), [DARPA SoSITE](https://www.darpa.mil/program/system-of-systems-integration-technology-and-experimentation), [DARPA MUSE](https://www.darpa.mil/program/mining-and-understanding-software-enclaves), [DARPA CSFV](https://www.darpa.mil/program/crowd-sourced-formal-verification) (order of projects is arbitrary).-->
 
 Cheers,  
 **Huascar** A. Sanchez  
