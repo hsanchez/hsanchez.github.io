@@ -24,13 +24,13 @@ Whitehead](http://users.soe.ucsc.edu/~ejw/).
 I received my PhD in Computer Science from [UC Santa Cruz](http://www.ucsc.edu/)
 in December 2015, and my MS in Software Engineering from [San Jose State
 University](http://www.sjsu.edu/) in 2006. My research interests lie at the
-intersection of AI and software engineering: **multi-AI collaboration
-optimization** and **[LLM chemistry
-estimation](https://arxiv.org/abs/2510.03930)** for complex, **compound software
-and AI tasks**; **AI for coding automation**, **source code analysis**, and
-**social-cyber security**; and the application of **automated software
-engineering** principles to the development and deployment of **AI systems**. I
-study how these ideas can *improve developer productivity*, *deepen our
+intersection of AI and software engineering: **multi-LLM collaboration
+optimization** and **[LLM chemistry estimation](https://arxiv.org/abs/2510.03930)**
+for compound software and AI tasks; **specification learning**, **code generation**,
+and **program repair** — with a focus on cost-optimized, workflow-aware planning;
+**static and dynamic program analysis** for understanding complex software systems;
+and **social-cyber security** for protecting the integrity of open-source ecosystems.
+I study how these ideas can *improve developer productivity*, *deepen our
 understanding of complex software systems*, and *enable the creation of more
 reliable and secure software*.
 
