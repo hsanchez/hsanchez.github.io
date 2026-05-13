@@ -15,29 +15,28 @@ I was a member of the [Software Introspection Lab](https://games.soe.ucsc.edu/si
 Cruz](http://www.ucsc.edu/), working with [Jim Whitehead](http://users.soe.ucsc.edu/~ejw/).-->
 
 Hi, I'm **Huascar** (pronounced wäs-kär), an AI researcher at Charles Schwab's
-AI.x group. Before that, I was a member of SRI's [Computer Science
-Laboratory](http://www.csl.sri.com/), and earlier still, a member of the
-[Software Introspection Lab](https://games.soe.ucsc.edu/sil) at [UC Santa
-Cruz](http://www.ucsc.edu/), where I worked with [Jim
+AI.x group. Before that, I was a Senior Computer Scientist at SRI's [Computer
+Science Laboratory](http://www.csl.sri.com/), and earlier still, a Graduate
+Researcher at the [Software Introspection Lab](https://games.soe.ucsc.edu/sil)
+at [UC Santa Cruz](http://www.ucsc.edu/), where I worked with [Jim
 Whitehead](http://users.soe.ucsc.edu/~ejw/).
 
 I received my PhD in Computer Science from [UC Santa Cruz](http://www.ucsc.edu/)
 in December 2015, and my MS in Software Engineering from [San Jose State
 University](http://www.sjsu.edu/) in 2006. My research interests lie at the
-intersection of AI and software engineering: **multi-LLM collaboration
-optimization** and **[LLM chemistry estimation](https://arxiv.org/abs/2510.03930)**
-for compound software and AI tasks; **specification learning**, **code generation**,
-and **program repair** — with a focus on cost-optimized, workflow-aware planning;
-**static and dynamic program analysis** for understanding complex software systems;
-and **social-cyber security** for protecting the integrity of open-source ecosystems.
-I study how these ideas can *improve developer productivity*, *deepen our
-understanding of complex software systems*, and *enable the creation of more
-reliable and secure software*.
+intersection of AI and software engineering, focusing on **multi-LLM
+collaboration optimization** and **[LLM chemistry
+estimation](https://arxiv.org/abs/2510.03930)** — techniques I apply to
+**specification learning**, **code generation**, and **program repair**. I
+combine these with **static and dynamic program analysis**, **AI assurance**,
+and **AI red teaming** to ensure they are reliable and robust in high-stakes
+domains — and **social-cyber security** to protect the integrity of open-source
+ecosystems.
 
-I was the PI on DARPA Social Cyber and have successfully contributed to several
-DARPA-funded efforts, including DARPA ARCOS and DARPA MUSE. As a DARPA Social Cyber PI,
-I developed data-driven software introspection technology to protect open-source project
-software supply chains from social and technical attacks.
+I was the PI on DARPA Social Cyber and have contributed to several DARPA-funded
+efforts, including DARPA ARCOS and DARPA MUSE. As a DARPA Social Cyber PI, I
+developed data-driven software introspection technology to protect open-source
+project software supply chains from social and technical attacks.
 
 <!-- My primary research area is applied
 software engineering, with a particular focus on programmer productivity,
