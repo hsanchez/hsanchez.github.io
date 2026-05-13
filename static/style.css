@@ -152,6 +152,7 @@ body.theme-dark blockquote a {
 .site-tools {
 	text-align: right;
 	margin-bottom: 0.5rem;
+	padding-right: 1px;
 }
 
 .theme-toggle {
