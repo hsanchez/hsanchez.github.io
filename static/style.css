@@ -3,6 +3,23 @@ html {
 	font-size: 62.5%;
 	-webkit-font-smoothing: antialiased;
 	font-smoothing: antialiased;
+	--page-background: rgb(255, 255, 255);
+	--page-foreground: rgb(20%,20%,20%);
+	--page-link: #000;
+	--page-muted-surface: rgb(90%,90%,90%);
+	--page-rule: rgb(20%,20%,20%);
+	--page-toggle-border: rgba(0, 0, 0, 0.28);
+	--page-toggle-hover: rgba(0, 0, 0, 0.06);
+}
+
+html[data-theme="dark"] {
+	--page-background: #111;
+	--page-foreground: #f4f4f4;
+	--page-link: #fff;
+	--page-muted-surface: #252525;
+	--page-rule: #f4f4f4;
+	--page-toggle-border: rgba(255, 255, 255, 0.36);
+	--page-toggle-hover: rgba(255, 255, 255, 0.12);
 }
 
 html, body {
@@ -13,8 +30,8 @@ body {
 	font-family: Courier, monospace;
 	font-size: 1.6rem;
 	padding: 0 2rem;
-	color: rgb(20%,20%,20%);
-	background: rgb(255, 255, 255);
+	color: var(--page-foreground);
+	background: var(--page-background);
 	/*
 	padding-bottom:7.5rem;
 	background-image:url('/static/keyboardfade.png');
@@ -71,7 +88,7 @@ hr:after {
 	display:block;
 	text-align:center;
 	content: "✦ ✦ ✦";
-	color: rgb(20%,20%,20%);
+	color: var(--page-rule);
 }
 
 ul, ol {
@@ -79,11 +96,11 @@ ul, ol {
 }
 
 a {
-	color: black;
+	color: var(--page-link);
 }
 
 a:hover {
-	color: black;
+	color: var(--page-link);
 	text-decoration: underline;
 }
 
@@ -106,13 +123,13 @@ pre {
 	font-family: Courier, monospace;
 	font-size: 1.6rem;
 	padding:1rem;
-	background: rgb(90%,90%,90%);
+	background: var(--page-muted-surface);
 }
 
 code {
 	font-family: Courier, monospace;
 	font-size: 1.6rem;
-	background: rgb(90%,90%,90%);
+	background: var(--page-muted-surface);
 }
 
 #breadcrumb {
@@ -123,7 +140,36 @@ code {
 
 blockquote a {
 	text-decoration:none;
-	color: rgb(20%,20%,20%);;
+	color: var(--page-foreground);
+}
+
+header {
+	position: relative;
+}
+
+.theme-toggle {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 3.2rem;
+	height: 3.2rem;
+	border: 1px solid var(--page-toggle-border);
+	background: transparent;
+	color: var(--page-foreground);
+	cursor: pointer;
+	font: inherit;
+	line-height: 1;
+	padding: 0;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus {
+	background: var(--page-toggle-hover);
+}
+
+.theme-toggle:focus {
+	outline: 1px dotted var(--page-foreground);
+	outline-offset: 0.3rem;
 }
 
 blockquote .author:before {
@@ -298,7 +344,7 @@ footer h4 {
     font-family: Courier, monospace;
     font-size: 1.6rem;
     padding: 0 2rem;
-    color: rgb(20%,20%,20%);
+    color: var(--page-foreground);
 }
 
 body .searcher #search {

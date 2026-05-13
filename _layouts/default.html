@@ -9,6 +9,15 @@
   <body>
     <div class="container">
 		<header>
+			<button
+				class="theme-toggle"
+				type="button"
+				aria-pressed="false"
+				aria-label="Switch to dark theme"
+				title="Switch to dark theme"
+			>
+				<span aria-hidden="true">&#9680;</span>
+			</button>
 			{% if page.home %}
 			
 		    <div style="text-align: left ">
@@ -58,5 +67,6 @@
     <script type="text/javascript" src="/static/detector.js"></script>
     <!--Code snippet that search top answers for java and sort tags in Stackoverflow-->
     <script type="text/javascript" src="/static/codesnippets.js"></script>
+    <script type="text/javascript" src="/static/theme-toggle.js"></script>
   </body>
 </html>
