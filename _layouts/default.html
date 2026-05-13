@@ -16,6 +16,7 @@
 					aria-pressed="false"
 					aria-label="Switch to dark theme"
 					title="Switch to dark theme"
+					onclick="document.body.className = /\btheme-dark\b/.test(document.body.className) ? document.body.className.replace(/\btheme-dark\b/g, '').replace(/\s{2,}/g, ' ').replace(/^\s+|\s+$/g, '') : (document.body.className ? document.body.className + ' theme-dark' : 'theme-dark'); this.setAttribute('aria-pressed', /\btheme-dark\b/.test(document.body.className) ? 'true' : 'false'); this.setAttribute('aria-label', /\btheme-dark\b/.test(document.body.className) ? 'Switch to light theme' : 'Switch to dark theme'); this.setAttribute('title', /\btheme-dark\b/.test(document.body.className) ? 'Switch to light theme' : 'Switch to dark theme'); this.innerHTML = /\btheme-dark\b/.test(document.body.className) ? 'light mode' : 'dark mode'; try { window.localStorage.setItem('site-theme', /\btheme-dark\b/.test(document.body.className) ? 'dark' : 'light'); } catch (error) {}"
 				>
 					dark mode
 				</button>
@@ -113,18 +114,6 @@
 
         setTheme(savedTheme === "dark" ? "dark" : "light");
 
-        toggle.addEventListener("click", function () {
-          var nextTheme =
-            /\btheme-dark\b/.test(body.className) ? "light" : "dark";
-
-          setTheme(nextTheme);
-
-          try {
-            window.localStorage.setItem(storageKey, nextTheme);
-          } catch (error) {
-            // Storage can be unavailable in private browsing or strict browser modes.
-          }
-        });
       })();
     </script>
   </body>
