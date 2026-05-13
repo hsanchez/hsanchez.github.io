@@ -3,23 +3,6 @@ html {
 	font-size: 62.5%;
 	-webkit-font-smoothing: antialiased;
 	font-smoothing: antialiased;
-	--page-background: rgb(255, 255, 255);
-	--page-foreground: rgb(20%,20%,20%);
-	--page-link: #000;
-	--page-muted-surface: rgb(90%,90%,90%);
-	--page-rule: rgb(20%,20%,20%);
-	--page-toggle-border: rgba(0, 0, 0, 0.28);
-	--page-toggle-hover: rgba(0, 0, 0, 0.06);
-}
-
-html[data-theme="dark"] {
-	--page-background: #111;
-	--page-foreground: #f4f4f4;
-	--page-link: #fff;
-	--page-muted-surface: #252525;
-	--page-rule: #f4f4f4;
-	--page-toggle-border: rgba(255, 255, 255, 0.36);
-	--page-toggle-hover: rgba(255, 255, 255, 0.12);
 }
 
 html, body {
@@ -30,14 +13,19 @@ body {
 	font-family: Courier, monospace;
 	font-size: 1.6rem;
 	padding: 0 2rem;
-	color: var(--page-foreground);
-	background: var(--page-background);
+	color: rgb(20%,20%,20%);
+	background: rgb(255, 255, 255);
 	/*
 	padding-bottom:7.5rem;
 	background-image:url('/static/keyboardfade.png');
 	background-repeat:no-repeat;
 	background-position:center bottom;
 	background-size:100%;*/
+}
+
+body.theme-dark {
+	color: #f4f4f4;
+	background: #111;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -88,7 +76,11 @@ hr:after {
 	display:block;
 	text-align:center;
 	content: "✦ ✦ ✦";
-	color: var(--page-rule);
+	color: rgb(20%,20%,20%);
+}
+
+body.theme-dark hr:after {
+	color: #f4f4f4;
 }
 
 ul, ol {
@@ -96,12 +88,17 @@ ul, ol {
 }
 
 a {
-	color: var(--page-link);
+	color: black;
 }
 
 a:hover {
-	color: var(--page-link);
+	color: black;
 	text-decoration: underline;
+}
+
+body.theme-dark a,
+body.theme-dark a:hover {
+	color: #fff;
 }
 
 /*This create a nice border around my picture*/
@@ -123,13 +120,18 @@ pre {
 	font-family: Courier, monospace;
 	font-size: 1.6rem;
 	padding:1rem;
-	background: var(--page-muted-surface);
+	background: rgb(90%,90%,90%);
 }
 
 code {
 	font-family: Courier, monospace;
 	font-size: 1.6rem;
-	background: var(--page-muted-surface);
+	background: rgb(90%,90%,90%);
+}
+
+body.theme-dark pre,
+body.theme-dark code {
+	background: #252525;
 }
 
 #breadcrumb {
@@ -140,36 +142,38 @@ code {
 
 blockquote a {
 	text-decoration:none;
-	color: var(--page-foreground);
+	color: rgb(20%,20%,20%);
 }
 
-header {
-	position: relative;
+body.theme-dark blockquote a {
+	color: #f4f4f4;
+}
+
+.site-tools {
+	text-align: right;
+	margin-bottom: 0.5rem;
 }
 
 .theme-toggle {
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 3.2rem;
-	height: 3.2rem;
-	border: 1px solid var(--page-toggle-border);
+	border: 0;
 	background: transparent;
-	color: var(--page-foreground);
+	color: inherit;
 	cursor: pointer;
 	font: inherit;
-	line-height: 1;
+	font-style: italic;
+	line-height: 1.4;
 	padding: 0;
+	text-decoration: underline;
 }
 
 .theme-toggle:hover,
 .theme-toggle:focus {
-	background: var(--page-toggle-hover);
+	text-decoration-thickness: 2px;
 }
 
 .theme-toggle:focus {
-	outline: 1px dotted var(--page-foreground);
-	outline-offset: 0.3rem;
+	outline: 1px dotted currentColor;
+	outline-offset: 0.2rem;
 }
 
 blockquote .author:before {
@@ -344,7 +348,12 @@ footer h4 {
     font-family: Courier, monospace;
     font-size: 1.6rem;
     padding: 0 2rem;
-    color: var(--page-foreground);
+    color: rgb(20%,20%,20%);
+}
+
+body.theme-dark .file-editor {
+    color: #f4f4f4;
+    background: #111;
 }
 
 body .searcher #search {
