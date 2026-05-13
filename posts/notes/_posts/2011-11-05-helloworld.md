@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Hello World!
+hidden: true
 ---
 
 {{post.date}}
