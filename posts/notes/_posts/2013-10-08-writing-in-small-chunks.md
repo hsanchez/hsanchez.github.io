@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Smalls chunks of text in small chunks of time
+hidden: true
 ---
 
 I have a hard time sitting still and on track. I get easily derailed by many things, such as social media, news, a wandering mind, worries, etc. 
