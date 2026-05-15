@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Promptory: a Git-based prompt versioning system
+title: Promptory, a Git-based prompt versioning system
 ---
 
 Prompts have become production artifacts, but many teams still treat them like
