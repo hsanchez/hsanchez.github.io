@@ -31,7 +31,7 @@ estimation](https://arxiv.org/abs/2510.03930)** — techniques I apply to
 combine these with **static and dynamic program analysis**, **AI assurance**,
 and **AI red teaming** to ensure they are reliable and robust in high-stakes
 domains — and **social-cyber security** to protect the integrity of open-source
-ecosystems.
+software ecosystems.
 
 I was the PI on DARPA Social Cyber and have contributed to several DARPA-funded
 efforts, including DARPA ARCOS and DARPA MUSE. As a DARPA Social Cyber PI, I
