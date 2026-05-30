@@ -1,70 +1,117 @@
 ---
 ---
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="en">
   <head>
-		{% include head.html %}
+    {% include head.html %}
   </head>
 
   <body>
     <div class="container">
-		<header>
-			<div class="site-tools">
-				<button
-					class="theme-toggle"
-					type="button"
-					aria-pressed="false"
-					aria-label="Switch to dark theme"
-					title="Switch to dark theme"
-					onclick="document.body.className = /\btheme-dark\b/.test(document.body.className) ? document.body.className.replace(/\btheme-dark\b/g, '').replace(/\s{2,}/g, ' ').replace(/^\s+|\s+$/g, '') : (document.body.className ? document.body.className + ' theme-dark' : 'theme-dark'); this.setAttribute('aria-pressed', /\btheme-dark\b/.test(document.body.className) ? 'true' : 'false'); this.setAttribute('aria-label', /\btheme-dark\b/.test(document.body.className) ? 'Switch to light theme' : 'Switch to dark theme'); this.setAttribute('title', /\btheme-dark\b/.test(document.body.className) ? 'Switch to light theme' : 'Switch to dark theme'); this.innerHTML = /\btheme-dark\b/.test(document.body.className) ? 'light mode' : 'dark mode'; try { window.localStorage.setItem('site-theme', /\btheme-dark\b/.test(document.body.className) ? 'dark' : 'light'); } catch (error) {}"
-				>
-					dark mode
-				</button>
-			</div>
-			{% if page.home %}
-			
-		    <div style="text-align: left ">
-    		<p>
-    			<a href="/" class="fancybox no-title">
-        		<img src="http://www.gravatar.com/avatar/edd40217c57a8b264212f6d1aec80231?s=100" alt=""/>
-        		</a>
-        	</p>
-			</div>
+      <header>
+        <div class="site-tools">
+          <button
+            class="theme-toggle"
+            type="button"
+            aria-pressed="false"
+            aria-label="Switch to dark theme"
+            title="Switch to dark theme"
+            onclick="
+              document.body.className = /\btheme-dark\b/.test(
+                document.body.className,
+              )
+                ? document.body.className
+                    .replace(/\btheme-dark\b/g, '')
+                    .replace(/\s{2,}/g, ' ')
+                    .replace(/^\s+|\s+$/g, '')
+                : document.body.className
+                  ? document.body.className + ' theme-dark'
+                  : 'theme-dark';
+              this.setAttribute(
+                'aria-pressed',
+                /\btheme-dark\b/.test(document.body.className)
+                  ? 'true'
+                  : 'false',
+              );
+              this.setAttribute(
+                'aria-label',
+                /\btheme-dark\b/.test(document.body.className)
+                  ? 'Switch to light theme'
+                  : 'Switch to dark theme',
+              );
+              this.setAttribute(
+                'title',
+                /\btheme-dark\b/.test(document.body.className)
+                  ? 'Switch to light theme'
+                  : 'Switch to dark theme',
+              );
+              this.innerHTML = /\btheme-dark\b/.test(document.body.className)
+                ? 'light mode'
+                : 'dark mode';
+              try {
+                window.localStorage.setItem(
+                  'site-theme',
+                  /\btheme-dark\b/.test(document.body.className)
+                    ? 'dark'
+                    : 'light',
+                );
+              } catch (error) {}
+            "
+          >
+            dark mode
+          </button>
+        </div>
+        {% if page.home %}
 
-			{% else %}
+        <div style="text-align: left">
+          <p>
+            <a href="/" class="fancybox no-title">
+              <img
+                src="http://www.gravatar.com/avatar/edd40217c57a8b264212f6d1aec80231?s=100"
+                alt=""
+              />
+            </a>
+          </p>
+        </div>
 
-			{% capture url_parts %} {{ page.url | remove: "/index.html" | replace:'/'," " }}{% endcapture %}
-			{% capture num_parts %}{{ url_parts | number_of_words | minus: 1}}{% endcapture %}
-			{% assign previous="" %}
-			{% if num_parts != "-1" %}
-			<ul id="breadcrumb">
-				<li level="0"><a href="/">home</a></li>
+        {% else %} {% capture url_parts %} {{ page.url | remove: "/index.html" |
+        replace:'/'," " }}{% endcapture %} {% capture num_parts %}{{ url_parts |
+        number_of_words | minus: 1}}{% endcapture %} {% assign previous="" %} {%
+        if num_parts != "-1" %}
+        <ul id="breadcrumb">
+          <li level="0"><a href="/">home</a></li>
 
-				{% assign counter = 1 %}
-				{% for unused in site.breadcrumb_iterator limit:num_parts %}
-					{% capture first_word %}{{ url_parts | truncatewords:1 | remove:"..."}}{% endcapture %}
-					{% capture previous %}{{ previous }}/{{ first_word }}{% endcapture %}
+          {% assign counter = 1 %} {% for unused in site.breadcrumb_iterator
+          limit:num_parts %} {% capture first_word %}{{ url_parts |
+          truncatewords:1 | remove:"..."}}{% endcapture %} {% capture previous
+          %}{{ previous }}/{{ first_word }}{% endcapture %}
 
-					<li level="{{ counter }}"><a href="{{ previous }}">{{ first_word }}</a></li>
+          <li level="{{ counter }}">
+            <a href="{{ previous }}">{{ first_word }}</a>
+          </li>
 
-					{% capture url_parts %}{{ url_parts | remove_first:first_word }}{% endcapture %}
-					{% capture temp %}{{ counter | plus: 1 }}{% endcapture %}
-				    {% assign counter = temp %}					
-				{% endfor %}
-			</ul>
-			{% endif %}
-			
-			<h1 class="title">{{ page.title }}</h1>
+          {% capture url_parts %}{{ url_parts | remove_first:first_word }}{%
+          endcapture %} {% capture temp %}{{ counter | plus: 1 }}{% endcapture
+          %} {% assign counter = temp %} {% endfor %}
+        </ul>
+        {% endif %}
 
-			{% endif %}
-		</header>
-	
-		<div class="content">
-			{{ content }}
-		</div>
+        <h1 class="title">{{ page.title }}</h1>
 
-		{% include footer.html %}
-		
+        {% endif %}
+      </header>
+
+      <div class="content">
+        {% if page.toc %}
+        <nav class="post-toc" aria-label="Table of contents">
+          <h2 class="post-toc-title">Contents</h2>
+          <ol></ol>
+        </nav>
+        {% endif %} {{ content }}
+      </div>
+
+      {% include footer.html %}
     </div>
     <script type="text/javascript" src="/static/highlight.min.js"></script>
     <script type="text/javascript" src="/static/detector.js"></script>
@@ -96,11 +143,11 @@
           toggle.setAttribute("aria-pressed", isDark ? "true" : "false");
           toggle.setAttribute(
             "aria-label",
-            isDark ? "Switch to light theme" : "Switch to dark theme"
+            isDark ? "Switch to light theme" : "Switch to dark theme",
           );
           toggle.setAttribute(
             "title",
-            isDark ? "Switch to light theme" : "Switch to dark theme"
+            isDark ? "Switch to light theme" : "Switch to dark theme",
           );
           toggle.innerHTML = isDark ? "light mode" : "dark mode";
         }
@@ -113,8 +160,74 @@
         }
 
         setTheme(savedTheme === "dark" ? "dark" : "light");
-
       })();
     </script>
+    {% if page.toc %}
+    <script type="text/javascript">
+      (function () {
+        var toc = document.querySelector(".post-toc");
+        var list = toc && toc.querySelector("ol");
+        var content = document.querySelector(".content");
+
+        if (!toc || !list || !content) {
+          return;
+        }
+
+        var headings = content.querySelectorAll("h2, h3");
+        var seen = {};
+
+        function slugify(text) {
+          return (
+            text
+              .toLowerCase()
+              .replace(/[^a-z0-9]+/g, "-")
+              .replace(/^-+|-+$/g, "") || "section"
+          );
+        }
+
+        Array.prototype.forEach.call(headings, function (heading) {
+          if (
+            heading.className &&
+            /\bpost-toc-title\b/.test(heading.className)
+          ) {
+            return;
+          }
+
+          if (!heading.id) {
+            var base = slugify(heading.textContent || heading.innerText || "");
+            var id = base;
+            var count = 2;
+
+            while (seen[id] || document.getElementById(id)) {
+              id = base + "-" + count;
+              count += 1;
+            }
+
+            heading.id = id;
+          }
+
+          seen[heading.id] = true;
+
+          var item = document.createElement("li");
+          item.className = "toc-" + heading.tagName.toLowerCase();
+
+          var link = document.createElement("a");
+          link.href = "#" + heading.id;
+          link.appendChild(
+            document.createTextNode(
+              heading.textContent || heading.innerText || "",
+            ),
+          );
+
+          item.appendChild(link);
+          list.appendChild(item);
+        });
+
+        if (!list.children.length) {
+          toc.parentNode.removeChild(toc);
+        }
+      })();
+    </script>
+    {% endif %}
   </body>
 </html>

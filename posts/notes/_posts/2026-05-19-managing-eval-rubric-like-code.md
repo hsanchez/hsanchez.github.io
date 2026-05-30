@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Managing Your LLM Eval Rubric Like Code
+toc: true
 ---
 
 Promptory manages your eval rubric as a versioned prompt artifact: drafts,

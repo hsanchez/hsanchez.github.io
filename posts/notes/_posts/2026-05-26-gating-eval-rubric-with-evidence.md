@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Gating Your LLM Eval Rubric with Evidence
+toc: true
 ---
 
 *Part 2: [Managing Your LLM Eval Rubric Like Code]({% post_url 2026-05-19-managing-eval-rubric-like-code %})*

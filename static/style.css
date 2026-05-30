@@ -2,7 +2,6 @@ html {
 	/* Setting the baseline font */
 	font-size: 62.5%;
 	-webkit-font-smoothing: antialiased;
-	font-smoothing: antialiased;
 }
 
 html, body {
@@ -67,7 +66,6 @@ h1 span {
 
 hr {
 	border:none;
-	display:hidden;
 	margin: 2rem 0;
 	clear:both;
 }
@@ -81,10 +79,6 @@ hr:after {
 
 body.theme-dark hr:after {
 	color: #f4f4f4;
-}
-
-ul, ol {
-/*	padding: 0;*/
 }
 
 a {
@@ -111,6 +105,7 @@ span.fancybox img {
 
     -webkit-transform: rotate(-2deg);
     -moz-transform: rotate(-2deg);
+    transform: rotate(-2deg);
 
     margin: 0px 10px 10px 0px;
     cursor: default;
@@ -141,6 +136,55 @@ pre code {
 body.theme-dark pre,
 body.theme-dark code {
 	background: #252525;
+}
+
+.post-toc {
+	border-top: 1px dotted currentColor;
+	border-bottom: 1px dotted currentColor;
+	margin: 2rem 0;
+	padding: 1rem 0;
+}
+
+.post-toc h2 {
+	font-size: 1.6rem;
+	font-weight: normal;
+	margin: 0 0 1rem 0;
+}
+
+.post-toc h2:before {
+	content: "# ";
+}
+
+.post-toc ol {
+	list-style-position: inside;
+	margin: 0;
+	padding: 0;
+}
+
+.post-toc li {
+	margin: 0.35rem 0;
+}
+
+.post-toc .toc-h3 {
+	list-style-type: none;
+	margin-left: 2rem;
+}
+
+.post-toc .toc-h3:before {
+	content: "- ";
+}
+
+.post-toc .toc-h3::marker {
+	content: "";
+}
+
+.post-toc a {
+	text-decoration: none;
+}
+
+.post-toc a:hover,
+.post-toc a:focus {
+	text-decoration: underline;
 }
 
 #breadcrumb {
@@ -229,16 +273,10 @@ footer li:before {
     list-style: none;
 }
 
-.col li.mail span {
-}
-
-.col li a:active, .nav_footer li span:active {
-}
-
 blockquote {
 	width:52rem;
 	margin:2rem auto;
-	//margin-right:10rem;
+	/* margin-right:10rem; */
 	font-style:italic;
 	clear:both;
 }
