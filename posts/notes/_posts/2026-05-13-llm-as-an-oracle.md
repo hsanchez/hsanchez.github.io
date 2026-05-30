@@ -1,6 +1,7 @@
 ---
 layout: default
 title: LLM as an Oracle
+toc: true
 ---
 
 Most discussions of LLM evaluation ask which evaluator is best.
