@@ -50,8 +50,14 @@ from promptory.manager import PromptManager
 
 manager = PromptManager("prompts")
 
-v_helpfulness = manager.release(bump="patch", variables={"criteria": "helpfulness"})
-v_factual     = manager.release(bump="patch", variables={"criteria": "factual accuracy"})
+v_helpfulness = manager.release(
+  bump="patch",
+  variables={"criteria": "helpfulness"},
+)
+v_factual     = manager.release(
+  bump="patch",
+  variables={"criteria": "factual accuracy"},
+)
 ```
 
 Each release is an independent rendered artifact. Loading `v_helpfulness` always
@@ -87,11 +93,17 @@ STRICT_RUBRIC = (
 
 # v1: initial rubric.
 draft.write_text(BASIC_RUBRIC)
-v1 = manager.release(bump="patch", variables={"criteria": "helpfulness"})
+v1 = manager.release(
+  bump="patch",
+  variables={"criteria": "helpfulness"},
+)
 
 # v2: updated rubric. v1 is unchanged.
 draft.write_text(STRICT_RUBRIC)
-v2 = manager.release(bump="patch", variables={"criteria": "helpfulness"})
+v2 = manager.release(
+  bump="patch",
+  variables={"criteria": "helpfulness"},
+)
 ```
 
 The directory `prompts/versions/v0.0.1/` is never touched after creation.

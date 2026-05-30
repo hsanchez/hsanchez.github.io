@@ -87,7 +87,8 @@ Evidence is immutable once attached.
 
 ```python
 gate = manager.gate(v1)
-print(gate.passed)   # False — evidence status is fail, required pass
+# False — evidence status is fail, required pass
+print(gate.passed)
 ```
 
 `v1` stays staged.
@@ -137,7 +138,8 @@ from promptory.evidence import compare_evidence
 comparison = compare_evidence(manager.spec(), v1, v2)
 
 for change in comparison.changes:
-  print(f"[{change.kind}] {change.name}: {change.before_status} -> {change.after_status}")
+  print(f"[{change.kind}] {change.name}: \
+    {change.before_status} -> {change.after_status}")
   for metric in change.metrics:
     print(f"  {metric.name}: {metric.before} -> {metric.after}")
 ```
