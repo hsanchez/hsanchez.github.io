@@ -6,7 +6,7 @@ title: Gating Your LLM Eval Rubric with Evidence
 *Part 2: [Managing Your LLM Eval Rubric Like Code]({% post_url 2026-05-19-managing-eval-rubric-like-code %})*
 
 
-Promptory's staged releases, evidence documents, and release gates let you attach eval results to a rubric candidate and block promotion until that evidence passes. This post shows the workflow step by step. The full example is in [`examples/evals2.py`](../../examples/evals2.py).
+Promptory's staged releases, evidence documents, and release gates let you attach eval results to a rubric candidate and block promotion until that evidence passes. This post shows the workflow step by step. The full example is in [`examples/evals2.py`](https://github.com/hsanchez/promptory/blob/main/examples/evals2.py).
 
 ---
 
