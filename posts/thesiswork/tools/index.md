@@ -12,7 +12,7 @@ _Vesperin_ consists of two main components: a Chrome Extension (named [**Violett
 Each of _Vesperin_'s components and functionality are listed herein:
 
 {% for post in site.categories.tools %}
-  {% unless post.hidden and post.limited %}
+  {% unless post.hidden %}
 
 - {{ post.description | strip_html }} ([**{{ post.title }}**]({{ post.url }}))
      
