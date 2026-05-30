@@ -30,12 +30,12 @@ The draft template lives in `prompts/drafts/rubric.yaml.j2`:
 model: claude-sonnet-4-6
 temperature: 0.0
 system_prompt: |
-  Evaluate the response on {{ '{' | append: '{' }} criteria {{ '}' | append: '}' }}.
+  Evaluate the response on {% raw %}{{ criteria }}{% endraw %}.
   Be generous; give partial credit for effort.
   Return JSON: {score: int, rationale: str}.
 ```
 
-`{{ '{' | append: '{' }} criteria {{ '}' | append: '}' }}` is a template variable. It is rendered at release time, not
+`{% raw %}{{ criteria }}{% endraw %}` is a template variable. It is rendered at release time, not
 at runtime.
 
 ---
@@ -77,7 +77,7 @@ BASIC_RUBRIC = (
   "model: claude-sonnet-4-6\n"
   "temperature: 0.0\n"
   "system_prompt: |\n"
-  "  Evaluate the response on {{ '{' | append: '{' }} criteria {{ '}' | append: '}' }}.\n"
+  "  Evaluate the response on {% raw %}{{ criteria }}{% endraw %}.\n"
   "  Be generous; give partial credit for effort.\n"
   "  Return JSON: {score: int, rationale: str}.\n"
 )
@@ -86,7 +86,7 @@ STRICT_RUBRIC = (
   "model: claude-sonnet-4-6\n"
   "temperature: 0.0\n"
   "system_prompt: |\n"
-  "  Evaluate the response on {{ '{' | append: '{' }} criteria {{ '}' | append: '}' }}.\n"
+  "  Evaluate the response on {% raw %}{{ criteria }}{% endraw %}.\n"
   "  Penalize vague or incomplete answers.\n"
   "  Return JSON: {score: int, rationale: str}.\n"
 )
