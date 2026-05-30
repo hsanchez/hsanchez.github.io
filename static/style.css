@@ -121,12 +121,21 @@ pre {
 	font-size: 1.6rem;
 	padding:1rem;
 	background: rgb(90%,90%,90%);
+	box-sizing: border-box;
+	max-width: 100%;
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
 }
 
 code {
 	font-family: Courier, monospace;
 	font-size: 1.6rem;
 	background: rgb(90%,90%,90%);
+}
+
+pre code {
+	background: transparent;
+	white-space: pre;
 }
 
 body.theme-dark pre,
