@@ -159,8 +159,8 @@ Drafts are Jinja templates, so they can include release-time variables:
 ```yaml
 # prompts/drafts/message.yaml.j2
 message: |
-  Hello {{ user_name }}.
-  Generated at {{ generation_time }}.
+  Hello {% raw %}{{ user_name }}{% endraw %}.
+  Generated at {% raw %}{{ generation_time }}{% endraw %}.
 ```
 
 Promptory renders templates with Jinja `StrictUndefined`. Missing variables fail
