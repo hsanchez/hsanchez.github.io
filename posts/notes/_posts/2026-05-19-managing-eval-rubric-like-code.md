@@ -26,18 +26,16 @@ max_file_bytes: 100000
 
 The draft template lives in `prompts/drafts/rubric.yaml.j2`:
 
-{% raw %}
 ```yaml
 model: claude-sonnet-4-6
 temperature: 0.0
 system_prompt: |
-  Evaluate the response on {{ criteria }}.
+  Evaluate the response on {{ "{{" }} criteria {{ "}}" }}.
   Be generous; give partial credit for effort.
   Return JSON: {score: int, rationale: str}.
 ```
-{% endraw %}
 
-`{% raw %}{{ criteria }}{% endraw %}` is a template variable. It is rendered at release time, not
+`{{ "{{" }} criteria {{ "}}" }}` is a template variable. It is rendered at release time, not
 at runtime.
 
 ---
@@ -74,13 +72,12 @@ releases.
 immutable rendered releases. Editing the draft and cutting a new release does
 not modify any previous release.
 
-{% raw %}
 ```python
 BASIC_RUBRIC = (
   "model: claude-sonnet-4-6\n"
   "temperature: 0.0\n"
   "system_prompt: |\n"
-  "  Evaluate the response on {{ criteria }}.\n"
+  "  Evaluate the response on {{ "{{" }} criteria {{ "}}" }}.\n"
   "  Be generous; give partial credit for effort.\n"
   "  Return JSON: {score: int, rationale: str}.\n"
 )
@@ -89,11 +86,11 @@ STRICT_RUBRIC = (
   "model: claude-sonnet-4-6\n"
   "temperature: 0.0\n"
   "system_prompt: |\n"
-  "  Evaluate the response on {{ criteria }}.\n"
+  "  Evaluate the response on {{ "{{" }} criteria {{ "}}" }}.\n"
   "  Penalize vague or incomplete answers.\n"
   "  Return JSON: {score: int, rationale: str}.\n"
 )
-{% endraw %}
+```
 
 # v1: initial rubric.
 draft.write_text(BASIC_RUBRIC)
