@@ -28,10 +28,11 @@ Chemistry](https://arxiv.org/abs/2510.03930) and multi-LLM consensus
 estimation** for model recommendation and output aggregation, which I have
 applied to data analysis, specification learning, code generation, and program
 repair. I combine these with **static/dynamic program analysis**, **AI
-assurance**, **AI red teaming**, and **AI evaluation and benchmarking**. I also
-work on **[social-cyber
-security](https://dl.acm.org/doi/10.1145/3576914.3587523)** to protect
-open-source software supply chains from social and technical attacks.
+assurance**, **AI red teaming**, and **AI evaluation and benchmarking**. I am
+also interested in **[social-cyber
+security](https://dl.acm.org/doi/10.1145/3576914.3587523)**: modeling
+adversarial behavior to detect social cyber operations that threaten
+open-source software integrity.
 
 <!--I received my PhD in Computer Science from [UC Santa
 Cruz](http://www.ucsc.edu/)
