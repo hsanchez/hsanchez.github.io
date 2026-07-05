@@ -47,10 +47,10 @@ and **AI red teaming** to ensure they are reliable and robust in high-stakes
 domains — and **social-cyber security** to protect the integrity of open-source
 software ecosystems.-->
 
-I was the PI on DARPA Social Cyber and have contributed to several DARPA-funded
-efforts, including DARPA ARCOS and DARPA MUSE. I hold a PhD in Computer Science
-from [UC Santa Cruz (2015)](http://www.ucsc.edu/) and an MS in Software
-Engineering from [San Jose State University (2006)](http://www.sjsu.edu/).
+While at SRI, I was the PI on DARPA Social Cyber and contributed to several
+DARPA-funded efforts, including DARPA ARCOS and DARPA MUSE. I hold a PhD in
+Computer Science from [UC Santa Cruz (2015)](http://www.ucsc.edu/) and an MS
+in Software Engineering from [San Jose State University (2006)](http://www.sjsu.edu/).
 
 <!--I was the PI on DARPA Social Cyber and have contributed to several DARPA-funded
 efforts, including DARPA ARCOS and DARPA MUSE. As a DARPA Social Cyber PI, I
