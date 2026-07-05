@@ -42,11 +42,8 @@ tasks as though they required the same kind of evidence.
 Human evaluation remains the reference point for many LLM systems. It is often
 the most flexible form of assessment because humans can interpret incomplete
 instructions, account for context, distinguish severity from style, and notice
-when a candidate answer is technically correct but pragmatically poor.
-
-It also scales badly.
-
-That scaling pressure created demand for automated evaluation. Traditional
+when a candidate answer is technically correct but pragmatically poor. It also
+scales badly, which created demand for automated evaluation. Traditional
 metrics can be useful, but they are narrow:
 
 - exact match is valuable when the answer space is constrained
@@ -141,21 +138,15 @@ The Verifier strategy in this project is designed around:
 That last point is important. A Verifier tries to squeeze more discriminative
 signal out of the evaluator than a single coarse score can provide.
 
-The Judge asks, "Which answer seems better under this rubric?"
-
-The Verifier asks, "Which trajectory survives the strongest evidence-sensitive
-checks available for this task?"
-
-Those are related questions, but not the same question.
+The Judge is asking which answer seems better under a rubric; the Verifier is
+asking which trajectory survives the strongest evidence-sensitive checks
+available. Related questions, but not the same one.
 
 ## What the Oracle adds
 
 If Judge and Verifier are both useful, a natural response is to expose both and
-let the caller choose.
-
-That is necessary, but insufficient.
-
-Many workflows mix task types:
+let the caller choose. That's necessary but not sufficient. Many workflows mix
+task types:
 
 - an agent may produce code patches, explanations, and planning notes
 - a benchmark may combine factual QA, long-form reasoning, and executable tasks
@@ -267,10 +258,9 @@ The output of a routing decision includes:
 - every policy vote
 - a human-readable reasoning trace
 
-This is one of the parts I care about most.
-
-Evaluation pipelines already accumulate ambiguity. A score without a path to
-understanding how it was obtained is difficult to debug. The Oracle makes one
+I care about this part the most, because evaluation pipelines already
+accumulate ambiguity. A score without a path to understanding how it was
+obtained is hard to debug. The Oracle makes one
 critical source of ambiguity observable: why this evaluator was chosen in the
 first place.
 
@@ -428,21 +418,15 @@ Each strategy fails differently.
 
 ### Failure modes of Judge
 
-A Judge can:
-
-- overvalue fluent or confident language
-- blur correctness and style
-- be sensitive to prompt format
-- struggle to separate close technical alternatives without stronger evidence
+A Judge can overvalue fluent or confident language, blur correctness and
+style, and struggle to separate close technical alternatives without stronger
+evidence.
 
 ### Failure modes of Verifier
 
-A Verifier can:
-
-- inherit bad ground truth
-- overfit to incomplete criteria
-- become brittle when tests are narrow
-- underperform when the task is fundamentally subjective
+A Verifier has its own failure modes. It inherits bad ground truth, can
+overfit to incomplete criteria, becomes brittle when tests are narrow, and
+quietly underperforms on tasks that are fundamentally subjective.
 
 The Oracle does not eliminate these problems. It tries to reduce one avoidable
 problem: choosing the wrong mode of evaluation for the task at hand.
@@ -474,27 +458,15 @@ That same principle motivates the router itself:
 
 The Oracle pattern leads to a broader design lesson.
 
-Good evaluation systems should have at least four properties.
-
-### 1. Match evaluator to task structure
-
-Open-ended tasks and evidence-grounded tasks are different. Treating them as if
-they require the same evaluator introduces avoidable error.
-
-### 2. Make evaluator selection explicit
-
-The choice between Judge and Verifier should be part of the system design, not a
-hidden convention buried in notebook code or benchmark glue.
-
-### 3. Preserve inspectability
-
-Scores are easier to trust when their provenance is visible. Routing traces,
-criteria, and confidence should be inspectable artifacts.
-
-### 4. Admit when evidence is insufficient
-
-Some tasks are underspecified. A strong evaluator is not a substitute for missing
-context. Escalation can be the correct system behavior.
+Good evaluation systems share a few properties. **Evaluator should match task
+structure**: open-ended and evidence-grounded tasks are different, and treating
+them the same introduces avoidable error. **Selection should be explicit**,
+part of the system design rather than a hidden convention buried in notebook
+code or benchmark glue. **Inspectability should be preserved**: routing
+traces, criteria, and confidence should be artifacts you can actually look at.
+And the system should **admit when evidence is insufficient**. A strong
+evaluator is no substitute for missing context, and escalation can be the
+right move.
 
 ## Where this pattern is useful
 
