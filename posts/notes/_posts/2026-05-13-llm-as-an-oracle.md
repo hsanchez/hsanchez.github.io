@@ -25,6 +25,13 @@ The central claim is simple:
 > Evaluation should be routed to the strategy that best matches the structure
 > of the task.
 
+Here is why that matters in practice. Later in this post, three agents fix the
+same N+1 query bug. Two of them change the query shape. The third wraps the
+buggy call in an `lru_cache` and looks correct — familiar technique, concrete
+code, a plausible performance story. A Judge scoring on presentation alone can
+be fooled by it. A Verifier running the test suite cannot. That gap between
+looking right and being right is the reason this router exists.
+
 That sounds obvious once stated plainly, but it is easy to violate in practice.
 As soon as a benchmark, agent workflow, or production evaluation pipeline
 standardizes on a single evaluator, it begins to treat fundamentally different
