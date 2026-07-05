@@ -13,9 +13,8 @@ instruction for a new workflow. Someone changes the tone. Someone else tweaks a
 retrieval instruction. A third person changes the safety policy because an eval
 failed.
 
-At that point the prompt is no longer just a string.
-
-It is part of the system's behavior.
+At that point the prompt is no longer just a string. It is part of the
+system's behavior.
 
 That is the motivation behind
 [`Promptory`](https://github.com/hsanchez/promptory): a Git-based prompt
@@ -135,9 +134,8 @@ The important separation is:
 - `current.json` points to the active release
 - `promptspec.yaml` declares which prompt files are managed
 
-Developers edit drafts. Applications load versions. That simple!
-
-That boundary is the main design decision in the project.
+Developers edit drafts. Applications load versions. That boundary, simple as
+it sounds, is the main design decision in the project.
 
 ## Drafts are for authoring
 
@@ -243,7 +241,7 @@ message = store.load("message.yaml")
 `PromptStore` reads `current.json`, validates the requested prompt name against
 `promptspec.yaml`, then loads rendered YAML from `versions/<version>/`.
 
-That makes the runtime path deliberately boring. There is no Jinja rendering at
+The runtime path is deliberately boring as a result: no Jinja rendering at
 runtime, no accidental use of draft prompts, and no hidden prompt selection
 logic inside the application.
 
@@ -270,7 +268,7 @@ The small file that makes the runtime story work is `current.json`:
 }
 ```
 
-This is the active release pointer.
+This small file is the active release pointer.
 
 When application code loads the current prompt, it is not asking, "What is in
 the drafts directory today?" It is asking, "Which release is currently active?"
@@ -406,7 +404,7 @@ For example, Promptory checks:
 - whether managed files are relative `.yaml` paths
 - whether file sizes exceed configured limits
 
-These checks are intentionally mundane. That is the point. A prompt release
+These checks are intentionally mundane, and that's the point: a prompt release
 should not fail because a template variable rendered to an empty string, a YAML
 file stopped parsing, or an application loaded a file outside the managed prompt
 set.
@@ -450,10 +448,8 @@ GET /prompts/{name}
 ```
 
 This does not create a second prompt lifecycle. The service is a read-only layer
-over the same `PromptStore` contract. It reads `current.json`, validates prompt
-names, and serves rendered release artifacts.
-
-That distinction is important. The service exists for consumption, not
+over the same `PromptStore` contract: it reads `current.json`, validates prompt
+names, and serves rendered release artifacts, existing for consumption, not
 authoring.
 
 ## What Promptory is not
