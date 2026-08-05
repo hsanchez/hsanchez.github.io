@@ -4,21 +4,18 @@ title: LLM as an Oracle
 toc: true
 ---
 
-Most discussions of LLM evaluation ask which evaluator is best.
+Most discussions of LLM evaluation ask which evaluator is best. Wrong first
+question. What actually matters is whether the task needs judgment or
+verification. A rubric is great for deciding if an explanation is clear or
+persuasive, but it's a weak substitute for test cases when you're evaluating
+code. Exact-match checks have the opposite problem: they fall apart the moment
+the output is qualitative.
 
-I think that is the wrong first question.
-
-Some tasks need judgment. Others need verification. A rubric can help decide
-whether an explanation is clear, persuasive, or useful. It is a poor substitute
-for test cases when evaluating code. Likewise, exact checks are not enough when
-the output is inherently qualitative.
-
-That distinction is the motivation behind
-[`llm-as-an-oracle`](https://github.com/hsanchez/llm-as-an-oracle).
-
-An Oracle, in this setting, is not an all-knowing model. It is an adaptive
-evaluation layer that decides whether a task should be evaluated by an
-`LLM-as-a-Judge` or an `LLM-as-a-Verifier`.
+That split is what led to
+[`llm-as-an-oracle`](https://github.com/hsanchez/llm-as-an-oracle). An Oracle
+here isn't an all-knowing model. It's an adaptive layer that routes each task to
+either an `LLM-as-a-Judge` or an `LLM-as-a-Verifier`, depending on which kind of
+evaluation the task actually needs.
 
 The central claim is simple:
 
