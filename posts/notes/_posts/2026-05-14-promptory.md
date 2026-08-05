@@ -4,33 +4,24 @@ title: Promptory, a Git-based prompt versioning system
 toc: true
 ---
 
-Prompts have become production artifacts, but many teams still treat them like
-ordinary strings.
-
-That works for a while. A prompt starts as a constant in application code. Then
-it grows. A system prompt gets a few guardrails. A developer adds a specialized
-instruction for a new workflow. Someone changes the tone. Someone else tweaks a
-retrieval instruction. A third person changes the safety policy because an eval
-failed.
-
-At that point the prompt is no longer just a string. It is part of the
-system's behavior.
+In many organizations building GenAI solutions, prompts have become production
+artifacts. However, despite their importance, many teams still treat them like
+ordinary strings. Treating them this way might work for a while, but as the
+prompts evolve, as their performance becomes variable across different models,
+model versions, safety policies, or use cases, it becomes more complex and
+harder to manage them as strings.
 
 That is the motivation behind
 [`Promptory`](https://github.com/hsanchez/promptory): a Git-based prompt
 versioning system that gives prompt changes the same basic engineering
-discipline as code.
+discipline as code. The core idea is simple:
 
-The core idea is simple:
-
-> Author prompts as editable drafts, release them as immutable rendered
-> artifacts, and make runtime code load only released versions.
+  > Author prompts as editable drafts, release them as immutable rendered
+  > artifacts, and make runtime code load only released versions.
 
 ## The prompt management problem
 
-Prompt changes are deceptively small.
-
-Changing a few words can alter:
+Prompt changes are deceptively small. Changing a few words can alter:
 
 - how much context the model uses
 - whether it follows a tool policy
@@ -39,15 +30,14 @@ Changing a few words can alter:
 - which format downstream parsers expect
 - how it behaves under evals
 
-In traditional software engineering, anything that can change production behavior
-is managed deliberately: version control, review, tests, releases, and rollback.
-Prompt engineering should not be exempt from that discipline just because the
-artifact is text.
+In traditional software engineering, anything that can change production
+behavior is managed deliberately: version control, review, tests, releases, and
+rollback. I believe that _prompt engineering_ should not be exempt from that
+discipline just because the artifact is text. On the contrary, it should also be
+managed deliberately.
 
 The hard part is choosing the right amount of discipline. In practice, teams
-often land on one of two extremes.
-
-The first is the hardcoded prompt:
+often land on one of two extremes. The first one is the hardcoded prompt:
 
 ```python
 SYSTEM_PROMPT = """
@@ -55,15 +45,16 @@ You are a helpful assistant. Answer concisely.
 """
 ```
 
-This is fine for a prototype. It is brittle for a system that needs repeatable
-experiments, reviewable changes, or rollback.
+Hardcoding a prompt like this is fine for a prototype, but it's brittle for a
+system that needs repeatable experiments, reviewable changes, or rollback.
 
-The second failure mode is _overcorrection_: adopting a large hosted prompt
-platform before the team actually needs one. Those systems can be useful when
-non-technical users need a UI, many teams need centralized governance, or prompt
-metadata no longer fits a repository workflow.
+The second one is _overcorrection_. This is the process of adopting a large
+hosted prompt platform before the team actually needs one. Those systems can be
+useful when non-technical users need a UI, many teams need centralized
+governance, or the current prompt metadata no longer fits a particular
+repository workflow.
 
-But a fast-moving R&D team often needs something smaller:
+I strongtly believe fast-moving R&D teams often need something smaller:
 
 - plain files
 - Git review
@@ -76,11 +67,12 @@ Promptory is aimed at that middle ground.
 
 ## Why Git alone is not enough
 
-Git is necessary for reviewing and preserving prompt history, but it does not
-define a prompt lifecycle by itself.
+Why not just use Git? That's the obvious pushback I get when socializing
+Promptory. Git already handles reviewing and preserving prompt history just
+fine, they say. That is true. However, Git doesn't define a prompt lifecycle.
 
-Git can tell you that a prompt file changed, but it does not tell your
-application:
+In other words, Git can tell you that a prompt file changed, but it cannot tell
+your application:
 
 - which rendered prompt version is active
 - whether a prompt has unresolved template variables
@@ -88,28 +80,30 @@ application:
 - whether a runtime process is reading drafts or released artifacts
 - how to roll back without rewriting prompt history
 
-Promptory keeps Git as the durable history, but adds a small release model on
-top of it.
+That is why Promptory keeps Git as the durable history and adds a small release
+model on top of it.
 
 ### Why not a central registry?
 
-Promptory makes a deliberate ownership choice: prompts live with the code that
-uses them. The idea is _locality of change_. If a prompt shapes a service's
-behavior, it should be reviewed, released, and rolled back with that service.
+Promptory's answer is a deliberate ownership choice: prompts live with the code
+that uses them. This builds on the same _locality of change_ principle from
+software engineering — normally applied to code — and extends it to prompts.
+Specifically, if a prompt shapes a service's behavior, it should be reviewed,
+released, and rolled back with that service.
 
 A central registry can be useful for organization-wide discovery, shared
-prompts, or non-engineering workflows. But for application-specific prompts,
-keeping the prompt next to the implementation makes review and rollback simpler.
-The prompt diff, code diff, tests, and release artifact all move through the
-same Git workflow.
+prompts, or non-engineering workflows. But not so much for application-specific
+prompts, which should live next to the implementation to make review and
+rollback simpler. The prompt diff, code diff, tests, and release artifact all
+move through the same Git workflow.
 
-That does not rule out central visibility. In production, teams can still
+This ownership choice doesn't rule out central visibility. In production, teams can still
 publish released prompt artifacts to object storage, an internal artifact
-registry, or Promptory's read-only registry service. The important distinction
-is ownership: the repo remains the source of truth, while production systems can
-aggregate or serve released artifacts from there.
+registry, or Promptory's read-only registry service. The repo remains the
+source of truth; production systems only aggregate or serve released artifacts
+from there.
 
-The default layout looks something like this:
+In the repo, that looks something like this:
 
 ```text
 prompts/
@@ -127,21 +121,21 @@ prompts/
   promptspec.yaml
 ```
 
-The important separation is:
+The above layout breaks down into four parts, each with a distinct role:
 
 - `drafts/` contains editable _Jinja_ templates
 - `versions/` contains rendered release artifacts
 - `current.json` points to the active release
 - `promptspec.yaml` declares which prompt files are managed
 
-Developers edit drafts. Applications load versions. That boundary, simple as
-it sounds, is the main design decision in the project.
+Two of those four parts carry the real distinction. Developers edit drafts.
+Applications load versions. That boundary, simple as it sounds, is the main
+design decision in the project.
 
 ## Drafts are for authoring
 
-A draft is where prompt authors and coding agents work.
-
-For example:
+A draft is where prompt authors and coding agents work. It's written in plain
+YAML. For example:
 
 ```yaml
 # prompts/drafts/system.yaml.j2
@@ -152,7 +146,8 @@ system_prompt: |
   Answer concisely and avoid unsupported claims.
 ```
 
-Drafts are Jinja templates, so they can include release-time variables:
+Because drafts are Jinja templates rather than static text, they can also
+include release-time variables:
 
 ```yaml
 # prompts/drafts/message.yaml.j2
@@ -161,23 +156,25 @@ message: |
   Generated at {% raw %}{{ generation_time }}{% endraw %}.
 ```
 
-Promptory renders templates with Jinja `StrictUndefined`. Missing variables fail
-instead of silently becoming empty strings. That is an intentional safety choice.
-Silent prompt rendering failures are hard to debug because they often look like
-model behavior problems later.
+Promptory renders these with Jinja's `StrictUndefined`, on purpose. A missing
+variable throws an exception instead of quietly becoming an empty string. Silent
+prompt rendering failures are hard to debug because they often look like model
+behavior problems later.
 
-Rendering happens during release. The CLI path is:
+Rendering itself happens at release time, through two commands:
 
 ```bash
 uv run prompt check
 uv run prompt release --patch
 ```
 
-`prompt check` validates the drafts and variable declarations. `prompt release`
-renders the declared templates, parses the rendered YAML, writes a new immutable
-version directory, and updates `current.json`.
+`prompt check` catches problems early: bad drafts, missing variable
+declarations. `prompt release` does the real work. It renders the declared
+templates, parses the rendered YAML, and drops the output into a new immutable
+version directory before updating `current.json`.
 
-If a release needs variables, the Python API supplies them explicitly:
+Variables don't always come from the CLI, though. When a release needs them
+supplied programmatically, the Python API takes them directly:
 
 ```python
 from promptory.manager import PromptManager
@@ -238,8 +235,9 @@ system = store.load("system.yaml")
 message = store.load("message.yaml")
 ```
 
-`PromptStore` reads `current.json`, validates the requested prompt name against
-`promptspec.yaml`, then loads rendered YAML from `versions/<version>/`.
+`PromptStore` reads `current.json` and validates the requested prompt name
+against `promptspec.yaml`. Then it loads rendered YAML from
+`versions/<version>/`.
 
 The runtime path is deliberately boring as a result: no Jinja rendering at
 runtime, no accidental use of draft prompts, and no hidden prompt selection
@@ -254,12 +252,12 @@ system_v1 = store.load("system.yaml", version="v0.0.1")
 all_v2 = store.load_all(version="v0.0.2")
 ```
 
-That is useful for evals, replay, and debugging. If an output changed between
-two runs, the prompt version becomes part of the evidence.
+Pinning to a specific version like this is useful for evals and debugging. If an
+output changed between two runs, then the prompt version becomes part of the evidence.
 
 ## The release pointer
 
-The small file that makes the runtime story work is `current.json`:
+The small file that makes the runtime story work is `current.json`. See below:
 
 ```json
 {
@@ -268,15 +266,14 @@ The small file that makes the runtime story work is `current.json`:
 }
 ```
 
-This small file is the active release pointer.
+This small file is the active release pointer, which makes the runtime story
+work. When application code loads the current prompt, it is not asking, "What is
+in the drafts directory today?" but rather, "Which release is currently active?"
 
-When application code loads the current prompt, it is not asking, "What is in
-the drafts directory today?" It is asking, "Which release is currently active?"
-
-Rollback is therefore a pointer change, not a rewrite:
+Rollback is therefore a pointer change, not a rewrite, accomplished with a
+single command:
 
 ```bash
-uv run prompt versions
 uv run prompt rollback v0.0.1
 ```
 
@@ -288,13 +285,16 @@ release in place. You point the system at a known-good artifact.
 
 ## A concrete workflow
 
-Suppose a team has three prompt files:
+Imagine a research team maintaining a small suite of prompts for a
+customer-facing assistant. Rather than one monolithic prompt, they've split
+responsibilities across three separate files:
 
 - `system.yaml`
 - `input_guardrail.yaml`
 - `output_guardrail.yaml`
 
-The spec declares them:
+The team captures this list in a spec, along with a few constraints each file
+must satisfy:
 
 ```yaml
 files:
@@ -305,7 +305,9 @@ required_variables: []
 max_file_bytes: 100000
 ```
 
-The editable drafts live under `prompts/drafts/`:
+Ultimately, the team doesn't edit those files directly. They edit
+Jinja-templated drafts under `prompts/drafts/`, which get rendered into the
+finished files the spec expects:
 
 ```yaml
 # prompts/drafts/input_guardrail.yaml.j2
@@ -331,13 +333,13 @@ Then it previews the difference between the active release and rendered drafts:
 uv run prompt diff
 ```
 
-Then it creates a new release:
+Once that looks right, it creates a new release:
 
 ```bash
 uv run prompt release --patch
 ```
 
-The application consumes the released files:
+From there, the application consumes the released files:
 
 ```python
 from promptory import PromptStore
@@ -475,11 +477,10 @@ it into their existing Git, CI, eval, and deployment workflows.
 
 ## Closing thought
 
-Prompt changes are software changes.
-
-They may be written in natural language, but they alter system behavior. They
-deserve the same basic lifecycle we expect from code: review, validation,
-versioning, release, and rollback.
-
-Promptory is my attempt to make that lifecycle lightweight enough for R&D work
-while still giving production systems a stable runtime contract.
+Prompt changes are software changes. They may be written in natural language,
+but they alter system behavior just as a code change does. Consequently, they
+deserve the same basic lifecycle we already trust for code: review, validation,
+versioning, release, and rollback. Promptory is my attempt to make that
+lifecycle lightweight enough to not get in the way of day-to-day research work,
+while still giving production systems the stable, predictable runtime contract
+they need.
