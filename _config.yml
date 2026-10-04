@@ -3,7 +3,7 @@ permalink: none
 domain: huascarsanchez.com
 highlighter: rouge
 
-rdiscount:
-  extensions:
-    - footnotes     # footnotes
-    - smart         # typographic substitutions with SmartyPants
+markdown: kramdown
+kramdown:
+  input: GFM
+  math_engine: mathjax
