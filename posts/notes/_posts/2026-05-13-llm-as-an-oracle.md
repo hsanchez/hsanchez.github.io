@@ -67,82 +67,54 @@ research:[^llm-as-family]
 - `LLM-as-a-Critic`
 - `LLM-as-a-Ranker`
 
-These patterns are often discussed as alternatives. They're better understood
-as tools with different operating assumptions, especially about what evidence
-is available. So the useful question isn't which pattern, or which judge model,
-is best. It's the one from the start: 
+These patterns are often discussed as alternatives. They're better understood as
+tools with different operating assumptions, especially about what evidence is
+available. Critics and rankers produce assessments rather than checks, so they
+sit on the judgment side; this post focuses on the Judge and Verifier. So the
+useful question isn't which pattern, or which judge model, is best. It's the one
+from the start: 
 
 > Does this task need judgment or verification?
 
 ## Judge and Verifier solve different problems
 
-The easiest way to understand the Oracle idea is to first separate the two
-evaluation strategies it routes between.
+The Oracle routes between two strategies, one for each evaluation mode.
 
 ### LLM-as-a-Judge
 
-An `LLM-as-a-Judge` performs holistic evaluation. It reads the task, candidate
-trajectory, and evaluation criteria, then emits a score or preference. This is
-the natural fit when the target quality is open-ended, subjective, or otherwise
-difficult to reduce to executable checks. [^judge]
-
-Typical Judge-friendly questions include:
+An `LLM-as-a-Judge` performs holistic evaluation. It reads the task, a candidate
+trajectory (the full solution attempt, not just the final answer), and the
+evaluation criteria, then emits a score or preference.[^judge] It's the natural
+fit for judgment tasks, such as:
 
 - Is this answer concise without omitting important details?
-- Does this explanation match the user’s level of expertise?
+- Does this explanation match the user's level of expertise?
 - Which recommendation is more useful under vague constraints?
 - Is the reasoning persuasive and coherent?
 
-The Judge pattern is valuable because many real tasks do not collapse cleanly
-into executable checks. _They require interpretation._
-
-In `llm-as-an-oracle`, the Judge strategy supports:
-
-- rubric-driven scoring
-- pointwise trajectory scoring
-- pairwise comparisons
-- order-swapped pairwise evaluation to reduce positional bias
-- aggregation across multiple criteria
-
-These details matter because a Judge is not merely "ask another model what it
-thinks." A useful Judge has structure around how scores are produced and how
-comparisons are stabilized.
-
-For example, a Judge can score each trajectory against several weighted criteria,
-then use pairwise comparisons only when two candidates are close. If the pairwise
-order is swapped and averaged, the system can reduce simple positional bias
-without pretending that the evaluator has become objective. [^judge]
+None of these collapse into executable checks. _They require interpretation._
+That doesn't make a Judge "ask another model what it thinks": in
+`llm-as-an-oracle`, it scores against weighted rubric criteria and swaps
+pairwise order to reduce positional bias.
 
 ### LLM-as-a-Verifier
 
-An `LLM-as-a-Verifier` is better suited to tasks where stronger evidence exists.
-It is appropriate when candidate trajectories can be evaluated against signals
-that are closer to correctness than preference.
-[^verifier]
-
-Typical Verifier-friendly tasks include:
+An `LLM-as-a-Verifier` evaluates trajectories against signals closer to
+correctness than preference.[^verifier] It's the natural fit for verification
+tasks, such as:
 
 - code generation with tests
 - question answering with reference answers
 - tool-use traces with expected outputs
 - structured reasoning tasks with decomposable criteria
-- tasks where execution evidence is available
 
-The Verifier strategy in this project is designed around:
+Rather than settle for a single coarse score, the Verifier tries to extract
+finer-grained signal: it decomposes criteria, repeats verification, and uses
+token log probabilities when the provider exposes them.
 
-- finer-grained score extraction
-- repeated verification
-- criteria decomposition
-- pairwise tournament-style ranking
-- support for logprob-aware scoring when the provider exposes token
-  probabilities
-
-That last point is important. A Verifier tries to squeeze more discriminative
-signal out of the evaluator than a single coarse score can provide.
-
-The Judge is asking which answer seems better under a rubric; the Verifier is
-asking which trajectory survives the strongest evidence-sensitive checks
-available. Related questions, but not the same one.
+The Judge asks which trajectory seems better under a rubric; the Verifier asks
+which survives the strongest evidence-sensitive checks available. Related
+questions, but not the same one.
 
 ## What the Oracle adds
 
@@ -155,30 +127,21 @@ task types:
 - a production system may need to evaluate recommendations, SQL, and tool calls
   within the same pipeline
 
-In those settings, asking the caller to manually select an evaluator every time
-creates friction and invites inconsistency.
+In those settings, asking the caller to pick an evaluator every time creates
+friction and invites inconsistency.
 
-The Oracle layer addresses that problem.
-
-Its job is to:
-
-1. inspect the task and trajectories
-2. extract signals about the task structure
-3. decide which evaluator is the better fit
-4. execute only that strategy
-5. return both the result and the routing explanation
-
-The Oracle is therefore not a third evaluator. It is a decision layer above the
-two evaluators.
+The Oracle removes that step. It inspects the task and its trajectories, picks
+the evaluator that fits better, runs only that one, and returns the result
+along with an explanation of the choice. It isn't a third evaluator; it sits
+above the two.
 
 ## Anatomy of the Oracle router
 
-The default router in `llm-as-an-oracle` is deterministic. It does not call an
-LLM to decide which evaluator to use. Instead, it extracts interpretable signals
-and applies a fixed chain of routing policies.
-
-That design choice is intentional. The system should make evaluator selection
-more legible, not less.
+The part of the Oracle that makes this choice is the router. The default router
+in `llm-as-an-oracle` is deterministic: it doesn't call an LLM to decide which
+evaluator to use. Instead, it extracts interpretable signals and applies a
+fixed chain of routing policies. That's deliberate: evaluator selection should
+become more legible, not less.
 
 <img src="/static/figs/llm-as-an-oracle.jpg" alt="LLM as an Oracle routing diagram" style="max-width:100%;height:auto;">
 
@@ -197,58 +160,35 @@ The current implementation uses features such as:
 - `output_available`
 - `prior_hardness`
 
-These features encode simple but meaningful intuitions.
-
-For example:
-
-- ground truth and test cases usually favor verification
-- execution output usually favors verification
-- open-ended language often favors judgment
-- a previously observed hard task may deserve a stronger verification path
-
 The goal is not to perfectly infer task type from text. The goal is to make the
 selection logic explicit enough to inspect, revise, and extend.
 
 ### Step 2: collect policy votes
 
-Signals are passed through a chain of policies. The default router uses policies
-that reason about:
-
-- prior hardness
-- available ground truth
-- keyword/domain cues
-- task difficulty
-- output availability
-- trajectory count
-
+Signals are passed through a chain of policies, roughly one per signal group.
 Each policy casts a weighted vote for either `Judge` or `Verifier`.
 
 Conceptually:
-
 ```text
-Ground truth present?        -> favor Verifier
-Execution output available?  -> favor Verifier
-Open-ended wording?          -> favor Judge
-Very low routing confidence? -> fall back to Judge
+Ground truth or test cases present?  -> favor Verifier
+Execution output available?          -> favor Verifier
+Previously observed as hard?         -> favor Verifier
+Open-ended wording?                  -> favor Judge
 ```
 
 The implementation is more nuanced than that sketch, but the spirit is the
-same. Evaluation mode is chosen by accumulating evidence.
+same: evaluation mode is chosen by accumulating evidence.
 
 ### Step 3: aggregate confidence
 
-The router aggregates weighted policy votes into a final confidence score. The
-winning strategy is selected only if its confidence is strong enough. Otherwise,
+The router aggregates the weighted votes into a final confidence score. The
+winning strategy is selected only if its confidence is strong enough; otherwise,
 the system falls back to the more general-purpose Judge path.
 
-This creates an important separation:
-
-- a strategy can be powerful
-- the router can still decide that the available evidence does not justify using
-  it for this particular task
-
-That is a better design than letting every downstream evaluator silently assume
-the task is well suited to its own strengths.
+This separates a strategy's power from its fit. A Verifier can be the stronger
+tool and still be the wrong one when the evidence for this task doesn't justify
+it. That's a better design than letting every downstream evaluator silently
+assume the task suits its own strengths.
 
 ### Step 4: expose the routing trace
 
@@ -260,9 +200,8 @@ The output of a routing decision includes:
 - every policy vote
 - a human-readable reasoning trace
 
-I care about this part the most, because evaluation pipelines already
-accumulate ambiguity. A score without a path to understanding how it was
-obtained is hard to debug. The Oracle makes one
+I care about this part the most, because evaluation pipelines already accumulate
+ambiguity, and a score you can't trace is hard to debug. The trace makes one
 critical source of ambiguity observable: why this evaluator was chosen in the
 first place.
 
