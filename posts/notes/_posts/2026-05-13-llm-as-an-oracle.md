@@ -4,70 +4,75 @@ title: LLM as an Oracle
 toc: true
 ---
 
-Most discussions of LLM evaluation ask which evaluator is best. Wrong first
-question. What actually matters is whether the task needs judgment or
-verification. A rubric is great for deciding if an explanation is clear or
-persuasive, but it's a weak substitute for test cases when you're evaluating
-code. Exact-match checks have the opposite problem: they fall apart the moment
-the output is qualitative.
+Task-specific LLM evaluation used to mean reference-based metrics and test
+suites, with human raters for anything open-ended. Then LLM-as-a-Judge made
+judgment cheap, and the conversation shifted to which judge model is best for a
+given task. That's the wrong first question. The first question should be
+whether the task needs _judgment_ or _verification_, two evaluation modes that
+rely on different kinds of evidence. Judgment fits tasks that are open-ended,
+subjective, or otherwise difficult to reduce to executable checks. It relies on
+rubrics, preferences, or expert opinion. Verification fits tasks that are backed
+by stronger evidence: ground truth, test cases, or expected behavioral
+properties like performance.
 
-That split is what led to
+Get this wrong and the evaluation fails in both directions. A rubric can tell
+you whether an explanation is clear or persuasive, but it's a weak substitute
+for test cases when you're evaluating code. Exact-match checks against ground
+truth fail the other way: they fall apart the moment the output is qualitative.
+
+Avoiding that mismatch is what led to
 [`llm-as-an-oracle`](https://github.com/hsanchez/llm-as-an-oracle). An Oracle
-here isn't an all-knowing model. It's an adaptive layer that routes each task to
-either an `LLM-as-a-Judge` or an `LLM-as-a-Verifier`, depending on which kind of
-evaluation the task actually needs.
+here isn't an all-knowing model. It's
+an adaptive decision layer that determines whether a task needs judgment or
+verification, then routes it to an _LLM-as-a-Judge_ or an _LLM-as-a-Verifier_.
 
 The central claim is simple:
 
 > Evaluation should be routed to the strategy that best matches the structure
 > of the task.
 
-Here is why that matters in practice. Later in this post, three agents fix the
-same N+1 query bug. Two of them change the query shape. The third wraps the
+That sounds obvious, but it's easy to violate in practice. As soon as a
+benchmark, agent workflow, or production pipeline standardizes on a single
+evaluator, it treats fundamentally different tasks as though they required the
+same kind of evidence. Finding the best judge model doesn't fix that; it just
+decides which evaluator gets applied to everything.
+
+Here's what that looks like in practice. Later in this post, three agents fix
+the same N+1 query bug. Two of them change the query shape. The third wraps the
 buggy call in an `lru_cache` and looks correct — familiar technique, concrete
 code, a plausible performance story. A Judge scoring on presentation alone can
 be fooled by it. A Verifier running the test suite cannot. That gap between
-looking right and being right is the reason this router exists.
-
-That sounds obvious once stated plainly, but it is easy to violate in practice.
-As soon as a benchmark, agent workflow, or production evaluation pipeline
-standardizes on a single evaluator, it begins to treat fundamentally different
-tasks as though they required the same kind of evidence.
+looking right and being right is what the Oracle is built to catch.
 
 ## The evaluation problem
 
-Human evaluation remains the reference point for many LLM systems. It is often
-the most flexible form of assessment because humans can interpret incomplete
-instructions, account for context, distinguish severity from style, and notice
-when a candidate answer is technically correct but pragmatically poor. It also
-scales badly, which created demand for automated evaluation. Traditional
-metrics can be useful, but they are narrow:
+Human evaluation remains the reference point for many LLM systems. Humans can
+interpret incomplete instructions, account for context, distinguish severity
+from style, and notice when an answer is technically correct but pragmatically
+poor. But human evaluation scales badly, which created demand for automated
+alternatives. Traditional metrics help, but each covers a narrow slice:
 
-- exact match is valuable when the answer space is constrained
-- unit tests are valuable when executable behavior matters
-- overlap metrics can be useful in narrow summarization settings
-- preference labels can summarize subjective quality
+- exact match works when the answer space is constrained
+- unit tests work when executable behavior matters
+- overlap metrics work in narrow summarization settings
 
-None of these solves the broader evaluation problem on its own.
+Unfortunately, none of these solves the broader evaluation problem on its own.
 
-The rise of capable instruction-following models created a new option:
-LLM-based evaluators. This has produced a family of `LLM-as-*` patterns:
+Capable instruction-following models added a new option: LLM-based evaluators.
+They've produced a family of `LLM-as-*` patterns, each with its own line of
+research:[^llm-as-family]
 
 - `LLM-as-a-Judge`
 - `LLM-as-a-Verifier`
 - `LLM-as-a-Critic`
 - `LLM-as-a-Ranker`
 
-These ideas have appeared across several lines of work on model-based judging,
-verification, critique generation, and ranking. [^llm-as-family]
+These patterns are often discussed as alternatives. They're better understood
+as tools with different operating assumptions, especially about what evidence
+is available. So the useful question isn't which pattern, or which judge model,
+is best. It's the one from the start: 
 
-These patterns are often discussed as alternatives. I think they are better
-understood as evaluation modes with different operating assumptions.
-
-The question is not merely whether LLM evaluators are useful. The more precise
-question is:
-
-> Which evaluator is appropriate for this task, given the evidence available?
+> Does this task need judgment or verification?
 
 ## Judge and Verifier solve different problems
 
