@@ -85,16 +85,19 @@ we ask:
 > Does the value contributed by A change when B is present?
 
 Dropping $$Q$$ and writing $$X$$ for the existing group, we compare:
+
 $$
 benefit(A,X)
 $$
 
 with:
+
 $$
 benefit(A,X\cup\{B\}).
 $$
 
 The difference between those quantities gives us what I call an _interaction effect_:
+
 $$
 \Delta(A,B,X)=|benefit(A,X)-benefit(A,X\cup\{B\})|.
 $$
@@ -370,7 +373,7 @@ different they are. We also need to ask:
 
 > What happens to their contributions when they work together?
 
-That's what we mean by LLM Chemistry.
+That's what I mean by LLM Chemistry.
 
 ## Footnotes
 
