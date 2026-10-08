@@ -104,7 +104,13 @@ $$
 
 The full chemistry definition takes the maximum of this interaction effect over
 possible surrounding configurations $$X$$, normalized by the cost of the
-resulting configuration.
+resulting configuration:
+
+$$
+chem_Q(A,B,S)=\max_{X\subseteq S\setminus\{A,B\}}\frac{\Delta(A,B,X)}{cost_Q(X\cup\{A,B\})},
+$$
+
+where $$S$$ is the set of candidate models. This is Equation 2 in the paper.
 
 The equation matters, but the intuition is simpler:
 
