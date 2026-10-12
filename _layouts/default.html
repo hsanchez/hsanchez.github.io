@@ -109,6 +109,7 @@
           <ol></ol>
         </nav>
         {% endif %} {{ content }}
+        {% if page.cite %}{% include cite.html %}{% endif %}
       </div>
 
       {% include footer.html %}

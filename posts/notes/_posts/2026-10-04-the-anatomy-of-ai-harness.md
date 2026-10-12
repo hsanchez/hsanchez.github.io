@@ -3,6 +3,8 @@ layout: default
 title: The Anatomy of an AI Harness
 mermaid: true
 toc: true
+cite: true
+cite_key: aiharness
 ---
 
 Over the past few months, I have built several AI harnesses to ensure agent

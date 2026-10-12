@@ -720,3 +720,27 @@ body .input {
 .shifted {
 	margin-left: -60pt;
 }
+
+.cite-box {
+	border-top: 1px dotted currentColor;
+	margin: 3rem 0 2rem 0;
+	padding-top: 1rem;
+}
+
+.cite-box h2:before {
+	content: "# ";
+}
+
+.cite-box pre {
+	margin: 1rem 0 0 0;
+}
+
+.cite-copy {
+	font-family: Courier, monospace;
+	font-size: 1.4rem;
+	color: inherit;
+	background: transparent;
+	border: 1px solid currentColor;
+	padding: 0.2rem 1rem;
+	cursor: pointer;
+}

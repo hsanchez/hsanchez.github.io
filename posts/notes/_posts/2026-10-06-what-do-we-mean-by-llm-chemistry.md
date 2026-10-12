@@ -4,6 +4,8 @@ title: What Do We Mean by LLM Chemistry?
 math: true
 mermaid: true
 toc: true
+cite: true
+cite_key: llmchemistry
 ---
 
 ## Why picking different models isn't the same as picking models that work well together
