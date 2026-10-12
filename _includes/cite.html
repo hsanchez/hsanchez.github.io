@@ -7,13 +7,14 @@
   {% assign title_words = page.title | downcase | replace: "?", "" | replace: ",", "" | split: " " %}
   {% for w in title_words %}{% unless stop contains w %}{% assign cite_slug = w %}{% break %}{% endunless %}{% endfor %}
 {% endunless %}
-{% capture bibtex %}@misc{sanchez{{ cite_year }}{{ cite_slug }},
-  title = {{ "{" }}{{ page.title }}{{ "}" }},
-  author = {Sanchez, Huascar},
-  year = {{ "{" }}{{ cite_year }}{{ "}" }},
+{% capture bibtex %}@misc@LB@sanchez{{ cite_year }}{{ cite_slug }},
+  title = @LB@{{ page.title }}@RB@,
+  author = @LB@Sanchez, Huascar@RB@,
+  year = @LB@{{ cite_year }}@RB@,
   month = {{ cite_month }},
-  url = {{ "{" }}https://{{ site.domain }}{{ page.url }}{{ "}" }}
-}{% endcapture %}
+  url = @LB@https://{{ site.domain }}{{ page.url }}@RB@
+@RB@{% endcapture %}
+{% assign bibtex = bibtex | replace: "@LB@", "{" | replace: "@RB@", "}" %}
 <section class="cite-box">
   <h2>Cite this article</h2>
   <button class="cite-copy" type="button">Copy BibTeX</button>
