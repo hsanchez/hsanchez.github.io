@@ -1,0 +1,42 @@
+{% assign cite_year = page.date | date: "%Y" %}
+{% assign cite_month = page.date | date: "%b" | downcase %}
+{% assign cite_slug = page.cite_key %}
+{% unless cite_slug %}
+  {% assign stop = "the,a,an,what,why,how,do,we,mean,by,of,to,on,in,for" | split: "," %}
+  {% assign cite_slug = "" %}
+  {% assign title_words = page.title | downcase | replace: "?", "" | replace: ",", "" | split: " " %}
+  {% for w in title_words %}{% unless stop contains w %}{% assign cite_slug = w %}{% break %}{% endunless %}{% endfor %}
+{% endunless %}
+{% capture bibtex %}@misc{sanchez{{ cite_year }}{{ cite_slug }},
+  title = {{ "{" }}{{ page.title }}{{ "}" }},
+  author = {Sanchez, Huascar},
+  year = {{ "{" }}{{ cite_year }}{{ "}" }},
+  month = {{ cite_month }},
+  url = {{ "{" }}https://{{ site.domain }}{{ page.url }}{{ "}" }}
+}{% endcapture %}
+<section class="cite-box">
+  <h2>Cite this article</h2>
+  <button class="cite-copy" type="button">Copy BibTeX</button>
+  <pre><code>{{ bibtex | escape }}</code></pre>
+</section>
+<script type="text/javascript">
+  (function () {
+    var button = document.querySelector(".cite-copy");
+    var code = document.querySelector(".cite-box code");
+    if (!button || !code) {
+      return;
+    }
+    button.addEventListener("click", function () {
+      var text = code.textContent;
+      var done = function () {
+        button.innerHTML = "Copied";
+        setTimeout(function () {
+          button.innerHTML = "Copy BibTeX";
+        }, 1500);
+      };
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(done);
+      }
+    });
+  })();
+</script>
