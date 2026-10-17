@@ -1,5 +1,11 @@
 # Huascar Sanchez's website
 
+## Post dates
+
+Blog posts display their publication date beneath the title automatically.
+Jekyll uses the date in the `YYYY-MM-DD-title.md` filename unless the post's
+front matter supplies a `date` override. Ordinary pages do not show a post date.
+
 ## Math equations
 
 The site uses Kramdown to process LaTeX math notation and MathJax to render
@@ -67,3 +73,45 @@ If JavaScript is disabled, the CDN is unavailable, or the diagram has invalid
 syntax, its source remains visible. No exported image or Jekyll plugin is needed.
 
 Reference: [Mermaid diagram syntax](https://mermaid.js.org/intro/syntax-reference.html).
+
+## Algorithms
+
+Add `algorithms: true` to a post or page's existing front matter:
+
+```yaml
+algorithms: true
+```
+
+Write LaTeX-style algorithm source directly in a fenced `algorithm` block:
+
+````markdown
+```algorithm
+\begin{algorithm}
+\caption{Sum a sequence}
+\begin{algorithmic}
+\REQUIRE A sequence $x_1, \ldots, x_n$
+\STATE $s \gets 0$
+\FOR{$i \gets 1$ \TO $n$}
+    \STATE $s \gets s + x_i$
+\ENDFOR
+\RETURN $s$
+\end{algorithmic}
+\end{algorithm}
+```
+````
+
+The website renders captions, line numbers, indentation, and math using
+pseudocode.js and KaTeX. Multiple algorithm blocks are numbered in post order.
+Use uppercase commands such as `\STATE`, `\IF`/`\ENDIF`, `\WHILE`/`\ENDWHILE`,
+and `\PROCEDURE`/`\ENDPROCEDURE`. Only the library's LaTeX subset is supported;
+this does not compile arbitrary LaTeX packages such as `algorithm2e`.
+
+Algorithms work without `math: true`; add that flag when the surrounding prose
+also contains Kramdown math. The algorithm renderer uses KaTeX independently of
+the site's MathJax renderer. Colors follow the site's light/dark theme.
+
+Dependencies load from jsDelivr only on pages with `algorithms: true`. Source
+remains visible if rendering fails or JavaScript is disabled. Zed's Markdown
+preview shows the source block; formatted algorithm rendering is on the website.
+
+Reference: [pseudocode.js syntax](https://github.com/SaswatPadhi/pseudocode.js#grammar).

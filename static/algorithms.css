@@ -1,0 +1,66 @@
+.post-algorithm {
+  margin: 2rem 0;
+  padding: 1rem 1.5rem;
+  overflow-x: auto;
+  color: inherit;
+  background: transparent;
+}
+
+.post-algorithm .ps-root {
+  font-family: KaTeX_Main, "Times New Roman", serif;
+  font-size: 1.6rem;
+}
+
+.post-algorithm .ps-algorithm {
+  margin: 0.5em 0;
+  border-top: 2px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  padding: 0.4em 0;
+}
+
+.post-algorithm .ps-line {
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+.post-algorithm .ps-algorithm.with-caption > .ps-line:first-child {
+  border-bottom: 1px solid currentColor;
+  margin-bottom: 0.4em;
+  padding-bottom: 0.4em;
+}
+
+.post-algorithm .ps-keyword {
+  font-weight: bold;
+}
+
+.post-algorithm .ps-funcname {
+  font-variant: small-caps;
+}
+
+.post-algorithm .ps-comment {
+  font-style: italic;
+}
+
+.post-algorithm .katex {
+  font-size: 1em;
+  text-indent: 0;
+}
+
+.post-algorithm .ps-linenum {
+  display: inline-block;
+  position: relative;
+  width: 1.6em;
+  padding-right: 0.3em;
+  text-align: right;
+  font-size: 0.8em;
+  opacity: 0.65;
+}
+
+.post-algorithm .with-linenum .ps-code {
+  text-indent: -1.6em;
+}
+
+.post-algorithm .with-linenum .ps-code > span {
+  text-indent: 0;
+}
