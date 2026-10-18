@@ -165,7 +165,9 @@ C_r=\bigvee_{i}\bigwedge_{j}\ell_{ij},
 $$
 
 where each literal $$\ell_{ij}$$ is a predicate or its negation. The safe condition
-$$S$$ has the same shape, and the exclusions become a global constraint
+$$S$$ has the same shape. The exclusions form a set $$E$$ of groups of predicates,
+and they become a global constraint: no two predicates $$p,q$$ in the same group
+$$e$$ can both be true,
 
 $$
 \Gamma=\bigwedge_{\{p,q\}\subseteq e,\ e\in E}\neg(p\wedge q).
@@ -194,17 +196,20 @@ inspectable and keeps it confined to one place.
 ## Three faults, three satisfiability questions
 
 Once the policy is a Boolean model, each fault becomes a question of the form
-_does an assignment exist such that...?_
+_does an assignment exist such that...?_ Below, $$x$$ ranges over assignments of
+true or false to the predicates in $$P$$, which stand for the possible requests as
+the model sees them, and $$C(x)$$ is the value of a condition $$C$$ under $$x$$.
 
 **Over-strict.** A blocking rule $$r$$ is over-strict if there is some legitimate
-request that it blocks:
+request that it blocks. This is the safe-and-blocked question from earlier, asked
+about one rule at a time:
 
 $$
 \exists x:\ \Gamma(x)\wedge S(x)\wedge C_r(x).
 $$
 
-**Contradiction.** Two rules with different decisions contradict each other if some
-request satisfies both conditions:
+**Contradiction.** Two rules $$r$$ and $$r'$$ with different decisions contradict
+each other if some request satisfies both conditions:
 
 $$
 \exists x:\ \Gamma(x)\wedge C_r(x)\wedge C_{r'}(x)\qquad\text{for } d_r\neq d_{r'}.
@@ -356,7 +361,9 @@ Here is the over-strict finding, trimmed from the real output:
 }
 ```
 
-And the whole symbolic half, which is the same for both kinds of guardrail:
+And the whole symbolic half, which is the same for both kinds of guardrail. Here
+`Solve`($$\varphi$$) returns a satisfying assignment of $$\varphi$$, or $$\bot$$ if
+none exists:
 
 ```algorithm
 \begin{algorithm}
