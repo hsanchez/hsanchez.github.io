@@ -47,7 +47,7 @@ and **AI red teaming** to ensure they are reliable and robust in high-stakes
 domains — and **social-cyber security** to protect the integrity of open-source
 software ecosystems.-->
 
-While at SRI, I established and led DARPA SocialCyber research as PI and
+While at SRI, I established and led SRI's DARPA SocialCyber effort as PI and
 contributed to several other DARPA-funded efforts, including DARPA ARCOS and
 DARPA MUSE. I hold a PhD in Computer Science from [UC Santa Cruz
 (2015)](http://www.ucsc.edu/) and an MS in Software Engineering from [San Jose
