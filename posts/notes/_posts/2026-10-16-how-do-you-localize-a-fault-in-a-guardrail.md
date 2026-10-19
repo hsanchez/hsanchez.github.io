@@ -328,10 +328,9 @@ facts were inferred or executed.
 ## Where Unmask fits
 
 I built a tool called [Unmask](https://github.com/hsanchez/unmask) to try this
-out. The code is not public yet, but I'm happy to share it on request. The
-findings and JSON below are real output from it. (The tiny model above is
-hand-written, but I ran it through the same analyzer.) It is the means here, not
-the point; the point is that this division of labor works for the problem.
+out. The findings and JSON below are real output from it. (The tiny model above
+is hand-written, but I ran it through the same analyzer.) It is the means here,
+not the point; the point is that this division of labor works for the problem.
 
 On the example policy that ships with Unmask, scanning the regex manifest against six
 labeled cases returns three findings, one per fault class:
