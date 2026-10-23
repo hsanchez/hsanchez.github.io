@@ -335,7 +335,7 @@ not the point; the point is that this division of labor works for the problem.
 On the example policy that ships with Unmask, scanning the regex manifest against six
 labeled cases returns three findings, one per fault class:
 
-- `block-investment-term` blocks "Anthropic will invest up to $2 billion." The
+- `block-investment-term` blocks "Google will invest up to $2 billion." The
   pattern matched `invest` at characters 15 to 21, while the label says the output
   should be allowed.
 - `allow-how-to-education` and `block-actionable-trading` apply to the same
