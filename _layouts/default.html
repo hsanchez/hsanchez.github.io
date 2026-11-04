@@ -98,7 +98,7 @@
         {% endif %}
 
         <h1 class="title">{{ page.title }}</h1>
-        {% if page.collection == 'posts' %}
+        {% if page.collection == 'posts' and page.hide_date != true %}
         <p class="post-date">
           Published <time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: '%B %-d, %Y' }}</time>
         </p>
