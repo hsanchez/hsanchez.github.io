@@ -18,12 +18,15 @@ pretty much says what an agent may and may not do.
 And like any program, it has bugs. The symptoms are familiar:
 
 - It blocks something perfectly harmless.
-- Two rules disagree about the same request.
+- Two rules conflict: they apply to the same request and demand opposite decisions.
 - A rule can be read two ways, and the two readings behave differently.
 
 When code misbehaves, we ask a _fault localization_ question: which statement is
 responsible? That question has decades of tooling behind it. For a guardrail, we
 mostly have a shrug and a pile of test prompts, friendly and adversarial alike.
+
+Here, localization means finding a defect and pointing to the rules involved.
+That gives a person somewhere to start.
 
 I'll argue that this problem is a clean example of something that needs both a
 language model and a solver, each doing a different job. This post is about that
@@ -73,9 +76,9 @@ what. Side by side:
 
 | | Neural half | Symbolic half |
 | --- | --- | --- |
-| Works on | Prose: rules, intent, examples | Logic: each rule as an AND/OR condition over yes/no predicates |
+| Works on | Prose: rules, intent, examples | Logic: each rule as a propositional formula (an AND/OR condition over yes/no predicates) |
 | Job | Read and interpret; propose readings | Decide satisfiability; return a counterexample |
-| Strength | Handles language: "substantial," "personalized" | Sound and complete relative to the model: if a fault exists in it, the solver finds it |
+| Strength | Handles language: "substantial," "personalized" | Sound and complete with respect to the encoding: every reported fault is real in it, and if a fault exists in it, the solver finds it |
 | Not trusted for | Exactness, or giving the same answer twice | Anything outside the facts it was given |
 
 The one rule that holds the design together is a restriction on the neural half:
@@ -83,10 +86,10 @@ The one rule that holds the design together is a restriction on the neural half:
 > The language model proposes an interpretation. It never issues the verdict.
 
 The language model does not say "this rule is over-strict." It supplies a
-Boolean model of the policy, and a decision procedure it does not control turns that
-model into a conclusion. For example, that procedure can ask whether any
+propositional encoding of the policy, and a decision procedure it does not control
+turns that encoding into a conclusion. For example, that procedure can ask whether any
 request $$x$$ is both safe and blocked: $$\mathrm{safe}(x) \wedge
-\mathrm{blocked}(x)$$. The Boolean model is the handoff, and everything else in
+\mathrm{blocked}(x)$$. The propositional encoding is the handoff, and everything else in
 this post is about how to make it narrow enough to inspect.
 
 Here is what it looks like end to end:
@@ -94,12 +97,12 @@ Here is what it looks like end to end:
 ```mermaid
 flowchart LR
     accTitle: Neuro-symbolic fault localization
-    accDescr: A guardrail is read by a neural component that produces a Boolean model. That model is the handoff. A symbolic component then answers three satisfiability questions and returns findings with counterexamples.
+    accDescr: A guardrail is read by a neural component that produces a propositional encoding. That encoding is the handoff. A symbolic component then answers three satisfiability questions and returns findings with counterexamples.
     G["Guardrail<br/>prose or regex"] --> N
     subgraph NEURAL["Neural: interpret"]
         N["Extract predicates,<br/>rules, intent, readings"]
     end
-    N --> M["Boolean model<br/>(the handoff)"]
+    N --> M["Propositional encoding<br/>(the handoff)"]
     M --> Z
     subgraph SYMBOLIC["Symbolic: decide"]
         Z["Three satisfiability<br/>questions"]
@@ -123,7 +126,7 @@ Three kinds of fault hide in there.
 neutral reporting about someone else's action, and the policy's own intent says it
 should be allowed. The rule is broader than the policy it serves.
 
-**Contradiction.** Rule 2 allows "how to" education and rule 3 blocks instructions
+**Conflict.** Rule 2 allows "how to" education and rule 3 blocks instructions
 to trade. For a request like "explain how to trade shares," both apply, and they
 demand opposite outcomes. Nothing in the policy says which wins.
 
@@ -131,11 +134,12 @@ demand opposite outcomes. Nothing in the policy says which wins.
 either group, or only people who are both? The two readings handle a 30-year-old
 first-time investor differently.
 
-These are not the same kind of problem. Over-strictness is a mismatch between a
-rule and the intent behind it. Contradiction is a conflict between two rules.
-Ambiguity is a conflict between two readings of one rule. Localizing each one
-takes a different approach, and that difference shapes what the neural half must
-produce.
+These are different problems. An over-strict rule blocks something the policy
+was meant to allow. Conflicting rules apply to the same request and demand opposite
+decisions, with no way to choose between them. Whether that also makes them
+logically inconsistent depends on how their effects are encoded. Ambiguity means
+two readings of one rule behave differently. Each problem needs a different check,
+and that shapes what the neural half must produce.
 
 ## The handoff: a model a human can audit
 
@@ -144,7 +148,7 @@ where the neural half's output turns into something the symbolic half trusts.
 
 I want that object to be narrow, and I want a person to be able to read it. So
 the language model reads the rules, the system prompt, and any labeled examples,
-and returns a small Boolean model:
+and returns a small propositional encoding of the policy:
 
 - **Predicates**: named yes/no facts about a request, each with a precise
   description, such as `recommends_transaction` or `is_neutral_report`.
@@ -154,7 +158,7 @@ and returns a small Boolean model:
 - **A safe condition**: the set of requests that are legitimate, described
   _independently_ of whether any written rule blocks them.
 - **Exclusions**: groups of mutually exclusive predicates, of which at most one can
-  be true.
+  be true. These are domain constraints: they rule out combinations that cannot occur.
 - **Ambiguities**: for each unclear rule, two distinct, plausible formalizations.
 
 In symbols, with predicates $$P=\{p_1,\dots,p_n\}$$, each rule $$r$$ has a decision
@@ -166,7 +170,7 @@ $$
 
 where each literal $$\ell_{ij}$$ is a predicate or its negation. The safe condition
 $$S$$ has the same shape. The exclusions form a set $$E$$ of groups of predicates,
-and they become a global constraint: no two predicates $$p,q$$ in the same group
+and they become a global at-most-one constraint: no two distinct predicates $$p,q$$ in the same group
 $$e$$ can both be true,
 
 $$
@@ -181,7 +185,7 @@ the language model mistranslates a rule, the mistake is visible as a predicate y
 disagree with, not buried in a score.
 
 **It is shaped by the questions.** The safe condition and the paired readings are in
-the Boolean model because the symbolic half needs them to ask over-strictness and ambiguity
+the encoding because the symbolic half needs them to ask over-strictness and ambiguity
 questions. The neural half is told what the symbolic half will ask. That is the
 reverse of the usual "extract everything and see."
 
@@ -195,28 +199,30 @@ inspectable and keeps it confined to one place.
 
 ## Three faults, three satisfiability questions
 
-Once the policy is a Boolean model, each fault becomes a question of the form
+Once the policy is a propositional encoding, each fault becomes a question of the form
 _does an assignment exist such that...?_ Below, $$x$$ ranges over assignments of
 true or false to the predicates in $$P$$, which stand for the possible requests as
-the model sees them, and $$C(x)$$ is the value of a condition $$C$$ under $$x$$.
+the encoding sees them, and $$C(x)$$ is the value of a condition $$C$$ under $$x$$.
 
 **Over-strict.** A blocking rule $$r$$ is over-strict if there is some legitimate
 request that it blocks. This is the safe-and-blocked question from earlier, asked
-about one rule at a time:
+about one rule at a time. Equivalently, it is the negation of the property "no
+legitimate request is blocked by $$r$$":
 
 $$
 \exists x:\ \Gamma(x)\wedge S(x)\wedge C_r(x).
 $$
 
-**Contradiction.** Two rules $$r$$ and $$r'$$ with different decisions contradict
-each other if some request satisfies both conditions:
+**Conflict.** Two rules $$r$$ and $$r'$$ with different decisions conflict
+if some request satisfies both conditions:
 
 $$
 \exists x:\ \Gamma(x)\wedge C_r(x)\wedge C_{r'}(x)\qquad\text{for } d_r\neq d_{r'}.
 $$
 
-**Ambiguity.** Suppose a rule has two readings $$A$$ and $$B$$ with conditions
-$$C_A,C_B$$ and decisions $$d_A,d_B$$. The readings diverge on a request when
+**Ambiguity.** Suppose a rule has two candidate formalizations, which I call
+readings, $$A$$ and $$B$$, with conditions $$C_A,C_B$$ and decisions $$d_A,d_B$$.
+The readings diverge on a request when $$\Gamma\wedge\Delta$$ is satisfiable, where
 
 $$
 \Delta=\begin{cases}
@@ -225,19 +231,45 @@ C_A\vee C_B & \text{if } d_A\neq d_B,
 \end{cases}
 $$
 
-is satisfiable. The case split is worth a moment. If both readings reach the same
+The case split is worth a moment. If both readings reach the same
 decision, they disagree exactly when one applies and the other does not, which is
 an exclusive-or. Asking whether it is satisfiable is an equivalence check on the
-two formalizations. If they reach different decisions, then any request that either
-reading covers is already a disagreement: if both apply they conflict, and if only
-one applies, the other leaves the request undecided.
+two formalizations, modulo $$\Gamma$$. If they reach different decisions, then any
+request that either reading covers is already a disagreement: if both apply they
+conflict, and if only one applies, the other reading does not cover the request.
+Both branches assume the policy has no default decision, so a request that a
+reading does not cover counts as undecided, a distinct outcome. If the policy has a
+default $$d_0$$ (say, allow), the case split is not enough. Two readings that both
+say allow, under a default of allow, can have different conditions and still
+decide every request the same way, so the exclusive-or would report a divergence
+that has no effect. The general form defines each reading's decision function
+
+$$
+f_A(x)=\begin{cases}d_A & C_A(x),\\ d_0 & \neg C_A(x),\end{cases}
+\qquad
+f_B(x)=\begin{cases}d_B & C_B(x),\\ d_0 & \neg C_B(x),\end{cases}
+$$
+
+and asks whether $$\Gamma\wedge(f_A\neq f_B)$$ is satisfiable. This compares the two
+readings of the rule in isolation. In a full policy, other rules and the policy's
+combining strategy (XACML specifies several) can mask a difference between them,
+so a divergence here is a divergence of the rule, not necessarily of the policy.
 
 In each case the solver answers SAT or UNSAT. If the formula is UNSAT, no request
-can trigger that fault, at least within the extracted Boolean model. If it is
+can trigger that fault, at least within the extracted encoding. If it is
 SAT, the solver returns a satisfying assignment, which we call a **witness**: a
-concrete class of requests that demonstrates the fault. The witness becomes the
-counterexample in the finding, which is why a finding is evidence and not an
-opinion.
+concrete class of requests that demonstrates the fault. For over-strictness the
+witness is a counterexample to the property "no legitimate request is blocked";
+for a conflict it is a witness of overlap. Either way it goes into the finding,
+which is why a finding is evidence and not an opinion.
+
+One caution: the witness is an assignment in the encoding. If the encoding is
+missing a constraint, no real request may realize that assignment, the same way an
+abstract counterexample in verification can be spurious. Reading the witness as a
+sentence, as I do below, may help reveal an unrealizable assignment, but informal
+inspection does not establish that a witness is real. Counterexample-guided
+abstraction refinement checks this mechanically and refines the abstraction; this
+post's pipeline does not do that.
 
 Here is a tiny model, loosely based on rules 1 and 2 above. I wrote it by hand,
 the way an extractor would return it, with two rules and one exclusion:
@@ -251,8 +283,9 @@ the way an extractor would return it, with two rules and one exclusion:
 Rule 1 blocks when `mentions_invest_word` holds. Rule 2 allows when
 `is_neutral_report` holds and `recommends_transaction` does not. The exclusion says
 a neutral report cannot also be a recommendation. The safe condition is simply
-`is_neutral_report`. Running the analyzer on this model, the solver returns the
-same witness for both questions:
+`is_neutral_report`. Running the analyzer on this encoding, the solver returns the
+same witness for both questions (the tool labels the conflict finding
+`contradiction`; I say "conflict" in prose):
 
 ```text
 contradiction (rule:1, rule:2)  {mentions_invest_word: True,
@@ -273,7 +306,7 @@ bug. The solver found it.
 The three questions are not symmetric in what they demand from the neural half, and
 that asymmetry is where the interesting design lives.
 
-Contradiction needs only the rules. You can find two conflicting rules without
+Conflict detection needs only the rules. You can find two conflicting rules without
 knowing anything about what the policy is _for_.
 
 Over-strictness is different. To say a rule blocks something it should not, you
@@ -303,7 +336,7 @@ execution instead of from a language model:
   against the text, in an isolated worker process with a match timeout.
 - `incident_expected_allow` is pinned by the label on the example.
 
-Those pinned assignments are added to the solver (I use Z3, an SMT solver) as
+Those pinned assignments are added to the solver (I use Z3, an SMT solver, here purely as a SAT engine, since everything is propositional) as
 unit constraints, and then the very same analyzer runs. The same finding types
 come out, now carrying exact match spans as evidence.
 
@@ -338,8 +371,8 @@ labeled cases returns three findings, one per fault class:
 - `block-investment-term` blocks "Google will invest up to $2 billion." The
   pattern matched `invest` at characters 15 to 21, while the label says the output
   should be allowed.
-- `allow-how-to-education` and `block-actionable-trading` apply to the same
-  "how to trade" text and demand opposite outcomes.
+- `allow-how-to-education` and `block-actionable-trading` conflict: they apply to
+  the same "how to trade" text and demand opposite outcomes.
 - `first-time-investor-scope` has two supplied readings, "either protected
   audience" and "both protected audiences," that diverge on a first-time-investor
   example.
@@ -361,27 +394,28 @@ Here is the over-strict finding, trimmed from the real output:
 ```
 
 And the whole symbolic half, which is the same for both kinds of guardrail. Here
+$$\Gamma'$$ is $$\Gamma$$ conjoined with the pinned assignment, if there is one, and
 `Solve`($$\varphi$$) returns a satisfying assignment of $$\varphi$$, or $$\bot$$ if
 none exists:
 
 ```algorithm
 \begin{algorithm}
-\caption{Localize faults in a Boolean model of a guardrail}
+\caption{Detect and attribute faults in a propositional encoding of a guardrail}
 \begin{algorithmic}
 \REQUIRE Extracted by the neural half for prose, or built from the manifest and labels for regex: rules $R$ with decisions $d_r$ and conditions $C_r$; safe condition $S$; exclusion groups $E$; ambiguities $\mathcal{A}$. Optional pinned assignment $\alpha$ (from regex execution)
 \ENSURE Findings, each with a witness assignment
-\STATE $\Gamma \gets \bigwedge_{e \in E,\ \{p,q\} \subseteq e} \neg(p \wedge q) \ \wedge\ \alpha$
+\STATE $\Gamma' \gets \bigwedge_{e \in E,\ \{p,q\} \subseteq e} \neg(p \wedge q) \ \wedge\ \alpha$
 \STATE $F \gets \emptyset$
 \FORALL{$r \in R$ with $d_r = \mathrm{block}$}
-    \STATE $w \gets$ \CALL{Solve}{$\Gamma \wedge S \wedge C_r$}
+    \STATE $w \gets$ \CALL{Solve}{$\Gamma' \wedge S \wedge C_r$}
     \IF{$w \neq \bot$}
         \STATE $F \gets F \cup \{(\mathrm{over\_strict}, r, w)\}$
     \ENDIF
 \ENDFOR
 \FORALL{unordered pairs $\{r, r'\} \subseteq R$ with $d_r \neq d_{r'}$}
-    \STATE $w \gets$ \CALL{Solve}{$\Gamma \wedge C_r \wedge C_{r'}$}
+    \STATE $w \gets$ \CALL{Solve}{$\Gamma' \wedge C_r \wedge C_{r'}$}
     \IF{$w \neq \bot$}
-        \STATE $F \gets F \cup \{(\mathrm{contradiction}, \{r, r'\}, w)\}$
+        \STATE $F \gets F \cup \{(\mathrm{conflict}, \{r, r'\}, w)\}$
     \ENDIF
 \ENDFOR
 \FORALL{$a \in \mathcal{A}$ with readings $(C_A, d_A)$ and $(C_B, d_B)$}
@@ -390,7 +424,7 @@ none exists:
     \ELSE
         \STATE $\delta \gets C_A \vee C_B$
     \ENDIF
-    \STATE $w \gets$ \CALL{Solve}{$\Gamma \wedge \delta$}
+    \STATE $w \gets$ \CALL{Solve}{$\Gamma' \wedge \delta$}
     \IF{$w \neq \bot$}
         \STATE $F \gets F \cup \{(\mathrm{ambiguity}, a, w)\}$
     \ENDIF
@@ -413,7 +447,7 @@ Here is the comparison I would have wanted before starting.
 | --- | --- | --- | --- |
 | Reads a prose policy | Yes | No | Yes, via the neural half |
 | Gives a counterexample | Not reliably | Yes, if the policy is already logic | Yes |
-| Complete over what it considers | No | Yes | Yes, over the extracted predicates |
+| Complete over what it considers | No | Yes | Yes, over the extracted predicates (relative to the encoding, not the prose) |
 | Result can be checked | Hard | Yes | Yes; the model is readable |
 | Typical failure | Plausible and wrong | Needs a spec you may not have | A mistranslation, proved faithfully |
 
@@ -432,7 +466,7 @@ cannot be run on some inputs, and it reports that instead of guessing:
 
 - Without an expected outcome or a policy reason for an example, it will not
   claim a blocking match is over-strict.
-- Contradiction analysis needs both an allow rule and a block rule.
+- Conflict analysis needs both an allow rule and a block rule.
 - Ambiguity needs two explicit policy readings, because regex execution is
   deterministic and cannot disagree with itself.
 
@@ -443,7 +477,8 @@ defect."
 ## What this does not do
 
 - **Faithfulness is not proved.** For natural-language rules, a finding is as
-  trustworthy as the extraction behind it. Predicate descriptions and rule
+  trustworthy as the extraction behind it, and a witness may be spurious if the
+  encoding omits a constraint. Predicate descriptions and rule
   attributions make mistakes visible, but they do not eliminate them.
 - **Completeness is relative to the model.** The solver can only find faults
   expressible in the predicates that were extracted.
@@ -457,8 +492,10 @@ defect."
 ## Where I think the interesting part is
 
 None of the individual pieces here are new. Rule sets have been checked for
-conflicts for a long time, with SMT solvers for cloud access policies ([Zelkova
-at AWS](https://doi.org/10.23919/FMCAD.2018.8602994)), and language models have
+conflicts for a long time: firewall-policy analysis catalogued anomalies such as
+shadowing, redundancy and correlation, access-control analysis defines rule
+conflicts, and SMT solvers have been applied to cloud access policies ([Zelkova
+at AWS](https://doi.org/10.23919/FMCAD.2018.8602994)). Language models have
 been used as front ends to logic for a while
 ([Logic-LM](https://arxiv.org/abs/2305.12295),
 [SatLM](https://arxiv.org/abs/2305.09656)).
@@ -474,14 +511,14 @@ What I find worth writing about is where the cuts are:
 - The same symbolic half runs over **inferred and executed facts**, so the reasoning
   does not depend on the neural half being there.
 
-Together they turn three fuzzy complaints, "too strict," "inconsistent," and
+Together they turn three fuzzy complaints, "too strict," "conflicting," and
 "unclear," into questions with checkable answers.
 
 ## The question I think comes next
 
 The deepest question here is about the handoff itself: what is the smallest,
 most inspectable thing a language model can hand to a solver? For this problem,
-my answer today is a Boolean model with described predicates. I suspect there
+my answer today is a propositional encoding with described predicates. I suspect there
 are better answers, and that the right one depends on the task.
 
 There is also a follow-on question, because a counterexample invites a fix. If a

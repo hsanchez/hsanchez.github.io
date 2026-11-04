@@ -17,7 +17,7 @@ next step is accepted, or a model gets promoted.
 
 When we evaluate a judge, we usually just ask: _did it get the right answer?_ If
 we have a gold label, that's easy to check. But we don't just give a judge a
-question; we also give it a set of rules (i.e., a protocol) for how to reach its
+question; we also give it an evaluation protocol: rules for how to reach its
 verdict. Something like:
 
 > Identify every factual claim. Check each one against only the supplied context.
@@ -67,14 +67,14 @@ Unmask doesn't just read a judge's rationale and decide whether it sounds carefu
 Instead, it checks a **structured replay** of the evaluation, which consists of five
 parts:
 
-- **The protocol**, translated into Boolean _atoms_. Each atom has one of three roles:
+- **The protocol**, translated into propositional _atoms_. Each atom has one of three roles:
   a `judge` atom represents something the judge asserts (e.g., "the context supports
   claim 2"), a `context` atom captures an independent observation about the source
   material, and a `procedure` atom records an observable step (e.g., "the judge
   consulted outside knowledge").
-- **A decision expression** over those atoms that defines the verdict. In our four
+- **A decision expression** (a propositional formula) over those atoms that defines the verdict. In our four
   test cases, for example, `PASS` holds if and only if both claims are supported.
-- **Requirements** the judge must follow, each defined by a Boolean expression and
+- **Requirements** the judge must follow, each defined by a propositional formula and
   an optional _coverage_ expression indicating whether the requirement was observable
   in the first place.
 - **Annotations** that assign each atom a value of `TRUE`, `FALSE`, or `UNKNOWN`,
@@ -137,15 +137,15 @@ whether the judge used outside knowledge. If we silently treated "not mentioned"
 
 Instead, an annotation can be marked as `UNKNOWN`. In the solver, an `UNKNOWN` atom
 asserts **nothing**: its value is left completely unconstrained. When the solver
-produces a witness, it fills in these unpinned atoms with plausible values, and the
-final report explicitly flags those completions as possibilities rather than
-observations.
+produces a witness, it fills in these unpinned atoms with arbitrary values consistent with
+the facts, and the final report explicitly flags those completions as
+possibilities rather than observations.
 
-This design has a nice side effect: we get a form of three-valued reasoning from a
-standard Boolean solver, with no custom logic. A claim is entailed if it holds
-however the unknown atoms are filled in, refuted if it fails however they are
-filled in, and underdetermined otherwise. For a decision over two atoms where one
-is `UNKNOWN`, the solver produces the following results:
+This gives us three outcomes from a standard SAT/SMT solver. A claim is entailed
+if it holds however the unknown atoms are filled in, refuted if it fails in every
+completion, and underdetermined if it holds in some completions and fails in
+others. This is called _supervaluation_: we consider all completions of the partial
+assignment. For a decision over two atoms where one is `UNKNOWN`, the results are:
 
 | Expression | Known atom | Other atom | Result |
 | --- | --- | --- | --- |
@@ -161,7 +161,7 @@ the unknown value, while everything else remains underdetermined.
 This is not Kleene's three-valued logic. If $$A$$ is unknown, Kleene's logic calls
 $$A\vee\neg A$$ unknown, while here it is entailed, because it holds however $$A$$
 is filled in. Because intuition around three-valued logic is easy to get subtly
-wrong, I verified this behavior against exhaustive truth tables across 150
+wrong, I checked this behavior against truth tables, over every assignment, for each of 150
 randomly generated formulas.
 
 ## Principle 2: check satisfiability before entailment
@@ -169,7 +169,7 @@ randomly generated formulas.
 Using a solver to check whether a conclusion follows from a set of facts comes with a
 classic trap: if those facts are contradictory, _everything_ follows from them
 (the principle of explosion). A checker that simply reports "entailed" in that
-situation is technically, and uselessly, correct.
+situation is technically, and uselessly, correct: the entailment is vacuous.
 
 To avoid this, Unmask first verifies that the underlying base of facts is actually
 consistent before checking for entailment. And rather than testing a single combined
@@ -182,18 +182,25 @@ B_{\text{all}}=B_{\text{proto}}\wedge F.
 $$
 
 Here $$K$$ are the protocol's constraints, $$D$$ is the decision expression, $$V$$
-is the verdict variable, and $$F$$ is the set of facts from non-UNKNOWN annotations.
-The annotations $$\mathcal{N}$$ are indexed by atom $$\alpha$$, $$x_\alpha$$ is the
-Boolean variable for that atom, and $$\mathrm{value}_\alpha$$ is its annotated
-value:
+is the verdict variable, and $$F$$ is the conjunction of the facts from non-UNKNOWN annotations.
+Each annotation $$n\in\mathcal{N}$$ names an atom, $$\mathrm{atom}(n)$$, whose
+propositional variable is $$x_{\mathrm{atom}(n)}$$, and carries an annotated value,
+$$\mathrm{value}(n)$$:
 
 $$
-F=\{\,x_\alpha\Leftrightarrow(\mathrm{value}_\alpha=\mathrm{TRUE})\ :\ \alpha\in\mathcal{N},\ \mathrm{value}_\alpha\neq\mathrm{UNKNOWN}\,\}.
+F=\bigwedge_{\substack{n\in\mathcal{N}\\ \mathrm{value}(n)\neq\mathrm{UNKNOWN}}}\bigl(x_{\mathrm{atom}(n)}\Leftrightarrow[\mathrm{value}(n)=\mathrm{TRUE}]\bigr).
 $$
+
+Here $$n$$ ranges over annotation entries, so duplicate annotations of one atom are
+possible. Each fact is the literal $$x_{\mathrm{atom}(n)}$$ or its negation, so a
+consistent $$F$$ is a partial assignment, and an inconsistent one means an atom
+was annotated with both values.
 
 Why three? Because each one pinpoints a different kind of failure. If
 $$B_{\text{proto}}$$ is unsatisfiable, the protocol contradicts itself. If
-$$B_{\text{evid}}$$ is unsatisfiable, the annotations contradict each other. And if
+$$B_{\text{evid}}$$ is unsatisfiable, the annotations contradict each other (since
+each fact is a literal, this happens only when one atom is annotated with two
+different values). And if
 both are fine on their own, yet $$B_{\text{all}}$$ is unsatisfiable, the evidence
 conflicts with the protocol. Separating them lets the report distinguish between
 "your protocol is broken," "your annotations are broken," and "your judge's claims
@@ -216,13 +223,13 @@ $$
 \end{cases}
 $$
 
-A fourth outcome, `SOLVER_UNKNOWN`, handles solver timeouts, ensuring the status is
-never silently guessed.
+A fourth outcome, `SOLVER_UNKNOWN`, handles any `unknown` answer from the solver
+(a timeout is one reason for it), ensuring the status is never silently guessed. It is
+distinct from an `UNKNOWN` annotation, which is an input rather than a solver result.
 
-`UNDERDETERMINED` means the facts are consistent with both $$\varphi$$ and its
-negation. A verdict can be perfectly compatible with a rationale without being
-_forced_ by it, and the report keeps those apart: merely compatible is not the
-same as entailed.
+`UNDERDETERMINED` means the facts permit both $$\varphi$$ and its negation;
+`REFUTED` means the base entails $$\neg\varphi$$. A verdict can fit a rationale
+without being _forced_ by it, and the report keeps those apart.
 
 ```algorithm
 \begin{algorithm}
@@ -234,7 +241,7 @@ same as entailed.
     \ENDIF
     \STATE $t \gets$ \CALL{Check}{$B \wedge \varphi$}
     \STATE $f \gets$ \CALL{Check}{$B \wedge \neg\varphi$}
-    \IF{$t$ or $f$ timed out}
+    \IF{$t$ or $f$ returned unknown}
         \RETURN solver unknown
     \ELIF{$f$ is unsatisfiable}
         \RETURN entailed
@@ -266,7 +273,14 @@ separately:
 Of these, I find coverage the most useful in practice. "We couldn't tell whether the
 judge used outside knowledge" and "the judge used outside knowledge" are
 different findings, and an audit shouldn't flatten both into a pass or
-both into a failure.
+both into a failure. In the implementation, an undetermined result stays
+`UNKNOWN`. A requirement whose coverage is `REFUTED`, meaning the evidence
+establishes that it was not observable, is reported as a violation
+(`missing_observable_coverage`) and drives the overall result to `VIOLATED`, unless an
+inconsistent base or any solver `unknown` result overrides the aggregation (below). The
+rule is that you cannot be credited for a requirement nobody could observe, not
+that you are accused of breaking it. The report keeps that violation separate
+from a breach of the requirement itself.
 
 When it comes time to roll these individual checks up into an overall result, Unmask
 uses a deliberately conservative rule. Given statuses $$s_1,\dots,s_k$$:
@@ -282,7 +296,10 @@ $$
 Two further rules apply. First, if a replay supplies
 no requirements or no grounding pairs, the overall result can never be `SATISFIED`: you
 don't get credit for a dimension that was never checked. Second, any base
-inconsistency or solver timeout automatically forces the overall result to `UNKNOWN`.
+inconsistency or any solver `unknown` result automatically forces the overall result to `UNKNOWN`.
+Note that a requirement without a coverage expression reports coverage as
+`NOT_SPECIFIED`, which is not `ENTAILED`, so it also keeps the overall result from
+being `SATISFIED`.
 
 The whole procedure, in one place:
 
@@ -295,7 +312,7 @@ The whole procedure, in one place:
 \IF{translation status is not valid}
     \RETURN overall UNKNOWN
 \ENDIF
-\STATE $F \gets \{\, x_\alpha \Leftrightarrow (\mathrm{value}_\alpha = \mathrm{TRUE}) : \alpha \in \mathcal{N},\ \mathrm{value}_\alpha \neq \mathrm{UNKNOWN} \,\}$
+\STATE $F \gets \bigwedge_{n \in \mathcal{N},\ \mathrm{value}(n) \neq \mathrm{UNKNOWN}} \bigl(x_{\mathrm{atom}(n)} \Leftrightarrow [\mathrm{value}(n) = \mathrm{TRUE}]\bigr)$
 \STATE $B_{\mathrm{proto}} \gets K \wedge (V \Leftrightarrow D)$
 \STATE $B_{\mathrm{evid}} \gets F$
 \STATE $B_{\mathrm{all}} \gets B_{\mathrm{proto}} \wedge F$
@@ -308,11 +325,9 @@ The whole procedure, in one place:
 \FORALL{$(j, c) \in \Pi$}
     \STATE $s_{jc} \gets$ \CALL{Classify}{$B_{\mathrm{evid}}, x_j \Leftrightarrow x_c$}
 \ENDFOR
-\STATE $\mathit{overall} \gets \mathrm{agg}(\text{all statuses})$
-\IF{$Q = \emptyset$ or $\Pi = \emptyset$}
-    \STATE $\mathit{overall} \gets \mathrm{agg}(\mathit{overall}, \mathrm{UNKNOWN})$
-\ENDIF
-\IF{$B_{\mathrm{proto}}$, $B_{\mathrm{evid}}$ or $B_{\mathrm{all}}$ is inconsistent, or any query timed out}
+\STATE $S \gets$ all statuses, plus $\mathrm{UNKNOWN}$ if $Q = \emptyset$ or $\Pi = \emptyset$
+\STATE $\mathit{overall} \gets \mathrm{agg}(S)$
+\IF{$B_{\mathrm{proto}}$, $B_{\mathrm{evid}}$ or $B_{\mathrm{all}}$ is inconsistent, or any query returned unknown}
     \STATE $\mathit{overall} \gets \mathrm{UNKNOWN}$ and report which base failed
 \ENDIF
 \RETURN statuses, $\mathit{overall}$, and the violated checks with their evidence
@@ -386,8 +401,8 @@ have not yet measured its accuracy.
   are flagged as unreviewed model output and I have not yet measured their
   accuracy. Any other protocol still has to be translated by hand.
 - **The guarantee is conditional.** Every conclusion holds only relative to the
-  supplied formalization and annotations. Z3 verifies the structured
-  interpretation rather than the raw text or any hidden reasoning the judge may
+  supplied formalization and annotations. Z3 decides satisfiability of the structured
+  encoding rather than the raw text or any hidden reasoning the judge may
   have done.
 - **Hand annotation does not scale.** The fixtures in this post were annotated by
   hand. While the experimental assistant helps with one specific protocol, the
