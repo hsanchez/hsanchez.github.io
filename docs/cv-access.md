@@ -42,7 +42,7 @@ link, and the old `/static/wip.cv.pdf` and `/static/wip.resume.pdf` URLs return 
 
 The workflow runs these steps automatically:
 
-1. `node --test tests/cv-worker.test.mjs tests/cv-build.test.mjs`
+1. `node --test tests/cv-worker.test.mjs tests/cv-build.test.mjs tests/cv-deploy.test.mjs`
 2. `node scripts/build-cv-worker.mjs prepare`
 3. Jekyll build from `_cv-build/source` to `_cv-build/rendered`
 4. `node scripts/build-cv-worker.mjs bundle`

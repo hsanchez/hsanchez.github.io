@@ -37,7 +37,7 @@ jobs:
           fi
 
       - name: Test CV access and build isolation
-        run: node --test tests/cv-worker.test.mjs tests/cv-build.test.mjs
+        run: node --test tests/cv-worker.test.mjs tests/cv-build.test.mjs tests/cv-deploy.test.mjs
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
