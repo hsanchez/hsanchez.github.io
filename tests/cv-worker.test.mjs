@@ -29,6 +29,10 @@ test("CV access boundary", async (t) => {
         await noCV(await worker.fetch(new Request(origin + path), env), code);
       }
       await noCV(await worker.fetch(new Request("https://wrong.example/"), env), 404);
+      // no-referrer makes native form POSTs send Origin: null, which our
+      // origin check correctly rejects. Keep the origin on same-origin forms.
+      const gate = await worker.fetch(new Request(origin + "/"), env);
+      assert.equal(gate.headers.get("Referrer-Policy"), "same-origin");
       const head = await worker.fetch(new Request(origin + "/", { method: "HEAD" }), env);
       assert.equal(await head.text(), "");
     });

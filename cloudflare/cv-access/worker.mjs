@@ -13,7 +13,7 @@ function headers(scriptPolicy = "'none'") {
     "CDN-Cache-Control": "no-store",
     "X-Robots-Tag": "noindex, nofollow, noarchive",
     "X-Content-Type-Options": "nosniff",
-    "Referrer-Policy": "no-referrer",
+    "Referrer-Policy": "same-origin",
     "Content-Security-Policy": "default-src 'none'; script-src " + scriptPolicy +
       "; style-src 'unsafe-inline' https://huascarsanchez.com; img-src https://huascarsanchez.com data:;" +
       " frame-src https://challenges.cloudflare.com;" +
