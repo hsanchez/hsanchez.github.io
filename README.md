@@ -115,3 +115,10 @@ remains visible if rendering fails or JavaScript is disabled. Zed's Markdown
 preview shows the source block; formatted algorithm rendering is on the website.
 
 Reference: [pseudocode.js syntax](https://github.com/SaswatPadhi/pseudocode.js#grammar).
+
+## Protected CV
+
+Keep editing the existing CV Markdown file. GitHub Actions deploys its rendered
+version behind Turnstile and publishes an access link on the website.
+See [setup and deployment instructions](docs/cv-access.md) for the two required
+GitHub repository secrets.

@@ -1,4 +1,4 @@
-name: Deploy Jekyll site to Pages
+name: Deploy website and protected CV
 
 on:
   push:
@@ -21,17 +21,64 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Check Cloudflare deployment credentials
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            echo "::error::Add CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID as repository Actions secrets. See docs/cv-access.md."
+            exit 1
+          fi
+
+      - name: Test CV access and build isolation
+        run: node --test tests/cv-worker.test.mjs tests/cv-build.test.mjs
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Build with Jekyll
+      - name: Prepare private CV build
+        run: node scripts/build-cv-worker.mjs prepare
+
+      - name: Render CV with the existing website layout
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./_cv-build/source
+          destination: ./_cv-build/rendered
+
+      - name: Bundle rendered CV for the Worker
+        run: node scripts/build-cv-worker.mjs bundle
+
+      - name: Build public website
         uses: actions/jekyll-build-pages@v1
         with:
           source: ./
           destination: ./_site
 
-      - name: Upload artifact
+      - name: Check the public artifact contains no CV content
+        run: node scripts/build-cv-worker.mjs verify-public
+
+      # Deploy the CV first: never publish a link to an unready Worker.
+      - name: Deploy protected CV
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: cloudflare/cv-access
+          wranglerVersion: "4"
+
+      - name: Check deployed verification
+        run: node scripts/check-cv-worker.mjs
+
+      - name: Upload public website only
         uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
 
   deploy:
     environment:

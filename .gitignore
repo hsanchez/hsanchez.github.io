@@ -3,3 +3,8 @@ _import
 .DS_Store
 Gemfile.lock
 .idea
+_cv-build/
+.wrangler/
+node_modules/
+.dev.vars*
+.env*
