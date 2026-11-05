@@ -5,7 +5,7 @@ import { pathToFileURL } from "node:url";
 export const CV_SOURCE = "posts/notes/_posts/2017-02-01-cv.md";
 export const CV_PAGE = "posts/notes/cv.html";
 export const SITE_ORIGIN = "https://huascarsanchez.com";
-export const WORKER_ORIGIN = "https://cv-access.huascar-sanchez.workers.dev";
+export const CV_URL = "https://huascarsanchez.com/notes/cv.html";
 export const CONTENT_MARKER = "protected-cv-content:start";
 
 export async function prepare(root) {
@@ -45,7 +45,7 @@ export async function bundle(root) {
 export async function verifyPublic(root) {
   const site = join(root, "_site");
   const cv = await readFile(join(site, CV_PAGE), "utf8");
-  if (!cv.includes(WORKER_ORIGIN)) throw new Error("Public CV must link to the Worker");
+  if (!cv.includes(CV_URL)) throw new Error("Public CV must link to the Worker");
   for (const path of ["static/wip.cv.pdf", "static/wip.resume.pdf", "cloudflare", "scripts", "tests", "_cv-build"]) {
     try {
       await stat(join(site, path));

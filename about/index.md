@@ -40,4 +40,4 @@ automated AI red-teaming, before they're trusted in high-stakes settings such
 as finance.
 
 For the full research summary and employment history, see my <a
-href="/posts/notes/cv">CV</a>.
+href="/notes/cv.html">CV</a>.

@@ -33,7 +33,7 @@ the website is replaced. The Turnstile site key is public and lives in
 `cloudflare/cv-access/worker.mjs`.
 
 After the first deployment, open
-https://cv-access.huascar-sanchez.workers.dev/ in a normal browser and complete
+https://huascarsanchez.com/notes/cv.html in a normal browser and complete
 the challenge. Confirm the CV, links, theme toggle, and analytics load.
 Also check https://huascarsanchez.com/posts/notes/cv.html shows only the access
 link, and the old `/static/wip.cv.pdf` and `/static/wip.resume.pdf` URLs return 404.
@@ -94,5 +94,6 @@ Routes are managed in the Cloudflare dashboard. The Wrangler configuration
 intentionally has no `routes` entry; deployments preserve the dashboard routes.
 The GitHub token does not need additional route permissions.
 
-After confirming the route works, change `cv_worker_url` in `_config.yml`
-to the main-domain CV URL and update the public-build link check accordingly.
+The route and Turnstile hostname are configured. The public CV link and deployment
+health check both use `https://huascarsanchez.com/notes/cv.html`.
+The workers.dev address remains available as a fallback.

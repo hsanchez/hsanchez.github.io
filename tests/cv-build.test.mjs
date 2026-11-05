@@ -4,7 +4,7 @@ import { mkdtemp, mkdir, writeFile, readFile, rm, cp } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { prepare, bundle, verifyPublic, absolutize, CV_SOURCE, CV_PAGE, CONTENT_MARKER, WORKER_ORIGIN } from "../scripts/build-cv-worker.mjs";
+import { prepare, bundle, verifyPublic, absolutize, CV_SOURCE, CV_PAGE, CONTENT_MARKER, CV_URL } from "../scripts/build-cv-worker.mjs";
 
 const repo = fileURLToPath(new URL("../", import.meta.url));
 test("single-source CV build stays out of public artifacts", async () => {
@@ -35,7 +35,7 @@ test("single-source CV build stays out of public artifacts", async () => {
 
     const publicPage = join(root, "_site", CV_PAGE);
     await mkdir(dirname(publicPage), { recursive: true });
-    await writeFile(publicPage, '<a href="' + WORKER_ORIGIN + '">View CV</a>');
+    await writeFile(publicPage, '<a href="' + CV_URL + '">View CV</a>');
     await verifyPublic(root);
     await writeFile(join(root, "_site/atom.xml"), "<entry>" + CONTENT_MARKER + "</entry>");
     await assert.rejects(verifyPublic(root), /leaked/);

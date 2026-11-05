@@ -2,16 +2,18 @@ import { resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { setTimeout } from "node:timers/promises";
 
-const origin = "https://cv-access.huascar-sanchez.workers.dev";
+const origin = "https://huascarsanchez.com";
+const cvPath = "/notes/cv.html";
+const cvUrl = origin + cvPath;
 
 export async function checkWorker(fetcher = fetch) {
-  const gate = await fetcher(origin + "/", { signal: AbortSignal.timeout(15000) });
+  const gate = await fetcher(cvUrl, { signal: AbortSignal.timeout(15000) });
   const html = await gate.text();
-  if (gate.status !== 200 || gate.headers.get("Referrer-Policy") !== "same-origin" || !html.includes('data-sitekey="0x4AAAAAAF0E4SLI-R_Zy6wG"') ||
+  if (gate.status !== 200 || gate.redirected || !html.includes('action="/notes/cv.html"') || gate.headers.get("Referrer-Policy") !== "same-origin" || !html.includes('data-sitekey="0x4AAAAAAF0E4SLI-R_Zy6wG"') ||
       html.includes("protected-cv-content:start")) {
     throw new Error("The deployed CV verification page is not ready (HTTP " + gate.status + ")");
   }
-  const rejected = await fetcher(origin + "/verify", {
+  const rejected = await fetcher(cvUrl, {
     method: "POST",
     headers: { Origin: origin, "Content-Type": "application/x-www-form-urlencoded" },
     body: "cf-turnstile-response=invalid-deployment-smoke-test",

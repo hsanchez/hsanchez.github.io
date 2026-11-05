@@ -10,7 +10,7 @@ kramdown:
 
 # The complete CV is rendered only for the protected Worker build.
 cv_worker_build: false
-cv_worker_url: https://cv-access.huascar-sanchez.workers.dev
+cv_worker_url: https://huascarsanchez.com/notes/cv.html
 
 exclude:
   - cloudflare

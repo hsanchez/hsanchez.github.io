@@ -17,14 +17,16 @@ test("an unhealthy deployment stays blocked after retries", async () => {
 });
 
 test("live check requires the gate and rejection of invalid tokens", async () => {
-  const gate = () => new Response('<div data-sitekey="0x4AAAAAAF0E4SLI-R_Zy6wG"></div>', {
+  const gate = () => new Response('<form action="/notes/cv.html"><div data-sitekey="0x4AAAAAAF0E4SLI-R_Zy6wG"></div></form>', {
     headers: { "Referrer-Policy": "same-origin" },
   });
-  await checkWorker(async (_url, options) => options.method === "POST"
-    ? new Response("Rejected", { status: 403 }) : gate());
+  await checkWorker(async (url, options) => {
+    assert.equal(url, "https://huascarsanchez.com/notes/cv.html");
+    return options.method === "POST" ? new Response("Rejected", { status: 403 }) : gate();
+  });
   await assert.rejects(checkWorker(async () => new Response("Hello World!")), /not ready/);
   await assert.rejects(checkWorker(async () => new Response(
-    '<div data-sitekey="0x4AAAAAAF0E4SLI-R_Zy6wG"></div>',
+    '<form action="/notes/cv.html"><div data-sitekey="0x4AAAAAAF0E4SLI-R_Zy6wG"></div></form>',
     { headers: { "Referrer-Policy": "no-referrer" } }
   )), /not ready/);
   await assert.rejects(checkWorker(async () => gate()), /did not reject/);
