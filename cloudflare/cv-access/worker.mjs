@@ -27,46 +27,142 @@ function headers(scriptPolicy = "'none'") {
 function gate(message = "", status = 200, formAction = "/verify") {
   const nonce = crypto.randomUUID();
   return new Response(`<!doctype html>
-<html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>View CV — Huascar Sanchez</title>
+<title>Curriculum Vitae — Huascar Sanchez</title>
+<link href="https://huascarsanchez.com/static/favicon.ico" rel="icon">
+<link href="https://huascarsanchez.com/static/style.css?v=post-date-20261016" rel="stylesheet">
 <style>
-:root{color-scheme:light dark}
-body{font:16px/1.6 Courier,monospace;max-width:38rem;margin:12vh auto;padding:0 1.5rem}
-h1{font-size:1.3rem}a{color:inherit}
-button{font:inherit;padding:.6rem 1rem;margin-top:1rem;cursor:pointer}
-button:disabled{cursor:wait;opacity:.55}
-#status{min-height:1.6em}
+.container { min-width: 0; }
+.cv-access { margin: 2rem 0 4rem; line-height: 1.6; }
+.cv-challenge { margin-top: 2rem; min-height: 65px; }
+.cv-message:empty { display: none; }
+.cv-submit {
+  background: transparent; border: 0; color: inherit; cursor: pointer;
+  font: inherit; padding: 0; text-decoration: underline;
+}
+.cv-submit:hover, .cv-submit:focus-visible { text-decoration-thickness: 2px; }
+.cv-submit:focus-visible { outline: 1px dotted currentColor; outline-offset: .3rem; }
+.cv-submit:disabled { cursor: default; opacity: .45; }
+#status { min-height: 1.6em; margin: 1rem 0; font-size: 1.3rem; }
+.cv-footer { display: flow-root; margin-top: 4rem; }
+.cv-footer .col { max-width: 100%; }
+@media (max-width: 380px) { body { padding-left: 1rem; padding-right: 1rem; } }
 </style>
+</head>
+<body>
 <script nonce="${nonce}">
-window.onVerified = function () {
-  document.getElementById("submit").disabled = false;
-  document.getElementById("status").textContent = "Verification complete.";
-};
-window.onExpired = function () {
-  document.getElementById("submit").disabled = true;
-  document.getElementById("status").textContent = "Verification expired. Please verify again.";
-};
-window.onError = function () {
-  document.getElementById("submit").disabled = true;
-  document.getElementById("status").textContent = "Verification could not load. Please reload this page.";
-};
+try {
+  if (window.localStorage.getItem("site-theme") === "dark") {
+    document.body.classList.add("theme-dark");
+  }
+} catch (error) {}
 </script>
-<script nonce="${nonce}" src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-</head><body>
-<p><a href="https://huascarsanchez.com/">← Home</a></p>
-<h1>Huascar Sanchez — CV</h1>
-<p>Please complete the check below to view my CV.</p>
-<p role="alert">${message}</p>
-<form method="post" action="${formAction}">
-<div class="cf-turnstile" data-sitekey="${SITE_KEY}" data-action="${ACTION}"
- data-callback="onVerified" data-expired-callback="onExpired" data-error-callback="onError"></div>
-<p id="status" role="status" aria-live="polite"></p>
-<button id="submit" type="submit" disabled>View CV</button>
-</form>
-<noscript><p>This verification needs JavaScript. You can also contact me through my website.</p></noscript>
-</body></html>`, {
+<div class="container">
+  <header>
+    <div class="site-tools">
+      <button class="theme-toggle" type="button" aria-pressed="false"
+        aria-label="Switch to dark theme" title="Switch to dark theme">dark mode</button>
+    </div>
+    <nav aria-label="Breadcrumb">
+      <ul id="breadcrumb">
+        <li><a href="https://huascarsanchez.com/">home</a></li>
+        <li><a href="https://huascarsanchez.com/posts">posts</a></li>
+        <li><a href="https://huascarsanchez.com/posts/notes">notes</a></li>
+      </ul>
+    </nav>
+    <h1 class="title">Curriculum Vitae</h1>
+  </header>
+  <main class="content cv-access">
+    <p>Please complete the check below to view my CV.</p>
+    <p class="cv-message" role="alert">${message}</p>
+    <form method="post" action="${formAction}">
+      <div id="cv-challenge" class="cv-challenge" data-sitekey="${SITE_KEY}"></div>
+      <p id="status" role="status" aria-live="polite"></p>
+      <button id="submit" class="cv-submit" type="submit" disabled>View CV</button>
+    </form>
+    <noscript><p>This verification needs JavaScript. You can also contact me through my website.</p></noscript>
+  </main>
+  <footer class="cv-footer">
+    <div class="col"><h3>Follow Me</h3><ul>
+      <li><a href="https://twitter.com/intent/user?screen_name=huascarsanchez">Twitter</a></li>
+      <li><a href="https://github.com/hsanchez">Github</a></li>
+      <li><a href="https://www.linkedin.com/in/huascarsanchez">LinkedIn</a></li>
+    </ul></div>
+    <div class="col"><h3>Check out</h3><ul>
+      <li><a href="https://huascarsanchez.com/">Home</a></li>
+      <li><a href="https://huascarsanchez.com/posts">Posts</a></li>
+    </ul></div>
+    <div class="col"><h3>Learn More</h3><ul>
+      <li><a href="https://huascarsanchez.com/posts/thesiswork">PhD Work</a></li>
+      <li><a href="https://huascarsanchez.com/posts/notes/pubs.html">Publications</a></li>
+      <li><a href="https://speakerdeck.com/hsanchez">Slides</a></li>
+    </ul></div>
+  </footer>
+</div>
+<script nonce="${nonce}">
+(function () {
+  var toggle = document.querySelector(".theme-toggle");
+  var submit = document.getElementById("submit");
+  var status = document.getElementById("status");
+  var widgetId = null;
+
+  function isDark() {
+    return document.body.classList.contains("theme-dark");
+  }
+
+  function updateToggle() {
+    var dark = isDark();
+    var label = dark ? "Switch to light theme" : "Switch to dark theme";
+    toggle.setAttribute("aria-pressed", String(dark));
+    toggle.setAttribute("aria-label", label);
+    toggle.setAttribute("title", label);
+    toggle.textContent = dark ? "light mode" : "dark mode";
+  }
+
+  function renderChallenge() {
+    submit.disabled = true;
+    status.textContent = "";
+    if (!window.turnstile) return;
+    if (widgetId !== null) window.turnstile.remove(widgetId);
+    widgetId = window.turnstile.render("#cv-challenge", {
+      sitekey: "${SITE_KEY}",
+      action: "${ACTION}",
+      theme: isDark() ? "dark" : "light",
+      size: "flexible",
+      callback: function () {
+        submit.disabled = false;
+        status.textContent = "Verification complete.";
+      },
+      "expired-callback": function () {
+        submit.disabled = true;
+        status.textContent = "Verification expired. Please verify again.";
+      },
+      "error-callback": function () {
+        submit.disabled = true;
+        status.textContent = "Verification could not load. Please reload this page.";
+      }
+    });
+  }
+
+  updateToggle();
+  toggle.addEventListener("click", function () {
+    document.body.classList.toggle("theme-dark");
+    updateToggle();
+    try {
+      window.localStorage.setItem("site-theme", isDark() ? "dark" : "light");
+    } catch (error) {}
+    renderChallenge();
+  });
+  window.onTurnstileReady = renderChallenge;
+})();
+</script>
+<script nonce="${nonce}" src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&amp;onload=onTurnstileReady" async defer></script>
+</body>
+</html>`, {
     status,
     headers: headers("'nonce-" + nonce + "' https://challenges.cloudflare.com"),
   });

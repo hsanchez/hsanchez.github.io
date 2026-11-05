@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { runInNewContext } from "node:vm";
 import { createWorker } from "../cloudflare/cv-access/worker.mjs";
 const worker = createWorker("<!doctype html><html><head><script src=\"https://www.googletagmanager.com/gtag/js?id=G-SPEBXM9HSP\"></script></head><body><h1>Huascar Sanchez</h1><p>Research Summary and Skills</p></body></html>");
 
@@ -109,4 +110,58 @@ test("CV access boundary", async (t) => {
   } finally {
     globalThis.fetch = originalFetch;
   }
+});
+
+test("verification page keeps the site theme and resets verification when the theme changes", async () => {
+  const response = await worker.fetch(new Request(origin + "/"), env);
+  const html = await response.text();
+  assert.ok(html.includes('href="https://huascarsanchez.com/static/style.css'));
+  const scripts = [...html.matchAll(/<script nonce="[^"]+">([\s\S]*?)<\/script>/g)].map(match => match[1]);
+  const classes = new Set();
+  const listeners = {};
+  const attributes = {};
+  const toggle = {
+    setAttribute: (key, value) => { attributes[key] = value; },
+    addEventListener: (event, handler) => { listeners[event] = handler; },
+  };
+  const submit = { disabled: true };
+  const status = { textContent: "" };
+  const storage = new Map([["site-theme", "dark"]]);
+  const renders = [];
+  const removed = [];
+  const window = {
+    localStorage: {
+      getItem: key => storage.get(key),
+      setItem: (key, value) => storage.set(key, value),
+    },
+    turnstile: {
+      render: (target, options) => { renders.push({ target, options }); return String(renders.length); },
+      remove: id => removed.push(id),
+    },
+  };
+  const document = {
+    body: { classList: {
+      add: name => classes.add(name),
+      contains: name => classes.has(name),
+      toggle: name => classes.has(name) ? classes.delete(name) : classes.add(name),
+    } },
+    querySelector: () => toggle,
+    getElementById: id => ({ submit, status })[id],
+  };
+  for (const script of scripts) runInNewContext(script, { window, document });
+  window.onTurnstileReady();
+  assert.equal(renders[0].options.theme, "dark");
+  assert.equal(renders[0].options.action, "view_cv");
+  assert.equal(attributes["aria-pressed"], "true");
+  renders[0].options.callback();
+  assert.equal(submit.disabled, false);
+  listeners.click();
+  assert.equal(storage.get("site-theme"), "light");
+  assert.equal(attributes["aria-pressed"], "false");
+  assert.equal(renders[1].options.theme, "light");
+  assert.deepEqual(removed, ["1"]);
+  assert.equal(submit.disabled, true);
+  renders[1].options["expired-callback"]();
+  assert.equal(submit.disabled, true);
+  assert.match(status.textContent, /expired/);
 });
