@@ -58,6 +58,27 @@ test("CV access boundary", async (t) => {
         await noCV(await worker.fetch(post(), env), 403);
       }
     });
+    await t.test("main-domain forms keep the CV path and validate the matching hostname", async () => {
+      const site = "https://huascarsanchez.com";
+      for (const path of ["/notes/cv.html", "/posts/notes/cv.html", "/posts/notes/cv"]) {
+        const gate = await worker.fetch(new Request(site + path), env);
+        assert.equal(gate.status, 200);
+        assert.ok((await gate.text()).includes('action="' + path + '"'));
+        const submission = () => new Request(site + path, {
+          method: "POST",
+          headers: { Origin: site, "Content-Type": "application/x-www-form-urlencoded" },
+          body: "cf-turnstile-response=test-token",
+        });
+        globalThis.fetch = async () => Response.json(success);
+        await noCV(await worker.fetch(submission(), env), 403);
+        globalThis.fetch = async () => Response.json({ ...success, hostname: "huascarsanchez.com" });
+        const cv = await worker.fetch(submission(), env);
+        assert.equal(cv.status, 200);
+        assert.ok((await cv.text()).includes("Research Summary and Skills"));
+      }
+      await noCV(await worker.fetch(new Request(site + "/"), env), 404);
+      await noCV(await worker.fetch(new Request(site + "/notes/cv.html-extra"), env), 404);
+    });
     await t.test("verification service failures fail closed", async () => {
       globalThis.fetch = async () => { throw new Error("Network failure"); };
       await noCV(await worker.fetch(post(), env), 503);

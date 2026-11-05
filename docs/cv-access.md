@@ -74,3 +74,25 @@ identity, and metrics may be blocked by browser privacy settings.
 - [Cloudflare Workers GitHub Actions deployment](https://developers.cloudflare.com/workers/ci-cd/external-cicd/github-actions/)
 - [Turnstile server-side validation](https://developers.cloudflare.com/turnstile/get-started/server-side-validation/)
 - [Wrangler configuration and secret preservation](https://developers.cloudflare.com/workers/wrangler/configuration/#source-of-truth)
+
+## Serve the CV on the main domain
+
+The Worker also accepts GET and POST on `https://huascarsanchez.com/notes/cv.html`
+(and the older `/posts/notes/cv.html` path). The form posts to the same path,
+so successful verification keeps the main-domain address in the browser.
+
+In Cloudflare, add `huascarsanchez.com` to the existing Turnstile widget's
+hostnames. Under Workers & Pages → cv-access → Settings → Domains & Routes,
+add a **Route**, select the `huascarsanchez.com` zone, and enter:
+`huascarsanchez.com/notes/cv.html*`.
+
+The domain's DNS record must be proxied (orange cloud). This is a path route,
+not a custom domain for the entire website. Leave the existing GitHub Pages
+DNS destination in place.
+
+Routes are managed in the Cloudflare dashboard. The Wrangler configuration
+intentionally has no `routes` entry; deployments preserve the dashboard routes.
+The GitHub token does not need additional route permissions.
+
+After confirming the route works, change `cv_worker_url` in `_config.yml`
+to the main-domain CV URL and update the public-build link check accordingly.

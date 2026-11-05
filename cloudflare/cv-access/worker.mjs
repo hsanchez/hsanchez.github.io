@@ -1,6 +1,8 @@
 // Turnstile gate. The build supplies the rendered CV from its single source.
 const HOSTNAME = "cv-access.huascar-sanchez.workers.dev";
 const ORIGIN = "https://" + HOSTNAME;
+const SITE_ORIGIN = "https://huascarsanchez.com";
+const CV_PATHS = new Set(["/notes/cv.html", "/posts/notes/cv.html", "/posts/notes/cv"]);
 const SITE_KEY = "0x4AAAAAAF0E4SLI-R_Zy6wG";
 const ACTION = "view_cv";
 const SITEVERIFY = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
@@ -22,7 +24,7 @@ function headers(scriptPolicy = "'none'") {
   };
 }
 
-function gate(message = "", status = 200) {
+function gate(message = "", status = 200, formAction = "/verify") {
   const nonce = crypto.randomUUID();
   return new Response(`<!doctype html>
 <html lang="en"><head>
@@ -57,7 +59,7 @@ window.onError = function () {
 <h1>Huascar Sanchez — CV</h1>
 <p>Please complete the check below to view my CV.</p>
 <p role="alert">${message}</p>
-<form method="post" action="/verify">
+<form method="post" action="${formAction}">
 <div class="cf-turnstile" data-sitekey="${SITE_KEY}" data-action="${ACTION}"
  data-callback="onVerified" data-expired-callback="onExpired" data-error-callback="onError"></div>
 <p id="status" role="status" aria-live="polite"></p>
@@ -102,18 +104,23 @@ export function createWorker(CV_HTML) {
   return {
     async fetch(request, env) {
       const url = new URL(request.url);
-      if (url.origin !== ORIGIN) {
+      if (url.origin !== ORIGIN && url.origin !== SITE_ORIGIN) {
         return new Response("Not found", { status: 404, headers: headers() });
       }
-      if (url.pathname === "/" && (request.method === "GET" || request.method === "HEAD")) {
+      const onMainSite = url.origin === SITE_ORIGIN;
+      const isCVPath = onMainSite && CV_PATHS.has(url.pathname);
+      const formAction = isCVPath ? url.pathname : "/verify";
+      const renderGate = (message = "", status = 200) => gate(message, status, formAction);
+      if ((isCVPath || (!onMainSite && url.pathname === "/")) &&
+          (request.method === "GET" || request.method === "HEAD")) {
         const response = env.TURNSTILE_SECRET_KEY
-          ? gate()
-          : gate("Verification is temporarily unavailable. Please try again later.", 503);
+          ? renderGate()
+          : renderGate("Verification is temporarily unavailable. Please try again later.", 503);
         return request.method === "HEAD"
           ? new Response(null, { status: response.status, headers: response.headers })
           : response;
       }
-      if (url.pathname !== "/verify") {
+      if (!isCVPath && (onMainSite || url.pathname !== "/verify")) {
         return new Response("Not found", { status: 404, headers: headers() });
       }
       if (request.method !== "POST") {
@@ -122,25 +129,25 @@ export function createWorker(CV_HTML) {
         });
       }
       if (!env.TURNSTILE_SECRET_KEY) {
-        return gate("Verification is temporarily unavailable. Please try again later.", 503);
+        return renderGate("Verification is temporarily unavailable. Please try again later.", 503);
       }
-      if (request.headers.get("Origin") !== ORIGIN) {
-        return gate("Please start the verification again from this page.", 403);
+      if (request.headers.get("Origin") !== url.origin) {
+        return renderGate("Please start the verification again from this page.", 403);
       }
       const contentType = request.headers.get("Content-Type") || "";
       if (contentType.split(";")[0].trim().toLowerCase() !== "application/x-www-form-urlencoded") {
-        return gate("Please use the verification form.", 415);
+        return renderGate("Please use the verification form.", 415);
       }
       let text;
       try {
         text = await limitedText(request);
       } catch {
-        return gate("The form could not be read. Please try again.", 400);
+        return renderGate("The form could not be read. Please try again.", 400);
       }
-      if (text === null) return gate("The form is too large. Please try again.", 413);
+      if (text === null) return renderGate("The form is too large. Please try again.", 413);
       const tokens = new URLSearchParams(text).getAll("cf-turnstile-response");
       if (tokens.length !== 1 || !tokens[0] || tokens[0].length > 2048) {
-        return gate("Please complete the verification before continuing.", 400);
+        return renderGate("Please complete the verification before continuing.", 400);
       }
       let result;
       try {
@@ -158,10 +165,10 @@ export function createWorker(CV_HTML) {
         if (!response.ok) throw new Error("Verification service unavailable");
         result = await response.json();
       } catch {
-        return gate("Verification is temporarily unavailable. Please try again.", 503);
+        return renderGate("Verification is temporarily unavailable. Please try again.", 503);
       }
-      if (!result || result.success !== true || result.hostname !== HOSTNAME || result.action !== ACTION) {
-        return gate("Verification failed or expired. Please complete a new check.", 403);
+      if (!result || result.success !== true || result.hostname !== url.hostname || result.action !== ACTION) {
+        return renderGate("Verification failed or expired. Please complete a new check.", 403);
       }
       return new Response(CV_HTML, {
         headers: headers("'unsafe-inline' https://huascarsanchez.com https://www.googletagmanager.com"),
