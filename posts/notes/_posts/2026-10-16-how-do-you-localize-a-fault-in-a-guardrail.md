@@ -231,18 +231,18 @@ C_A\vee C_B & \text{if } d_A\neq d_B,
 \end{cases}
 $$
 
-The case split is worth a moment. If both readings reach the same
-decision, they disagree exactly when one applies and the other does not, which is
-an exclusive-or. Asking whether it is satisfiable is an equivalence check on the
-two formalizations, modulo $$\Gamma$$. If they reach different decisions, then any
-request that either reading covers is already a disagreement: if both apply they
-conflict, and if only one applies, the other reading does not cover the request.
-Both branches assume the policy has no default decision, so a request that a
-reading does not cover counts as undecided, a distinct outcome. If the policy has a
-default $$d_0$$ (say, allow), the case split is not enough. Two readings that both
-say allow, under a default of allow, can have different conditions and still
-decide every request the same way, so the exclusive-or would report a divergence
-that has no effect. The general form defines each reading's decision function
+Here is why $$\Delta$$ splits into two cases. When both readings reach the same
+decision, they disagree only when one applies and the other does not (exclusive-or).
+Checking satisfiability here tests whether the two formalizations are equivalent
+modulo $$\Gamma$$. When they reach different decisions, any request covered by
+either reading is a disagreement: either both apply and conflict, or only one
+applies while the other leaves the request undecided.
+
+This assumes no default decision, treating an uncovered request as its own
+"undecided" outcome. If the policy instead has a default $$d_0$$ (say, allow), two
+allow readings with different conditions would still produce the same outcome on
+every request, making the exclusive-or a false alarm. To handle a default, the
+general form defines each reading's decision function
 
 $$
 f_A(x)=\begin{cases}d_A & C_A(x),\\ d_0 & \neg C_A(x),\end{cases}
@@ -336,9 +336,10 @@ execution instead of from a language model:
   against the text, in an isolated worker process with a match timeout.
 - `incident_expected_allow` is pinned by the label on the example.
 
-Those pinned assignments are added to the solver (I use Z3, an SMT solver, here purely as a SAT engine, since everything is propositional) as
-unit constraints, and then the very same analyzer runs. The same finding types
-come out, now carrying exact match spans as evidence.
+Those pinned assignments are added to the solver (I use Z3, an SMT solver, here
+purely as a SAT engine, since everything is propositional) as unit constraints,
+and then the very same analyzer runs. The same finding types come out, now
+carrying exact match spans as evidence.
 
 | | Natural-language rules | Regex rules |
 | --- | --- | --- |
@@ -517,14 +518,14 @@ Together they turn three fuzzy complaints, "too strict," "conflicting," and
 
 ## The question I think comes next
 
-The deepest question here is about the handoff itself: what is the smallest,
-most inspectable thing a language model can hand to a solver? For this problem,
-my answer today is a propositional encoding with described predicates. I suspect there
-are better answers, and that the right one depends on the task.
+The handoff itself is where the real question lives: what is the smallest, most
+inspectable thing a language model can pass to a solver? Here, I used a
+propositional encoding with described predicates, though the right choice will
+depend on the task.
 
-There is also a follow-on question, because a counterexample invites a fix. If a
-finding says a rule is wrong, the obvious next step is to let a model propose the
-repair. But that reintroduces exactly the trust problem we started with:
+And because a counterexample invites a fix, there is an obvious next step: let a
+model propose the repair. Doing so brings back the exact trust problem we started
+with:
 
 > How do you accept a model's patch without trusting the model?
 
