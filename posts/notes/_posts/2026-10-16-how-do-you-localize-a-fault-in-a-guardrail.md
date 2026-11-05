@@ -267,8 +267,8 @@ One caution: the witness is an assignment in the encoding. If the encoding is
 missing a constraint, no real request may realize that assignment, the same way an
 abstract counterexample in verification can be spurious. Reading the witness as a
 sentence, as I do below, may help reveal an unrealizable assignment, but informal
-inspection does not establish that a witness is real. Counterexample-guided
-abstraction refinement checks this mechanically and refines the abstraction; this
+inspection does not establish that a witness is real. [Counterexample-guided
+abstraction refinement](https://doi.org/10.1007/10722167_15) checks this mechanically and refines the abstraction; this
 post's pipeline does not do that.
 
 Here is a tiny model, loosely based on rules 1 and 2 above. I wrote it by hand,
@@ -493,10 +493,11 @@ defect."
 
 None of the individual pieces here are new. Rule sets have been checked for
 conflicts for a long time: firewall-policy analysis catalogued anomalies such as
-shadowing, redundancy and correlation, access-control analysis defines rule
-conflicts, and SMT solvers have been applied to cloud access policies ([Zelkova
-at AWS](https://doi.org/10.23919/FMCAD.2018.8602994)). Language models have
-been used as front ends to logic for a while
+[shadowing, redundancy and
+correlation](https://doi.org/10.1007/978-0-387-35674-7_2), access-control
+analysis defines rule conflicts, and SMT solvers have been applied to cloud
+access policies ([Zelkova at AWS](https://doi.org/10.23919/FMCAD.2018.8602994)).
+Language models have been used as front ends to logic for a while
 ([Logic-LM](https://arxiv.org/abs/2305.12295),
 [SatLM](https://arxiv.org/abs/2305.09656)).
 

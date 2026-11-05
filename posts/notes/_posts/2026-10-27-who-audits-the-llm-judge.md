@@ -142,10 +142,12 @@ the facts, and the final report explicitly flags those completions as
 possibilities rather than observations.
 
 This gives us three outcomes from a standard SAT/SMT solver. A claim is entailed
-if it holds however the unknown atoms are filled in, refuted if it fails in every
-completion, and underdetermined if it holds in some completions and fails in
-others. This is called _supervaluation_: we consider all completions of the partial
-assignment. For a decision over two atoms where one is `UNKNOWN`, the results are:
+if it holds however the unknown atoms are filled in, refuted if it fails in
+every completion, and underdetermined if it holds in some completions and fails
+in others. This is called
+[_supervaluation_](https://www.jstor.org/stable/2024549): we consider all
+completions of the partial assignment. For a decision over two atoms where one
+is `UNKNOWN`, the results are:
 
 | Expression | Known atom | Other atom | Result |
 | --- | --- | --- | --- |
