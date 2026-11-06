@@ -523,10 +523,9 @@ inspectable thing a language model can pass to a solver? Here, I used a
 propositional encoding with described predicates, though the right choice will
 depend on the task.
 
-And because a counterexample invites a fix, there is an obvious next step: let a
-model propose the repair. Doing so brings back the exact trust problem we started
-with:
-
-> How do you accept a model's patch without trusting the model?
-
-That is the subject of the last post in this series.
+There is also a question that sits beside the handoff. A guardrail is a
+specification, and something has to apply it. In many systems that something is an
+LLM judge, which reads a response, checks it against the rules, and returns a
+verdict. Checking the policy says nothing about whether the judge applied it as
+written. So the next question is who audits the judge, which is the subject of
+[the next post]({% post_url 2026-10-27-who-audits-the-llm-judge %}).

@@ -11,6 +11,11 @@ cite_key: judgeadherence
 
 ## A judge can be right for the wrong reasons
 
+[The previous post]({% post_url 2026-10-16-how-do-you-localize-a-fault-in-a-guardrail %})
+asked whether a guardrail's rules are right. This one asks whether whoever applies
+the rules, often an LLM judge, followed them.
+
+This question matters because so much now depends on the judge's verdict.
 An LLM judge reads a response and returns a verdict, usually paired with a rationale.
 Increasingly, those verdicts gate real decisions: whether an answer ships, an agent's
 next step is accepted, or a model gets promoted.
@@ -413,6 +418,14 @@ have not yet measured its accuracy.
 - **There is no empirical evaluation yet.** While the four test cases show that
   the checker behaves as designed, I have not yet measured how well annotated
   replays catch real-world judge failures in the wild.
+
+## What the two posts share
+
+Both checks follow one pattern. An interpretation is supplied: a propositional
+encoding of the policy in the last post, annotated facts here. A solver decides what
+follows from it, and the report says its conclusions hold relative to that
+interpretation. A language model may help produce the interpretation, but it never
+issues the verdict.
 
 ## The question I think comes next
 
