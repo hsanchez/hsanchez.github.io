@@ -22,11 +22,11 @@ And like any program, it has bugs. The symptoms are familiar:
 - A rule can be read two ways, and the two readings behave differently.
 
 When code misbehaves, we ask a _fault localization_ question: which statement is
-responsible? That question has decades of tooling behind it. For a guardrail, we
+responsible? That question has decades of tooling behind it. For an agent guardrail, we
 mostly have a shrug and a pile of test prompts, friendly and adversarial alike.
 
-Here, localization means finding a defect and pointing to the rules involved.
-That gives a person somewhere to start.
+The goal is the same, though: find a defect and point to the rules involved, so
+that a person has somewhere to start.
 
 I'll argue that this problem is a clean example of something that needs both a
 language model and a solver, each doing a different job. This post is about that
