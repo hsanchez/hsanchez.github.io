@@ -29,7 +29,7 @@ consensus estimation for model recommendation and output aggregation, which I
 have applied to data analysis, specification learning, code generation, and
 program repair. I combine these with neuro-symbolic AI, program analysis,
 automated AI red teaming, guardrail engineering, and AI evaluation and
-benchmarking. I also study [social-cyber
+benchmarking. I'm also interested in [social-cyber
 security](https://dl.acm.org/doi/10.1145/3576914.3587523): modeling adversarial
 behavior to detect social cyber operations that threaten open-source software
 integrity.
